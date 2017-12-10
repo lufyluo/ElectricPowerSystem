@@ -28,7 +28,16 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.login1 = new ProductManager.Controls.Login();
             this.SuspendLayout();
+            // 
+            // login1
+            // 
+            this.login1.BackColor = System.Drawing.Color.White;
+            this.login1.Location = new System.Drawing.Point(478, 176);
+            this.login1.Name = "login1";
+            this.login1.Size = new System.Drawing.Size(410, 382);
+            this.login1.TabIndex = 0;
             // 
             // Form1
             // 
@@ -36,6 +45,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackgroundImage = global::ProductManager.Properties.Resources.backgorund;
             this.ClientSize = new System.Drawing.Size(1350, 729);
+            this.Controls.Add(this.login1);
             this.MaximizeBox = false;
             this.Name = "Form1";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
@@ -46,6 +56,8 @@
         }
 
         #endregion
+
+        private Controls.Login login1;
     }
 }
 
