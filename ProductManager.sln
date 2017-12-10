@@ -14,6 +14,22 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "login", "login", "{B2926029
 		E:\project\softwareDeveloper\res\images\login\backgorund.png = E:\project\softwareDeveloper\res\images\login\backgorund.png
 	EndProjectSection
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "naviget", "naviget", "{C5AE899F-E441-44D2-90F8-F6834FACFF16}"
+	ProjectSection(SolutionItems) = preProject
+		E:\project\softwareDeveloper\res\images\navigate\个人设置-选中.png = E:\project\softwareDeveloper\res\images\navigate\个人设置-选中.png
+		E:\project\softwareDeveloper\res\images\navigate\个人设置-非选中.png = E:\project\softwareDeveloper\res\images\navigate\个人设置-非选中.png
+		E:\project\softwareDeveloper\res\images\navigate\个人设置-非选中1.png = E:\project\softwareDeveloper\res\images\navigate\个人设置-非选中1.png
+		E:\project\softwareDeveloper\res\images\navigate\查看报表-选中.png = E:\project\softwareDeveloper\res\images\navigate\查看报表-选中.png
+		E:\project\softwareDeveloper\res\images\navigate\查看报表-非选中.png = E:\project\softwareDeveloper\res\images\navigate\查看报表-非选中.png
+		E:\project\softwareDeveloper\res\images\navigate\查看报表-非选中1.png = E:\project\softwareDeveloper\res\images\navigate\查看报表-非选中1.png
+		E:\project\softwareDeveloper\res\images\navigate\表格导入-选中.png = E:\project\softwareDeveloper\res\images\navigate\表格导入-选中.png
+		E:\project\softwareDeveloper\res\images\navigate\表格导入-非选中.png = E:\project\softwareDeveloper\res\images\navigate\表格导入-非选中.png
+		E:\project\softwareDeveloper\res\images\navigate\表格导入-非选中1.png = E:\project\softwareDeveloper\res\images\navigate\表格导入-非选中1.png
+		E:\project\softwareDeveloper\res\images\navigate\首页-选中.png = E:\project\softwareDeveloper\res\images\navigate\首页-选中.png
+		E:\project\softwareDeveloper\res\images\navigate\首页-非选中.png = E:\project\softwareDeveloper\res\images\navigate\首页-非选中.png
+		E:\project\softwareDeveloper\res\images\navigate\首页-非选中1.png = E:\project\softwareDeveloper\res\images\navigate\首页-非选中1.png
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -34,6 +50,7 @@ Global
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
 		{B2926029-CE3A-4BDD-8D41-444F4A9F0A31} = {CA35AD03-B22E-4A0D-95AC-AA5BF7180451}
+		{C5AE899F-E441-44D2-90F8-F6834FACFF16} = {CA35AD03-B22E-4A0D-95AC-AA5BF7180451}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {E8180145-42A2-4E17-8F8E-8C0507EBDDA4}

@@ -7,6 +7,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using ProductManager.MessageEvent;
+using ProductManager.Model.MessageModel;
 using ProductManager.Model.ViewModel;
 
 namespace ProductManager.Controls
@@ -15,6 +17,8 @@ namespace ProductManager.Controls
     {
         private readonly string accountTip = "请输入用户名";
         private readonly string passwordTip = "请输入密码";
+        public delegate void LoginEventHandler(object sender, MessageEventArgs e);
+        public event LoginEventHandler LoginEvent;
         public Login()
         {
             InitializeComponent();
@@ -67,7 +71,7 @@ namespace ProductManager.Controls
             };
             if (user.Account == "admin" && user.Password == "111")
             {
-                this.Visible = false;
+                RaiseEvent(nameof(Messages.Login));
             }
             else
             {
@@ -76,5 +80,18 @@ namespace ProductManager.Controls
 
         }
 
+        public void ClearPassword()
+        {
+            this.passwordInput.Text = passwordTip;
+        }
+
+        public void RaiseEvent(string msg)
+        {
+
+            MessageEventArgs e = new MessageEventArgs(msg);
+
+            LoginEvent(this,e);
+
+        }
     }
 }

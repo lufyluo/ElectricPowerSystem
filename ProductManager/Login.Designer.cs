@@ -1,6 +1,6 @@
 ﻿namespace ProductManager
 {
-    partial class Form1
+    partial class Login
     {
         /// <summary>
         /// 必需的设计器变量。
@@ -38,6 +38,7 @@
             this.login1.Name = "login1";
             this.login1.Size = new System.Drawing.Size(410, 382);
             this.login1.TabIndex = 0;
+            this.login1.Load += new System.EventHandler(this.login1_Load);
             // 
             // Form1
             // 
@@ -47,6 +48,7 @@
             this.ClientSize = new System.Drawing.Size(1350, 729);
             this.Controls.Add(this.login1);
             this.MaximizeBox = false;
+            this.MinimizeBox = false;
             this.Name = "Form1";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Form1";

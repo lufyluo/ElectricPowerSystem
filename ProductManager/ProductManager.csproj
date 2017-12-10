@@ -47,17 +47,44 @@
     <Compile Include="Controls\Common\ColorBoderTextBox.cs">
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="Controls\Common\MaskLayer.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Controls\Common\ModifyPassword.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Controls\Common\ModifyPassword.Designer.cs">
+      <DependentUpon>ModifyPassword.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\Common\Navigate.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Controls\Common\Navigate.Designer.cs">
+      <DependentUpon>Navigate.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\Common\RoundPanel.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Controls\Common\TransparentPanel.cs">
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="Controls\Login.cs">
       <SubType>UserControl</SubType>
     </Compile>
     <Compile Include="Controls\Login.Designer.cs">
       <DependentUpon>Login.cs</DependentUpon>
     </Compile>
-    <Compile Include="Form1.cs">
+    <Compile Include="Controls\Set.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Controls\Set.Designer.cs">
+      <DependentUpon>Set.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Login.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Form1.Designer.cs">
-      <DependentUpon>Form1.cs</DependentUpon>
+    <Compile Include="Login.Designer.cs">
+      <DependentUpon>Login.cs</DependentUpon>
     </Compile>
     <Compile Include="Index.cs">
       <SubType>Form</SubType>
@@ -65,16 +92,36 @@
     <Compile Include="Index.Designer.cs">
       <DependentUpon>Index.cs</DependentUpon>
     </Compile>
+    <Compile Include="MessageEvent\MessageEventSource.cs" />
+    <Compile Include="MessageEvent\MessageEventArgs.cs" />
+    <Compile Include="PopModifyPassowrd.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="PopModifyPassowrd.Designer.cs">
+      <DependentUpon>PopModifyPassowrd.cs</DependentUpon>
+    </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="Controls\Common\ModifyPassword.resx">
+      <DependentUpon>ModifyPassword.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Controls\Common\Navigate.resx">
+      <DependentUpon>Navigate.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Controls\Login.resx">
       <DependentUpon>Login.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Form1.resx">
-      <DependentUpon>Form1.cs</DependentUpon>
+    <EmbeddedResource Include="Controls\Set.resx">
+      <DependentUpon>Set.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Login.resx">
+      <DependentUpon>Login.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Index.resx">
       <DependentUpon>Index.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PopModifyPassowrd.resx">
+      <DependentUpon>PopModifyPassowrd.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
@@ -107,6 +154,54 @@
       <Project>{3ed67c5f-f847-440b-b81d-20f706f1fdc0}</Project>
       <Name>ProductManager.Model</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\表格导入-非选中.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\表格导入-非选中1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\表格导入-选中.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\查看报表-非选中.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\查看报表-非选中1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\查看报表-选中.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\个人设置-非选中.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\个人设置-非选中1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\个人设置-选中.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\首页-非选中.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\首页-非选中1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\首页-选中.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\关闭%402x.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\退出%402x.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\关闭.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\退出.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
