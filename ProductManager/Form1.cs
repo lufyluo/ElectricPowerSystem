@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using ProductManager.Logic;
 
 namespace ProductManager
 {
@@ -19,7 +20,9 @@ namespace ProductManager
 
         private void Form1_Load(object sender, EventArgs e)
         {
-            
+            var userLogic = new UserLogic();
+            userLogic.Login("admin", "111");
+
         }
     }
 }
