@@ -18,11 +18,16 @@ namespace ProductManager
         public delegate void IndexEventHandler(object sender, MessageEventArgs e);
         public event IndexEventHandler IndexEvent;
         private Set setControl;
+        private ViewReport homeControl;
+        private Controls.View view ;
         public Index()
         {
             InitializeComponent();
             setControl = new Set();
+            homeControl = new ViewReport();
+            view = new Controls.View();
             navigate1.NavigateEvent += Navigate1_NavigateEvent;
+            navigateTabContent.Controls.Add(homeControl);
             //this.Closed += Index_Closed;
         }
 
@@ -31,6 +36,15 @@ namespace ProductManager
             navigateTabContent.Controls.Clear();
             switch (e.Message)
             {
+                case "Home":
+                    navigateTabContent.Controls.Add(homeControl);
+                    break;
+                case "Import":
+                    //navigateTabContent.Controls.Add(homeControl);
+                    break;
+                case "View":
+                    navigateTabContent.Controls.Add(view);
+                    break;
                 case "Set":
                     navigateTabContent.Controls.Add(setControl);
                     break;

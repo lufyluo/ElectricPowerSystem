@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using ProductManager.Controls;
 
 namespace ProductManager
 {
@@ -17,6 +18,7 @@ namespace ProductManager
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
             Application.Run(new Login());
+            //Application.Run(new TestForm());
         }
     }
 }

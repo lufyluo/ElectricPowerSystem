@@ -49,7 +49,7 @@ namespace ProductManager.Controls.Common
             ResetBarsState(panel);
             SetBarState(panel, Resources.首页_选中, Color.FromArgb(255,0, 166, 244), true);
             _currentSelectedPanel = panel;
-
+            RaiseEvent("Home");
         }
 
 
@@ -79,6 +79,7 @@ namespace ProductManager.Controls.Common
             ResetBarsState(panel);
             SetBarState(panel, Resources.表格导入_选中, Color.FromArgb(255,0, 166, 244), true);
             _currentSelectedPanel = panel;
+            RaiseEvent("Import");
         }
 
         #endregion
@@ -106,6 +107,7 @@ namespace ProductManager.Controls.Common
             ResetBarsState(panel);
             SetBarState(panel, Resources.查看报表_选中, Color.FromArgb(255, 0, 166, 244), true);
             _currentSelectedPanel = panel;
+            RaiseEvent("View");
         }
 
         #endregion

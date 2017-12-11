@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using ProductManager.Logic;
 using ProductManager.MessageEvent;
 using ProductManager.Model.MessageModel;
 using ProductManager.Model.ViewModel;
@@ -19,6 +20,7 @@ namespace ProductManager.Controls
         private readonly string passwordTip = "请输入密码";
         public delegate void LoginEventHandler(object sender, MessageEventArgs e);
         public event LoginEventHandler LoginEvent;
+        private UserLogic userLogic = new UserLogic();
         public Login()
         {
             InitializeComponent();
@@ -64,12 +66,9 @@ namespace ProductManager.Controls
 
         private void loginBtn_Click(object sender, EventArgs e)
         {
-            var user = new User
-            {
-                Account = this.accountInput.Text,
-                Password = this.passwordInput.Text
-            };
-            if (user.Account == "admin" && user.Password == "111")
+            //TODO:调试接口
+            var result = true;  //userLogic.Login(this.accountInput.Text, this.passwordInput.Text);
+            if (result)
             {
                 RaiseEvent(nameof(Messages.Login));
             }
