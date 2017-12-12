@@ -22,7 +22,6 @@ namespace ProductManager.Logic {
         public bool Login(string account, string password) {
             var user = _context.Users.FirstOrDefault(item => item.Account.Equals(account) && item.Password.Equals(password));
             return user != null;
-
         }
 
         /// <summary>
