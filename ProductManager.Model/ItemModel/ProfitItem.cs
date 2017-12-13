@@ -23,36 +23,36 @@ namespace ProductManager.Model.ItemModel {
         /// <summary>
         /// 委托运行维护费
         /// </summary>
-        public double ThirdMaintenanceFee { set; get; }
+        public double? ThirdMaintenanceFee { set; get; }
 
         /// <summary>
         /// 用户工程及租赁收入
         /// </summary>
-        public double EngineeringAndLeasehold { set; get; }
+        public double? EngineeringAndLeasehold { set; get; }
 
         /// <summary>
         /// 其他业务成本
         /// </summary>
-        public double OtherCost { set; get; }
+        public double? OtherCost { set; get; }
 
         /// <summary>
         /// 营业税金及附加
         /// </summary>
-        public double TaxAndAdditional { set; get; }
+        public double? TaxAndAdditional { set; get; }
 
         /// <summary>
         /// 财务费用
         /// </summary>
-        public double FinancialCost { set; get; }
+        public double? FinancialCost { set; get; }
 
         /// <summary>
         /// 资产减值损失
         /// </summary>
-        public double AssetsImpairmentLoss { set; get; }
+        public double? AssetsImpairmentLoss { set; get; }
 
         /// <summary>
         /// 利润
         /// </summary>
-        public double Profit { set; get; }
+        public double? ProfitValue { set; get; }
     }
 }

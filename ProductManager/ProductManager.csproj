@@ -127,7 +127,10 @@
     </Compile>
     <Compile Include="Helper\CommonHelper.cs" />
     <Compile Include="Helper\ExcelHelper.cs" />
+    <Compile Include="ImportExcel\ImportCost.cs" />
+    <Compile Include="ImportExcel\ImportProfit.cs" />
     <Compile Include="ImportExcel\ImportElectric.cs" />
+    <Compile Include="ImportExcel\ImportLogic.cs" />
     <Compile Include="Login.cs">
       <SubType>Form</SubType>
     </Compile>

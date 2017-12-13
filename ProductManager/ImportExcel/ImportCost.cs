@@ -8,9 +8,9 @@ using Microsoft.Office.Interop.Excel;
 
 namespace ProductManager.ImportExcel {
 
-    public class ImportElectric {
+    public class ImportCost {
 
-        public ElectricItem GetElectricItemFromExcel(Application application) {
+        public CostItem GetCostItemFromExcel(Application application) {
             var worksheet = application.ActiveSheet;
             var sb = new StringBuilder();
 
@@ -22,24 +22,24 @@ namespace ProductManager.ImportExcel {
                 sb.Append("请在【B4】处输入编制单位;");
             }
 
-            var timeRange = worksheet.Cells.Range["D4", "D4"];
+            var timeRange = worksheet.Cells.Range["J4", "J4"];
             var time = timeRange.Value2;
             var underDateTime = CommonHelper.GetUnderDateTime(time); 
 
             if (underDateTime==null) {
-                sb.Append("表所属时间【D4】不对;");
+                sb.Append("表所属时间【J4】不对;");
             }
 
-            var electricityRange = worksheet.Cells.Range["E52", "E52"];
-            var electricity = electricityRange.Value2;
-            if (!CommonHelper.IsNumberOrNull(electricity)) {
-                sb.Append("发电量指标【E52】不是可读数;");
+            var welfareFundsRange = worksheet.Cells.Range["L26", "L26"];
+            var welfareFunds = welfareFundsRange.Value2;
+            if (!CommonHelper.IsNumberOrNull(welfareFunds)) {
+                sb.Append("福利费指标【L26】不是可读数;");
             }
 
-            var buyElectricityRange = worksheet.Cells.Range["E58", "E58"];
-            var buyElectricity = buyElectricityRange.Value2;
-            if (!CommonHelper.IsNumberOrNull(buyElectricity)) {
-                sb.Append("购电量指标【E58】不是可读数;");
+            var controllableCostRange = worksheet.Cells.Range["L64", "L64"];
+            var controllableCost = controllableCostRange.Value2;
+            if (!CommonHelper.IsNumberOrNull(controllableCost)) {
+                sb.Append("可控成本【L64】不是可读数;");
             }
 
             var buyAvgPriceRange = worksheet.Cells.Range["E162", "E162"];
@@ -65,18 +65,18 @@ namespace ProductManager.ImportExcel {
             if (sb.Length > 0) {
                 throw new Exception(sb.ToString());
             }
-            var electricItem = new ElectricItem {
+            var costItem = new CostItem {
                 Year=underDateTime.Year,
                 Month = underDateTime.Month,
                 CompanyName = companyName,
-                Electricity = electricity,
-                BuyAvgPrice = buyAvgPrice,
-                BuyElectricity = buyElectricity,
-                SellElectricity = sellElectricity,
-                SellAvgPrice = sellAvgPrice
+                //Electricity = welfareFunds,
+                //BuyAvgPrice = buyAvgPrice,
+                //BuyElectricity = controllableCost,
+                //SellElectricity = sellElectricity,
+                //SellAvgPrice = sellAvgPrice
             };
 
-            return electricItem;
+            return costItem;
         }
        
     }
