@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using ProductManager.Helper;
 using ProductManager.ImportExcel;
+using ProductManager.Logic;
 using ProductManager.Model.MessageModel;
 
 namespace ProductManager
@@ -29,8 +30,12 @@ namespace ProductManager
             content = new Index();
             content.IndexEvent += Dispatcher_MessageEvent;
             _top = Top;
-           // var importElectric = new ImportElectric();
-           //var xx = importElectric.GetElectricItemFromExcel(@"C:\Users\zhaob\Desktop\外包项目\财务类型表\财务快报-其他指标表_国网四川省电力公司.xls");
+           
+            //var importElectric = new ImportElectric();
+            //var xx = importElectric.GetElectricItemFromExcel(@"C:\Users\zhaob\Desktop\luofly\财务类型表\财务快报-其他指标表_国网四川省电力公司.xls");
+            //var electricLogic = new ElectricLogic();
+            //electricLogic.Add(xx);
+
         }
 
         private void LoginEvent(object sender, MessageEvent.MessageEventArgs e)

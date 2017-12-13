@@ -40,7 +40,10 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ItemModel\CostItem.cs" />
     <Compile Include="ItemModel\ElectricItem.cs" />
+    <Compile Include="ItemModel\ProfitItem.cs" />
+    <Compile Include="ItemModel\UnderDateTime.cs" />
     <Compile Include="MessageModel\Messages.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ViewModel\Company.cs" />

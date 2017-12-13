@@ -1,5 +1,7 @@
-﻿namespace ProductManager.Model.ItemModel {
-    public class ElectricItem {
+﻿using System;
+
+namespace ProductManager.Entity {
+    public class Electric {
         /// <summary>
         /// Id
         /// </summary>
@@ -7,7 +9,7 @@
         /// <summary>
         /// 所属公司
         /// </summary>
-        public string CompanyName { set; get; }
+        public int CompanyId { set; get; }
         /// <summary>
         /// 所属年
         /// </summary>
@@ -36,5 +38,15 @@
         /// 售电均价
         /// </summary>
         public double? SellAvgPrice { set; get; }
+
+        /// <summary>
+        /// 创建时间
+        /// </summary>
+        public DateTime CreateTime { set; get; }
+
+        /// <summary>
+        /// 售电均价
+        /// </summary>
+        public DateTime ModifyTime { set; get; }
     }
 }

@@ -59,7 +59,10 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Cost.cs" />
+    <Compile Include="Electric.cs" />
     <Compile Include="ProductManagerContext.cs" />
+    <Compile Include="Profit.cs" />
     <Compile Include="User.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

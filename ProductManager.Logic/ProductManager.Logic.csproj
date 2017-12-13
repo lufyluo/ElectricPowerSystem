@@ -59,6 +59,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ElectricLogic.cs" />
+    <Compile Include="CompanyLogic.cs" />
     <Compile Include="UserLogic.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -70,6 +72,10 @@
     <ProjectReference Include="..\ProductManager.Entity\ProductManager.Entity.csproj">
       <Project>{5241ED2A-224E-4FEF-9D32-EF6DBEF192A5}</Project>
       <Name>ProductManager.Entity</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\ProductManager.Model\ProductManager.Model.csproj">
+      <Project>{3ED67C5F-F847-440B-B81D-20F706F1FDC0}</Project>
+      <Name>ProductManager.Model</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
