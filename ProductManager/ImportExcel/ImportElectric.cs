@@ -1,10 +1,8 @@
-﻿using ProductManager.Helper;
+﻿using Microsoft.Office.Interop.Excel;
+using ProductManager.Helper;
 using ProductManager.Model.ItemModel;
 using System;
-using System.Globalization;
 using System.Text;
-using System.Text.RegularExpressions;
-using Microsoft.Office.Interop.Excel;
 
 namespace ProductManager.ImportExcel {
 
@@ -24,9 +22,9 @@ namespace ProductManager.ImportExcel {
 
             var timeRange = worksheet.Cells.Range["D4", "D4"];
             var time = timeRange.Value2;
-            var underDateTime = CommonHelper.GetUnderDateTime(time); 
+            var underDateTime = CommonHelper.GetUnderDateTime(time);
 
-            if (underDateTime==null) {
+            if (underDateTime == null) {
                 sb.Append("表所属时间【D4】不对;");
             }
 
@@ -66,7 +64,7 @@ namespace ProductManager.ImportExcel {
                 throw new Exception(sb.ToString());
             }
             var electricItem = new ElectricItem {
-                Year=underDateTime.Year,
+                Year = underDateTime.Year,
                 Month = underDateTime.Month,
                 CompanyName = companyName,
                 Electricity = electricity,
@@ -78,6 +76,5 @@ namespace ProductManager.ImportExcel {
 
             return electricItem;
         }
-       
     }
 }
