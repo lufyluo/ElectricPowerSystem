@@ -6,9 +6,10 @@ using System.Threading.Tasks;
 
 namespace ProductManager.Model.ViewModel
 {
-    public class Company:DataSelect
+    public class DataSelect
     {
-       
-       
+       public int Id { get; set; }
+
+        public string Name { get; set; }
     }
 }

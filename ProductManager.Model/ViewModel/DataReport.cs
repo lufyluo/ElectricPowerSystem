@@ -6,9 +6,7 @@ using System.Threading.Tasks;
 
 namespace ProductManager.Model.ViewModel
 {
-    public class Company:DataSelect
+    public class DataReport
     {
-       
-       
     }
 }
