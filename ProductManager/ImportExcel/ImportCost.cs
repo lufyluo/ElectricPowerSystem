@@ -30,34 +30,28 @@ namespace ProductManager.ImportExcel {
                 sb.Append("表所属时间【J4】不对;");
             }
 
-            var welfareFundsRange = worksheet.Cells.Range["L26", "L26"];
-            var welfareFunds = welfareFundsRange.Value2;
-            if (!CommonHelper.IsNumberOrNull(welfareFunds)) {
-                sb.Append("福利费指标【L26】不是可读数;");
+            var salaryRange = worksheet.Cells.Range["L10", "L10"];
+            var salary = salaryRange.Value2;
+            if (!CommonHelper.IsNumberOrNull(salary)) {
+                sb.Append("工资指标【L10】不是可读数;");
+            }
+
+            var workersWelfareRange = worksheet.Cells.Range["L26", "L26"];
+            var workersWelfare = workersWelfareRange.Value2;
+            if (!CommonHelper.IsNumberOrNull(workersWelfare)) {
+                sb.Append("职工福利费指标【L26】不是可读数;");
+            }
+
+            var totalCostRange = worksheet.Cells.Range["L63", "L63"];
+            var totalCost = totalCostRange.Value2;
+            if (!CommonHelper.IsNumberOrNull(totalCost)) {
+                sb.Append("合计指标【L10】不是可读数;");
             }
 
             var controllableCostRange = worksheet.Cells.Range["L64", "L64"];
             var controllableCost = controllableCostRange.Value2;
             if (!CommonHelper.IsNumberOrNull(controllableCost)) {
-                sb.Append("可控成本【L64】不是可读数;");
-            }
-
-            var buyAvgPriceRange = worksheet.Cells.Range["E162", "E162"];
-            var buyAvgPrice = buyAvgPriceRange.Value2;
-            if (!CommonHelper.IsNumberOrNull(buyAvgPrice)) {
-                sb.Append("购电均价指标【E162】不是可读数;");
-            }
-
-            var sellElectricityRange = worksheet.Cells.Range["E85", "E85"];
-            var sellElectricity = sellElectricityRange.Value2;
-            if (!CommonHelper.IsNumberOrNull(sellElectricity)) {
-                sb.Append("售电量指标【E85】不是可读数;");
-            }
-
-            var sellAvgPriceRange = worksheet.Cells.Range["E164", "E164"];
-            var sellAvgPrice = sellAvgPriceRange.Value2;
-            if (!CommonHelper.IsNumberOrNull(sellAvgPrice)) {
-                sb.Append("售电均价指标【E164】不是可读数;");
+                sb.Append("可控成本指标【L64】不是可读数;");
             }
 
             ExcelHelper.CloseExcel(application);
@@ -69,11 +63,11 @@ namespace ProductManager.ImportExcel {
                 Year=underDateTime.Year,
                 Month = underDateTime.Month,
                 CompanyName = companyName,
-                //Electricity = welfareFunds,
-                //BuyAvgPrice = buyAvgPrice,
-                //BuyElectricity = controllableCost,
-                //SellElectricity = sellElectricity,
-                //SellAvgPrice = sellAvgPrice
+                Salary = salary,
+                WorkersWelfare = workersWelfare,
+                TotalCost = totalCost,
+                ControllableCost = controllableCost,
+
             };
 
             return costItem;

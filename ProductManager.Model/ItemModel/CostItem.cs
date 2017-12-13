@@ -1,11 +1,12 @@
 ﻿namespace ProductManager.Model.ItemModel {
+
     public class CostItem {
         public int Id { set; get; }
 
         /// <summary>
         /// 所属公司
         /// </summary>
-        public double CompanyName { set; get; }
+        public string CompanyName { set; get; }
 
         /// <summary>
         /// 所属年
@@ -18,43 +19,23 @@
         public int? Month { set; get; }
 
         /// <summary>
-        /// 福利费
-        /// </summary>
-        public double? WelfareFunds { set; get; }
-
-        /// <summary>
-        /// 可控成本
-        /// </summary>
-        public double? ControllableCost { set; get; }
-
-        /// <summary>
-        /// 差旅费
-        /// </summary>
-        public double? TravelExpenses { set; get; }
-
-        /// <summary>
-        /// 不可控成本：【可控成本-差旅费】
-        /// </summary>
-        public double? UnControllableCost { set; get; }
-
-        /// <summary>
-        /// 人工成本(不含福利费）
-        /// </summary>
-        public double? ArtificialCost { set; get; }
-
-        /// <summary>
-        /// 工资
+        /// 人工成本(不含福利费）【工资】【L10】
         /// </summary>
         public double? Salary { set; get; }
 
         /// <summary>
-        /// --总计
+        /// 职工福利费【L26】
+        /// </summary>
+        public double? WorkersWelfare { set; get; }
+
+        /// <summary>
+        /// 合计【L63】
         /// </summary>
         public double? TotalCost { set; get; }
 
         /// <summary>
-        /// 其它不可控成本：【TotalCost-UnControllableCost-Salary】
+        /// 其中：可控成本费用【L64】
         /// </summary>
-        public double? OtherUnControllableCost { set; get; }
+        public double? ControllableCost { set; get; }
     }
 }

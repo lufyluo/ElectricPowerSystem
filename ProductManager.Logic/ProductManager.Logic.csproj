@@ -59,6 +59,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="CostLogic.cs" />
+    <Compile Include="ProfitLogic.cs" />
     <Compile Include="ElectricLogic.cs" />
     <Compile Include="CompanyLogic.cs" />
     <Compile Include="UserLogic.cs" />

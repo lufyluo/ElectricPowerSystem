@@ -7,6 +7,10 @@ namespace ProductManager.Entity
 
         public DbSet<Electric> Electrics { get; set; }
 
+        public DbSet<Cost> Costs { get; set; }
+
+        public DbSet<Profit> Profits { get; set; }
+
         public ProductManagerContext() : base("ProductManagerDB") {
         }
     }
