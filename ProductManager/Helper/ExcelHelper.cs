@@ -1,10 +1,10 @@
-﻿using Microsoft.Office.Interop.Excel;
-using System;
+﻿using System;
 using System.Diagnostics;
 using System.Runtime.InteropServices;
 using Application = Microsoft.Office.Interop.Excel.Application;
 
-namespace ProductManager.Helper {
+namespace ProductManager.Helper
+{
 
     public class ExcelHelper {
 
