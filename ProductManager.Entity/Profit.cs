@@ -3,12 +3,12 @@
 namespace ProductManager.Entity {
 
     public class Profit {
-        public double Id { set; get; }
+        public int Id { set; get; }
 
         /// <summary>
         /// 所属公司Id
         /// </summary>
-        public double CompanyId { set; get; }
+        public int CompanyId { set; get; }
 
         /// <summary>
         /// 所属年

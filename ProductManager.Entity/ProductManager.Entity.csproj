@@ -59,6 +59,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Company.cs" />
     <Compile Include="Cost.cs" />
     <Compile Include="Electric.cs" />
     <Compile Include="ProductManagerContext.cs" />

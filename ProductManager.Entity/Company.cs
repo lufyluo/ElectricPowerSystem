@@ -2,11 +2,14 @@
 
 namespace ProductManager.Entity {
 
-    public class User {
-        public int Id { get; set; }
-        public string Account { get; set; }
-        public string Password { get; set; }
+    public class Company {
+
+        public int Id { set; get; }
+
+        public string Name { set; get; }
+
         public DateTime CreateTime { set; get; }
+
         public DateTime ModifyTime { set; get; }
     }
 }

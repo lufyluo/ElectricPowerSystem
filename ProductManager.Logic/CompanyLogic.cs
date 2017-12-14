@@ -15,7 +15,8 @@ namespace ProductManager.Logic {
         }
 
         public int GetCompanyId(string companyName) {
-            return 1;
+            var company = _context.Companys.FirstOrDefault(item => item.Name == companyName);
+            return company?.Id ?? 0;
         }
     }
 }

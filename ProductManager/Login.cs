@@ -30,12 +30,12 @@ namespace ProductManager
             content = new Index();
             content.IndexEvent += Dispatcher_MessageEvent;
             _top = Top;
-           
-            //var importElectric = new ImportElectric();
-            //var xx = importElectric.GetElectricItemFromExcel(@"C:\Users\zhaob\Desktop\luofly\财务类型表\财务快报-其他指标表_国网四川省电力公司.xls");
-            //var electricLogic = new ElectricLogic();
-            //electricLogic.Add(xx);
 
+            //var importLogic = new ImportLogic();
+            
+            //var xx1 = importLogic.ImportExcel(@"C:\Users\zhaob\Desktop\luofly\财务类型表\财务快报-其他指标表_国网四川省电力公司.xls");
+            //var xx2 = importLogic.ImportExcel(@"C:\Users\zhaob\Desktop\luofly\财务类型表\财务快报-成本费用表_国网四川省电力公司.xls");
+            //var xx3 = importLogic.ImportExcel(@"C:\Users\zhaob\Desktop\luofly\财务类型表\财务快报-利润表_国网四川省电力公司.xls");
         }
 
         private void LoginEvent(object sender, MessageEvent.MessageEventArgs e)

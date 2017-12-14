@@ -3,7 +3,7 @@
 namespace ProductManager.Model.ItemModel {
 
     public class ProfitItem {
-        public double Id { set; get; }
+        public int Id { set; get; }
 
         /// <summary>
         /// 所属年

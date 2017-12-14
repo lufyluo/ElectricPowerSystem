@@ -8,7 +8,7 @@ namespace ProductManager.Entity {
         /// <summary>
         /// 所属公司Id
         /// </summary>
-        public double CompanyId { set; get; }
+        public int CompanyId { set; get; }
 
         /// <summary>
         /// 所属年
@@ -19,6 +19,7 @@ namespace ProductManager.Entity {
         /// 所属月
         /// </summary>
         public int? Month { set; get; }
+
         /// <summary>
         /// 人工成本(不含福利费）【工资】【L10】
         /// </summary>
@@ -28,7 +29,6 @@ namespace ProductManager.Entity {
         /// 职工福利费【L26】
         /// </summary>
         public double? WorkersWelfare { set; get; }
-
 
         /// <summary>
         /// 合计【L63】
@@ -44,11 +44,6 @@ namespace ProductManager.Entity {
         /// 不可控成本：【可控成本-差旅费】
         /// </summary>
         public double? UnControllableCost { set; get; }
-
-        /// <summary>
-        /// 人工成本(不含福利费）
-        /// </summary>
-        public double? ArtificialCost { set; get; }
 
         /// <summary>
         /// 其它不可控成本：【TotalCost-UnControllableCost-Salary】
