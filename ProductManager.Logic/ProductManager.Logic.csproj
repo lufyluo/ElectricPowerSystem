@@ -60,6 +60,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="CostLogic.cs" />
+    <Compile Include="DataReportLogic.cs" />
     <Compile Include="ProfitLogic.cs" />
     <Compile Include="ElectricLogic.cs" />
     <Compile Include="CompanyLogic.cs" />

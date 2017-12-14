@@ -13,7 +13,6 @@ namespace ProductManager.Logic {
             var entity = new Electric() {
                 Year = item.Year,
                 Month = item.Month,
-                CompanyId = 1,
                 Electricity = item.Electricity,
                 BuyElectricity = item.BuyElectricity,
                 BuyAvgPrice = item.BuyAvgPrice,
