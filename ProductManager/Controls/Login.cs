@@ -66,8 +66,7 @@ namespace ProductManager.Controls
 
         private void loginBtn_Click(object sender, EventArgs e)
         {
-            //TODO:调试接口
-            var result = true;  //userLogic.Login(this.accountInput.Text, this.passwordInput.Text);
+            var result = userLogic.Login(this.accountInput.Text, this.passwordInput.Text);
             if (result)
             {
                 RaiseEvent(nameof(Messages.Login));

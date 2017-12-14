@@ -40,16 +40,16 @@
             this.login1.TabIndex = 0;
             this.login1.Load += new System.EventHandler(this.login1_Load);
             // 
-            // Form1
+            // Login
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.BackgroundImage = global::ProductManager.Properties.Resources.backgorund;
+            this.BackgroundImage = global::ProductManager.Properties.Resources.background;
             this.ClientSize = new System.Drawing.Size(1350, 729);
             this.Controls.Add(this.login1);
             this.MaximizeBox = false;
             this.MinimizeBox = false;
-            this.Name = "Form1";
+            this.Name = "Login";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Form1";
             this.Load += new System.EventHandler(this.Form1_Load);
