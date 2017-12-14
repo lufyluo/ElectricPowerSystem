@@ -35,20 +35,28 @@ namespace ProductManager.Controls
             companySelect.ValueMember = "Id";
             companySelect.DisplayMember = "Name";
 
-            years.Add(new YearSelect(){Id=0,Name = "2012年"});
-            years.Add(new YearSelect() { Id = 1, Name = "2013年" });
-            years.Add(new YearSelect() { Id = 2, Name = "2014年" });
-            years.Add(new YearSelect() { Id = 3, Name = "2015年" });
-            years.Add(new YearSelect() { Id = 4, Name = "2016年" });
-            years.Add(new YearSelect() { Id = 5, Name = "2017年" });
+            var date = DateTime.Now;
+
+            var year = date.Year;
+            years.Add(new YearSelect() { Id = -1, Name = "无" });
+            for (int i = 0; i < 5; i++)
+            {
+                years.Add(new YearSelect() { Id = year-i, Name = year - i + "年" });
+            }
             yearSelect.DataSource = years;
             yearSelect.ValueMember = "Id";
-            yearSelect.DisplayMember = "Name";
+            line_Year.DisplayMember = "Name";
+            line_Year.DataSource = years;
+            line_Year.ValueMember = "Id";
+            line_Year.DisplayMember = "Name";
 
-            months.Add(new MonthSelect(){Id=0,Name = "第一季度"});
-            months.Add(new MonthSelect() { Id = 1, Name = "第二季度" });
-            months.Add(new MonthSelect() { Id = 2, Name = "第三季度" });
-            months.Add(new MonthSelect() { Id = 3, Name = "第四季度" });
+
+            months.Add(new MonthSelect() { Id = -1, Name = "无" });
+            months.Add(new MonthSelect(){Id=1,Name = "第一季度"});
+            months.Add(new MonthSelect() { Id = 2, Name = "第二季度" });
+            months.Add(new MonthSelect() { Id = 3, Name = "第三季度" });
+            months.Add(new MonthSelect() { Id = 4, Name = "第四季度" });
+
             months.Add(new MonthSelect() { Id = 4, Name = "1" });
             months.Add(new MonthSelect() { Id = 5, Name = "2" });
             months.Add(new MonthSelect() { Id = 6, Name = "3" });
@@ -63,8 +71,10 @@ namespace ProductManager.Controls
             months.Add(new MonthSelect() { Id = 15, Name = "12" });
             monthSelect.DataSource = months;
             monthSelect.ValueMember = "Id";
-            monthSelect.DisplayMember = "Name";
-
+            line_Month.DisplayMember = "Name";
+            line_Month.DataSource = months;
+            line_Month.ValueMember = "Id";
+            line_Month.DisplayMember = "Name";
         }
 
         private void InitHeader()
@@ -90,6 +100,40 @@ namespace ProductManager.Controls
         }
 
         private void search_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void line_Year_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            var selector = sender as ComboBox;
+            var value = selector.SelectedItem as YearSelect;
+            if(value)
+          Console.WriteLine(value.Id);
+        }
+        //趋势参数
+        private void line_Property_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void line_Month_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void line_Company_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void line_search_Click(object sender, EventArgs e)
+        {
+
+        }
+
+
+        private void tab_SelectedIndexChanged(object sender, EventArgs e)
         {
 
         }

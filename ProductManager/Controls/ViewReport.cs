@@ -14,7 +14,7 @@ namespace ProductManager.Controls
 {
     public partial class ViewReport : UserControl
     {
-        private Worksheet sheet;
+        public Worksheet sheet;
         public ViewReport()
         {
             InitializeComponent();
