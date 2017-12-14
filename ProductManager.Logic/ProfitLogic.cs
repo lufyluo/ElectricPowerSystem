@@ -13,7 +13,6 @@ namespace ProductManager.Logic {
             var entity = new Profit {
                 Year = item.Year,
                 Month = item.Month,
-                CompanyId = 1,
                 AssetsImpairmentLoss = item.AssetsImpairmentLoss,
                 EngineeringAndLeasehold = item.EngineeringAndLeasehold,
                 FinancialCost = item.FinancialCost,

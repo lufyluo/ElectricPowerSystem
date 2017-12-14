@@ -41,12 +41,12 @@ namespace ProductManager.Entity {
         public double? ControllableCost { set; get; }
 
         /// <summary>
-        /// 不可控成本：【可控成本-差旅费】
+        /// 其它可控成本：【ControllableCost-WorkersWelfare】
         /// </summary>
-        public double? UnControllableCost { set; get; }
+        public double? OtherControllableCost { set; get; }
 
         /// <summary>
-        /// 其它不可控成本：【TotalCost-UnControllableCost-Salary】
+        /// 其它不可控成本：【TotalCost-ControllableCost-Salary】
         /// </summary>
         public double? OtherUnControllableCost { set; get; }
 

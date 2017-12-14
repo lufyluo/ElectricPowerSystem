@@ -9,6 +9,10 @@ namespace ProductManager.Model.ViewModel
     public class BudgetReportData
     {
         #region baseinfo
+        public int Month { set; get; }
+
+        public string MonthShow => $"第{Month}月";
+
         /// <summary>
         /// 公司名称
         /// </summary>
@@ -63,14 +67,24 @@ namespace ProductManager.Model.ViewModel
         public double? ControllableCost { set; get; }
 
         /// <summary>
-        /// 不可控成本：【可控成本-差旅费】
+        /// 可控成本小计
         /// </summary>
-        public double? UnControllableCost { set; get; }
+        public double? ControllableCostTotal => WorkersWelfare + ControllableCost;
+
+        /// <summary>
+        /// 其它可控成本：【ControllableCost-WorkersWelfare】
+        /// </summary>
+        public double? OtherControllableCost { set; get; }
 
         /// <summary>
         /// 其它不可控成本：【TotalCost-UnControllableCost-Salary】
         /// </summary>
         public double? OtherUnControllableCost { set; get; }
+
+        /// <summary>
+        /// 其它不可控成本小计
+        /// </summary>
+        public double? OtherUnControllableCostTotal => Salary + OtherUnControllableCost;
         #endregion
 
         #region profit

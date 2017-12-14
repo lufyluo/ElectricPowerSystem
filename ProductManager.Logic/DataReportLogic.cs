@@ -61,7 +61,7 @@ namespace ProductManager.Logic {
                             Salary =cost.Salary,
                             WorkersWelfare = cost.WorkersWelfare,
                             ControllableCost = cost.ControllableCost,
-                            UnControllableCost = cost.UnControllableCost,
+                            OtherControllableCost = cost.OtherControllableCost,
                             OtherUnControllableCost = cost.OtherUnControllableCost,
 
                             ThirdMaintenanceFee = pt.ThirdMaintenanceFee,

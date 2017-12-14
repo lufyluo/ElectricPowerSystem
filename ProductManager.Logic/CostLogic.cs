@@ -13,12 +13,12 @@ namespace ProductManager.Logic {
             var entity = new Cost() {
                 Year = item.Year,
                 Month = item.Month,
-                CompanyId = 1,
                 Salary = item.Salary,
                 WorkersWelfare = item.WorkersWelfare,
                 TotalCost = item.TotalCost,
                 ControllableCost = item.ControllableCost,
-                //                todo:其它指标要算
+                OtherControllableCost= item.ControllableCost - item.WorkersWelfare,
+                OtherUnControllableCost = item.TotalCost - item.ControllableCost - item.Salary,
                 CreateTime = DateTime.Now,
                 ModifyTime = DateTime.Now
             };
