@@ -14,17 +14,17 @@ namespace ProductManager.Logic {
         }
 
         public int GetCompanyId(string companyName) {
-            var company = _context.Companys.FirstOrDefault(item => item.Name == companyName);
+            var company = _context.Companies.FirstOrDefault(item => item.Name == companyName);
             return company?.Id ?? 0;
         }
 
         public IList<Company> GetCompanys() {
-            return _context.Companys.OrderBy(item => item.Name).ToList();
+            return _context.Companies.OrderBy(item => item.Name).ToList();
         }
 
         public int Add(IList<CompanyItem> companies) {
             foreach (var companyItem in companies) {
-                if (_context.Companys.FirstOrDefault(item => item.Name == companyItem.Name) != null) {
+                if (_context.Companies.FirstOrDefault(item => item.Name == companyItem.Name) != null) {
                     continue;
                 }
                 var company = new Company {
@@ -32,7 +32,7 @@ namespace ProductManager.Logic {
                     CreateTime = DateTime.Now,
                     ModifyTime = DateTime.Now
                 };
-                _context.Companys.Add(company);
+                _context.Companies.Add(company);
             }
             _context.SaveChanges();
             return 1;

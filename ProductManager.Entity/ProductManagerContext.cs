@@ -5,7 +5,7 @@ namespace ProductManager.Entity
     public class ProductManagerContext : DbContext {
         public DbSet<User> Users { get; set; }
 
-        public DbSet<Company> Companys { get; set; }
+        public DbSet<Company> Companies { get; set; }
 
         public DbSet<Electric> Electrics { get; set; }
 

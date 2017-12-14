@@ -11,6 +11,7 @@ using ProductManager.Helper;
 using ProductManager.ImportExcel;
 using ProductManager.Logic;
 using ProductManager.Model.MessageModel;
+using ProductManager.Model.ParamModel;
 
 namespace ProductManager
 {
@@ -31,9 +32,9 @@ namespace ProductManager
             content.IndexEvent += Dispatcher_MessageEvent;
             _top = Top;
 
-
-            var user = new UserLogic();
-            user.Login("admin", "111");
+            var dataReportLogic = new DataReportLogic();
+            var xx = dataReportLogic.GetBudgetReportData(new BaseParam());
+          
             //var importLogic = new ImportLogic();
 
             //var xx1 = importLogic.ImportExcel(@"C:\Users\zhaob\Desktop\luofly\财务类型表\财务快报-其他指标表_国网四川省电力公司.xls");

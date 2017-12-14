@@ -46,9 +46,10 @@
     <Compile Include="ItemModel\ProfitItem.cs" />
     <Compile Include="ItemModel\UnderDateTime.cs" />
     <Compile Include="MessageModel\Messages.cs" />
+    <Compile Include="ParamModel\BaseParam.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ViewModel\Company.cs" />
-    <Compile Include="ViewModel\DataReport.cs" />
+    <Compile Include="ViewModel\BudgetReportData.cs" />
     <Compile Include="ViewModel\DataSelect.cs" />
     <Compile Include="ViewModel\MonthSelect.cs" />
     <Compile Include="ViewModel\User.cs" />
