@@ -1,13 +1,14 @@
-﻿using System;
+﻿using ProductManager.Entity;
+using ProductManager.Model.ItemModel;
+using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using ProductManager.Entity;
-using ProductManager.Model.ItemModel;
+
 namespace ProductManager.Logic {
+
     public class CompanyLogic {
         private readonly ProductManagerContext _context;
+
         public CompanyLogic() {
             _context = new ProductManagerContext();
         }
@@ -37,6 +38,4 @@ namespace ProductManager.Logic {
             return 1;
         }
     }
-
-
 }
