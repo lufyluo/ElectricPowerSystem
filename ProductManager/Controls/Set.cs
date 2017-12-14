@@ -8,6 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using ProductManager.Controls.Common;
+using ProductManager.MessageEvent;
 
 namespace ProductManager.Controls
 {
@@ -25,9 +26,19 @@ namespace ProductManager.Controls
 
         private void modifyPassword_Click(object sender, EventArgs e)
         {
-
+            //RaiseEvent("modifyPassword");
             PopModifyPassowrd pmp = new PopModifyPassowrd();
             pmp.ShowDialog();
+        }
+        public delegate void SetEventHandler(object sender, MessageEventArgs e);
+        public event SetEventHandler SetEvent;
+        public void RaiseEvent(string msg)
+        {
+
+            MessageEventArgs e = new MessageEventArgs(msg);
+
+            SetEvent(this, e);
+
         }
     }
 }
