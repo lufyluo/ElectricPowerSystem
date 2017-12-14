@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Data;
 using System.Linq;
+using System.Net.Configuration;
 using ProductManager.Entity;
 using ProductManager.Model.ParamModel;
 using ProductManager.Model.ViewModel;
@@ -12,6 +13,7 @@ namespace ProductManager.Logic {
         public DataReportLogic() {
             _context = new ProductManagerContext();
         }
+
         public IList<BudgetReportData> GetBudgetReportData(BaseParam baseParam) {
             var companyQueryable = _context.Companies.Where(item => true);
             var costQueryable = _context.Costs.Where(item => true);
@@ -76,5 +78,7 @@ namespace ProductManager.Logic {
         
             return query.ToList();
         }
+
+       
     }
 }
