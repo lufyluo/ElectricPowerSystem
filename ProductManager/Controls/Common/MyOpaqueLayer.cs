@@ -36,7 +36,7 @@ namespace ProductManager.Controls.Common
             if (showLoadingImage)
             {
                 PictureBox pictureBox_Loading = new PictureBox();
-                pictureBox_Loading.BackColor = System.Drawing.Color.White;
+                pictureBox_Loading.BackColor = System.Drawing.Color.Black;
                 //pictureBox_Loading.Image = global::MyOpaqueLayer.Properties.Resources.loading;
                 //pictureBox_Loading.Name = "pictureBox_Loading";
                 //pictureBox_Loading.Size = new System.Drawing.Size(48, 48);

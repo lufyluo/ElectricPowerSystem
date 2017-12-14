@@ -104,6 +104,18 @@
     <Compile Include="Controls\Common\TransparentPanel.cs">
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="Controls\ImportExcel.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Controls\ImportExcel.Designer.cs">
+      <DependentUpon>ImportExcel.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\LineChart.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Controls\LineChart.Designer.cs">
+      <DependentUpon>LineChart.cs</DependentUpon>
+    </Compile>
     <Compile Include="Controls\Login.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -172,6 +184,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Controls\Common\Navigate.resx">
       <DependentUpon>Navigate.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Controls\ImportExcel.resx">
+      <DependentUpon>ImportExcel.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Controls\LineChart.resx">
+      <DependentUpon>LineChart.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Controls\Login.resx">
       <DependentUpon>Login.cs</DependentUpon>

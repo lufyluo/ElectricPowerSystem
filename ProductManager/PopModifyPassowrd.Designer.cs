@@ -29,30 +29,19 @@
         private void InitializeComponent()
         {
             this.modifyPassword1 = new ProductManager.Controls.Common.ModifyPassword();
-            this.transparentPanel1 = new ProductManager.Controls.Common.TransparentPanel();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
             // modifyPassword1
             // 
-            this.modifyPassword1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(25)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
+            this.modifyPassword1.BackColor = System.Drawing.Color.Gray;
             this.modifyPassword1.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.modifyPassword1.Location = new System.Drawing.Point(403, 84);
             this.modifyPassword1.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.modifyPassword1.Name = "modifyPassword1";
             this.modifyPassword1.Size = new System.Drawing.Size(600, 586);
             this.modifyPassword1.TabIndex = 0;
-            // 
-            // transparentPanel1
-            // 
-            this.transparentPanel1.BackColor = System.Drawing.Color.Black;
-            this.transparentPanel1.BorderColor = System.Drawing.Color.Empty;
-            this.transparentPanel1.Location = new System.Drawing.Point(0, 0);
-            this.transparentPanel1.Name = "transparentPanel1";
-            this.transparentPanel1.Size = new System.Drawing.Size(1366, 768);
-            this.transparentPanel1.TabIndex = 1;
-            this.transparentPanel1.Text = "transparentPanel1";
             // 
             // pictureBox1
             // 
@@ -69,18 +58,21 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.BackColor = System.Drawing.Color.White;
             this.ClientSize = new System.Drawing.Size(1366, 768);
             this.ControlBox = false;
             this.Controls.Add(this.pictureBox1);
             this.Controls.Add(this.modifyPassword1);
-            this.Controls.Add(this.transparentPanel1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
+            this.ImeMode = System.Windows.Forms.ImeMode.NoControl;
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "PopModifyPassowrd";
+            this.Opacity = 0.95D;
             this.ShowIcon = false;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "PopWindow";
+            this.TransparencyKey = System.Drawing.Color.White;
             this.Load += new System.EventHandler(this.PopWindow_Load);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);
@@ -90,7 +82,6 @@
         #endregion
 
         private Controls.Common.ModifyPassword modifyPassword1;
-        private Controls.Common.TransparentPanel transparentPanel1;
         private System.Windows.Forms.PictureBox pictureBox1;
     }
 }

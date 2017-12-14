@@ -26,9 +26,9 @@ namespace ProductManager.Controls
 
         private void modifyPassword_Click(object sender, EventArgs e)
         {
-            RaiseEvent("modifyPassword");
-            //PopModifyPassowrd pmp = new PopModifyPassowrd();
-            //pmp.ShowDialog();
+            //RaiseEvent("modifyPassword");
+            PopModifyPassowrd pmp = new PopModifyPassowrd();
+            pmp.ShowDialog();
         }
         public delegate void SetEventHandler(object sender, MessageEventArgs e);
         public event SetEventHandler SetEvent;

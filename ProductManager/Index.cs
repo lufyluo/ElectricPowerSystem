@@ -21,6 +21,7 @@ namespace ProductManager
         private Set setControl;
         private ViewReport homeControl;
         private Controls.View view ;
+        private Controls.ImportExcel importExcel;
         private MyOpaqueLayer m_OpaqueLayer = null;//半透明蒙板层
         public Index()
         {
@@ -31,7 +32,7 @@ namespace ProductManager
             view = new Controls.View();
             navigate1.NavigateEvent += Navigate1_NavigateEvent;
             navigateTabContent.Controls.Add(homeControl);
-            m_OpaqueLayer.Click += M_OpaqueLayer_Click;
+            importExcel = new Controls.ImportExcel();
             //this.Closed += Index_Closed;
         }
 
@@ -60,7 +61,7 @@ namespace ProductManager
                     navigateTabContent.Controls.Add(homeControl);
                     break;
                 case "Import":
-                    //navigateTabContent.Controls.Add(homeControl);
+                    navigateTabContent.Controls.Add(importExcel);
                     break;
                 case "View":
                     navigateTabContent.Controls.Add(view);
@@ -107,6 +108,7 @@ namespace ProductManager
                 control.Controls.Add(this.m_OpaqueLayer);
                 this.m_OpaqueLayer.Dock = DockStyle.Fill;
                 this.m_OpaqueLayer.BringToFront();
+                m_OpaqueLayer.Click += M_OpaqueLayer_Click;
             }
             this.m_OpaqueLayer.Enabled = true;
             this.m_OpaqueLayer.Visible = true;
