@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Diagnostics;
 using System.Runtime.InteropServices;
+using System.Windows.Forms;
+using unvell.ReoGrid;
 using Application = Microsoft.Office.Interop.Excel.Application;
 
 namespace ProductManager.Helper
@@ -60,6 +62,27 @@ namespace ProductManager.Helper
                 catch {
                     //不做任何处理
                 }
+            }
+        }
+
+        public static void ExporAsExcel(Worksheet sheet)
+        {
+            if (sheet != null)
+            {
+                OpenFileDialog fileDialog = new OpenFileDialog();
+                fileDialog.Multiselect = true;
+                fileDialog.Title = "请选择文件";
+                fileDialog.Filter = "*.xlsx";
+                if (fileDialog.ShowDialog() == DialogResult.OK)
+                {
+                    var file = fileDialog.FileName;
+                    sheet.Save(file, unvell.ReoGrid.IO.FileFormat.Excel2007);
+                    MessageBox.Show("已选择文件:" + file, "选择文件提示", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
+            }
+            else
+            {
+                MessageBox.Show("无导出内容", "Info", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
         }
     }
