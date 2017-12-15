@@ -38,7 +38,7 @@ namespace ProductManager.Controls
             var date = DateTime.Now;
 
             var year = date.Year;
-            years.Add(new YearSelect() { Id = -1, Name = "无" });
+            years.Add(new YearSelect() { Id = -1, Name = "每年" });
             for (int i = 0; i < 5; i++)
             {
                 years.Add(new YearSelect() { Id = year-i, Name = year - i + "年" });
@@ -52,23 +52,23 @@ namespace ProductManager.Controls
 
 
             months.Add(new MonthSelect() { Id = -1, Name = "无" });
-            months.Add(new MonthSelect(){Id=1,Name = "第一季度"});
-            months.Add(new MonthSelect() { Id = 2, Name = "第二季度" });
-            months.Add(new MonthSelect() { Id = 3, Name = "第三季度" });
-            months.Add(new MonthSelect() { Id = 4, Name = "第四季度" });
+            months.Add(new MonthSelect(){Id=1,IsQuarter = true,Name = "第一季度"});
+            months.Add(new MonthSelect() { Id = 2, IsQuarter = true, Name = "第二季度" });
+            months.Add(new MonthSelect() { Id = 3, IsQuarter = true, Name = "第三季度" });
+            months.Add(new MonthSelect() { Id = 4, IsQuarter = true, Name = "第四季度" });
 
-            months.Add(new MonthSelect() { Id = 4, Name = "1" });
-            months.Add(new MonthSelect() { Id = 5, Name = "2" });
-            months.Add(new MonthSelect() { Id = 6, Name = "3" });
-            months.Add(new MonthSelect() { Id = 7, Name = "4" });
-            months.Add(new MonthSelect() { Id = 8, Name = "5" });
-            months.Add(new MonthSelect() { Id = 9, Name = "6" });
-            months.Add(new MonthSelect() { Id = 10, Name = "7" });
-            months.Add(new MonthSelect() { Id = 11, Name = "8" });
-            months.Add(new MonthSelect() { Id = 12, Name = "9" });
-            months.Add(new MonthSelect() { Id = 13, Name = "10" });
-            months.Add(new MonthSelect() { Id = 14, Name = "11" });
-            months.Add(new MonthSelect() { Id = 15, Name = "12" });
+            months.Add(new MonthSelect() { Id = 1, Name = "1" });
+            months.Add(new MonthSelect() { Id = 2, Name = "2" });
+            months.Add(new MonthSelect() { Id = 3, Name = "3" });
+            months.Add(new MonthSelect() { Id = 4, Name = "4" });
+            months.Add(new MonthSelect() { Id = 5, Name = "5" });
+            months.Add(new MonthSelect() { Id = 6, Name = "6" });
+            months.Add(new MonthSelect() { Id = 7, Name = "7" });
+            months.Add(new MonthSelect() { Id = 8, Name = "8" });
+            months.Add(new MonthSelect() { Id = 9, Name = "9" });
+            months.Add(new MonthSelect() { Id = 10, Name = "10" });
+            months.Add(new MonthSelect() { Id = 11, Name = "11" });
+            months.Add(new MonthSelect() { Id = 12, Name = "12" });
             monthSelect.DataSource = months;
             monthSelect.ValueMember = "Id";
             line_Month.DisplayMember = "Name";
@@ -108,7 +108,15 @@ namespace ProductManager.Controls
         {
             var selector = sender as ComboBox;
             var value = selector.SelectedItem as YearSelect;
-            if(value)
+            if (value.Id == -1)
+            {
+                line_Month.SelectedIndex = 0;
+                line_Month.Enabled = true;
+            }
+            else
+            {
+                line_Month.Enabled = false;
+            }
           Console.WriteLine(value.Id);
         }
         //趋势参数
@@ -119,7 +127,18 @@ namespace ProductManager.Controls
 
         private void line_Month_SelectedIndexChanged(object sender, EventArgs e)
         {
-
+            var selector = sender as ComboBox;
+            var value = selector.SelectedItem as MonthSelect;
+            if (value.Id == -1)
+            {
+                line_Year.SelectedIndex = 0;
+                line_Year.Enabled = true;
+            }
+            else
+            {
+                line_Year.Enabled = false;
+            }
+            Console.WriteLine(value.Id);
         }
 
         private void line_Company_SelectedIndexChanged(object sender, EventArgs e)

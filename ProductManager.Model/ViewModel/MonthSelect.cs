@@ -8,5 +8,6 @@ namespace ProductManager.Model.ViewModel
 {
     public class MonthSelect:DataSelect
     {
+        public bool IsQuarter { get; set; }
     }
 }
