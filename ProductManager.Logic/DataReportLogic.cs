@@ -58,9 +58,9 @@ namespace ProductManager.Logic {
             var query = from cy in companyQueryable
                         join ele in electricQueryable on cy.Id equals ele.CompanyId into tele
                         from tc in tele.DefaultIfEmpty()
-                        join c in costQueryable on cy.Id equals c.CompanyId into tcost
+                        join c in costQueryable on new {CompanyId=cy.Id,tc.Year,tc.Month} equals new {c.CompanyId,c.Year,c.Month} into tcost
                         from cost in tcost.DefaultIfEmpty()
-                        join p in profitQueryable on cy.Id equals p.CompanyId into tp
+                        join p in profitQueryable on new { CompanyId = cy.Id, cost.Year, cost.Month } equals new {p.CompanyId, p.Year, p.Month } into tp
                         from pt in tp.DefaultIfEmpty()
                         select new BudgetReportData() {
                             CompanyName = cy.Name,
@@ -86,7 +86,7 @@ namespace ProductManager.Logic {
                             ProfitValue = pt.ProfitValue
                         };
 
-            return query.OrderBy(item=>item).ToList();
+            return query.OrderBy(item=>$"{item.Year}-{item.Month}").ToList();
         }
 
         public IList<BudgetReportData> GetChartDatas(BaseParam baseParam) {
