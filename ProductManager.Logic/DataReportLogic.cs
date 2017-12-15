@@ -84,7 +84,13 @@ namespace ProductManager.Logic {
                             ProfitValue = pt.ProfitValue
                         };
 
-            return query.OrderBy(item => item.Year).ToList();
+            var budgetReportDatas = query.OrderBy(item => item.Year).ToList();
+            var totalBudgetReportData = budgetReportDatas.GroupBy(item=>true).Select(g =>new BudgetReportData {
+                Electricity =g.Sum(x=>x.Electricity),
+                BuyElectricity = g.Sum(x => x.BuyElectricity)
+            }).FirstOrDefault();
+            budgetReportDatas.Add(totalBudgetReportData);
+            return budgetReportDatas;
         }
 
         public IList<BudgetReportData> GetChartDatas(BaseParam baseParam) {
@@ -131,7 +137,7 @@ namespace ProductManager.Logic {
 
         #region 看一个中12个月的数据
 
-        public IList<BudgetReportData> GetElectricChartDataByMonthDemssion(BaseParam baseParam) {
+        private IList<BudgetReportData> GetElectricChartDataByMonthDemssion(BaseParam baseParam) {
             var electricQueryable = _context.Electrics.Where(item => item.Year == baseParam.Year.Value && item.Month != null);
             if (baseParam.CompanyId.HasValue) {
                 electricQueryable = electricQueryable.Where(item => item.CompanyId == baseParam.CompanyId.Value);
@@ -152,7 +158,7 @@ namespace ProductManager.Logic {
             return budgetReportDatas;
         }
 
-        public IList<BudgetReportData> GetCostChartDataByMonthDemssion(BaseParam baseParam) {
+        private IList<BudgetReportData> GetCostChartDataByMonthDemssion(BaseParam baseParam) {
             var costsQueryable = _context.Costs.Where(item => item.Year == baseParam.Year.Value && item.Month != null);
             if (baseParam.CompanyId.HasValue) {
                 costsQueryable = costsQueryable.Where(item => item.CompanyId == baseParam.CompanyId.Value);
@@ -173,7 +179,7 @@ namespace ProductManager.Logic {
             return budgetReportDatas;
         }
 
-        public IList<BudgetReportData> GetProfitChartDataByMonthDemssion(BaseParam baseParam) {
+        private IList<BudgetReportData> GetProfitChartDataByMonthDemssion(BaseParam baseParam) {
             var profitsQueryable = _context.Profits.Where(item => item.Year == baseParam.Year.Value && item.Month != null);
             if (baseParam.CompanyId.HasValue) {
                 profitsQueryable = profitsQueryable.Where(item => item.CompanyId == baseParam.CompanyId.Value);
@@ -209,7 +215,7 @@ namespace ProductManager.Logic {
 
         #region 看每年的某个月的数据
 
-        public IList<BudgetReportData> GetElectricChartDataByYearAndMonthDemssion(BaseParam baseParam) {
+        private IList<BudgetReportData> GetElectricChartDataByYearAndMonthDemssion(BaseParam baseParam) {
             var electricQueryable = _context.Electrics.Where(item => item.Month == baseParam.Month);
             if (baseParam.CompanyId.HasValue) {
                 electricQueryable = electricQueryable.Where(item => item.CompanyId == baseParam.CompanyId.Value);
@@ -230,7 +236,7 @@ namespace ProductManager.Logic {
             return budgetReportDatas;
         }
 
-        public IList<BudgetReportData> GetCostChartDataByYearAndMonthDemssion(BaseParam baseParam) {
+        private IList<BudgetReportData> GetCostChartDataByYearAndMonthDemssion(BaseParam baseParam) {
             var costQueryable = _context.Costs.Where(item => item.Month == baseParam.Month);
             if (baseParam.CompanyId.HasValue) {
                 costQueryable = costQueryable.Where(item => item.CompanyId == baseParam.CompanyId.Value);
@@ -251,7 +257,7 @@ namespace ProductManager.Logic {
             return budgetReportDatas;
         }
 
-        public IList<BudgetReportData> GetProfitChartDataByYearAndMonthDemssion(BaseParam baseParam) {
+        private IList<BudgetReportData> GetProfitChartDataByYearAndMonthDemssion(BaseParam baseParam) {
             var profitQueryable = _context.Profits.Where(item => item.Month == baseParam.Month);
             if (baseParam.CompanyId.HasValue) {
                 profitQueryable = profitQueryable.Where(item => item.CompanyId == baseParam.CompanyId.Value);
@@ -289,7 +295,7 @@ namespace ProductManager.Logic {
 
         #region 看每年某个季度的数据
 
-        public IList<BudgetReportData> GetElectricChartDataByYearAndQuarterDemssion(BaseParam baseParam) {
+        private IList<BudgetReportData> GetElectricChartDataByYearAndQuarterDemssion(BaseParam baseParam) {
             var electricQueryable = _context.Electrics.Where(item => item.Month >= 1 + 3 * (baseParam.Quarter.Value - 1) && item.Month <= baseParam.Quarter.Value * 3);
             if (baseParam.CompanyId.HasValue) {
                 electricQueryable = electricQueryable.Where(item => item.CompanyId == baseParam.CompanyId.Value);
@@ -317,7 +323,7 @@ namespace ProductManager.Logic {
             return budgetReportDatas;
         }
 
-        public IList<BudgetReportData> GetCostChartDataByYearAndQuarterDemssion(BaseParam baseParam) {
+        private IList<BudgetReportData> GetCostChartDataByYearAndQuarterDemssion(BaseParam baseParam) {
             var costQueryable = _context.Costs.Where(item => item.Month >= 1 + 3 * (baseParam.Quarter.Value - 1) && item.Month <= baseParam.Quarter.Value * 3);
             if (baseParam.CompanyId.HasValue) {
                 costQueryable = costQueryable.Where(item => item.CompanyId == baseParam.CompanyId.Value);
@@ -345,7 +351,7 @@ namespace ProductManager.Logic {
             return budgetReportDatas;
         }
 
-        public IList<BudgetReportData> GetProfitChartDataByYearAndQuarterDemssion(BaseParam baseParam) {
+        private IList<BudgetReportData> GetProfitChartDataByYearAndQuarterDemssion(BaseParam baseParam) {
             var profitQueryable = _context.Profits.Where(item => item.Month >= 1 + 3 * (baseParam.Quarter.Value - 1) && item.Month <= baseParam.Quarter.Value * 3);
             if (baseParam.CompanyId.HasValue) {
                 profitQueryable = profitQueryable.Where(item => item.CompanyId == baseParam.CompanyId.Value);
