@@ -9,6 +9,8 @@ namespace ProductManager.Model.ViewModel
     public class BudgetReportData
     {
         #region baseinfo
+        public int Year { set; get; }
+
         public int Month { set; get; }
 
         public string MonthShow => $"第{Month}月";

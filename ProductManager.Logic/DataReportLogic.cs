@@ -16,12 +16,14 @@ namespace ProductManager.Logic {
 
         public List<string> CostTargets = new List<string> { "职工福利费", "其它可控成本", "可控成本小计", "人工成本(不含福利费", "其它不可控成本", "其它不可控成本小计" };
 
-        public List<string> ProfitTargets = new List<string> { "职工福利费", "其它可控成本", "可控成本小计", "人工成本(不含福利费", "其它不可控成本", "其它不可控成本小计" };
+        public List<string> ProfitTargets = new List<string> { "委托运行维护费", "用户工程及租赁收入", "其他业务成本", "营业税金及附加", "财务费用", "资产减值损失" , "利润" };
 
 
         public DataReportLogic() {
             _context = new ProductManagerContext();
         }
+
+        
 
         public IList<BudgetReportData> GetBudgetReportData(BaseParam baseParam) {
             var companyQueryable = _context.Companies.Where(item => true);
@@ -84,7 +86,7 @@ namespace ProductManager.Logic {
                             ProfitValue = pt.ProfitValue
                         };
 
-            return query.ToList();
+            return query.OrderBy(item=>item).ToList();
         }
 
         public IList<BudgetReportData> GetChartDatas(BaseParam baseParam) {
@@ -94,6 +96,10 @@ namespace ProductManager.Logic {
                 }
                 if (CostTargets.Contains(baseParam.TargetKey)) {
                     return GetCostChartDataByMonthDemssion(baseParam);
+                }
+
+                if (ProfitTargets.Contains(baseParam.TargetKey)) {
+                    return GetProfitChartDataByMonthDemssion(baseParam);
                 }
             }
             return null;
@@ -138,6 +144,29 @@ namespace ProductManager.Logic {
                 budgetReportData.ControllableCost = cost.ControllableCost;
                 budgetReportData.OtherControllableCost = cost.OtherControllableCost;
                 budgetReportData.OtherUnControllableCost = cost.OtherUnControllableCost;
+            }
+            return budgetReportDatas;
+        }
+
+        public IList<BudgetReportData> GetProfitChartDataByMonthDemssion(BaseParam baseParam) {
+            var profitsQueryable = _context.Profits.Where(item => item.Year == baseParam.Year.Value && item.Month != null);
+            if (baseParam.CompanyId.HasValue) {
+                profitsQueryable = profitsQueryable.Where(item => item.CompanyId == baseParam.CompanyId.Value);
+            }
+            var lst = profitsQueryable.ToList();
+            var budgetReportDatas = GetCharDataInfoOfMonth();
+            foreach (var budgetReportData in budgetReportDatas) {
+                var cost = lst.FirstOrDefault(item => item.Month == budgetReportData.Month);
+                if (cost == null) {
+                    continue;
+                }
+                budgetReportData.ThirdMaintenanceFee = cost.ThirdMaintenanceFee;
+                budgetReportData.EngineeringAndLeasehold = cost.EngineeringAndLeasehold;
+                budgetReportData.OtherCost = cost.OtherCost;
+                budgetReportData.TaxAndAdditional = cost.TaxAndAdditional;
+                budgetReportData.FinancialCost = cost.FinancialCost;
+                budgetReportData.AssetsImpairmentLoss = cost.AssetsImpairmentLoss;
+                budgetReportData.ProfitValue = cost.ProfitValue;
             }
             return budgetReportDatas;
         }
