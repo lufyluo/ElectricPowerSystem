@@ -53,11 +53,15 @@ namespace ProductManager.Controls
             if (this.passwordInput.Text.Length == 0)
             {
                 this.passwordInput.Text = passwordTip;
+                this.passwordInput.UseSystemPasswordChar = false;
+                return;
             }
+            this.passwordInput.UseSystemPasswordChar = true;
         }
 
         private void passwordInput_Enter(object sender, EventArgs e)
         {
+            this.passwordInput.UseSystemPasswordChar = true;
             if (this.passwordInput.Text == passwordTip)
             {
                 this.passwordInput.Text = "";

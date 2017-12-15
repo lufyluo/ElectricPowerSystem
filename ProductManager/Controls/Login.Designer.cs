@@ -31,9 +31,9 @@
             this.loginBtn = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.loginTip = new System.Windows.Forms.TextBox();
             this.passwordInput = new ProductManager.Controls.Common.ColorBoderTextBox();
             this.accountInput = new ProductManager.Controls.Common.ColorBoderTextBox();
-            this.loginTip = new System.Windows.Forms.TextBox();
             this.SuspendLayout();
             // 
             // loginBtn
@@ -69,6 +69,18 @@
             this.groupBox1.TabIndex = 5;
             this.groupBox1.TabStop = false;
             // 
+            // loginTip
+            // 
+            this.loginTip.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.loginTip.ForeColor = System.Drawing.Color.Red;
+            this.loginTip.Location = new System.Drawing.Point(14, 241);
+            this.loginTip.Name = "loginTip";
+            this.loginTip.Size = new System.Drawing.Size(100, 14);
+            this.loginTip.TabIndex = 6;
+            this.loginTip.Text = "账号或密码错误！";
+            this.loginTip.Visible = false;
+            this.loginTip.WordWrap = false;
+            // 
             // passwordInput
             // 
             this.passwordInput.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
@@ -96,18 +108,6 @@
             this.accountInput.WordWrap = false;
             this.accountInput.Enter += new System.EventHandler(this.accountInput_MouseEnter);
             this.accountInput.Leave += new System.EventHandler(this.accountInput_MouseLeave);
-            // 
-            // loginTip
-            // 
-            this.loginTip.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.loginTip.ForeColor = System.Drawing.Color.Red;
-            this.loginTip.Location = new System.Drawing.Point(14, 241);
-            this.loginTip.Name = "loginTip";
-            this.loginTip.Size = new System.Drawing.Size(100, 14);
-            this.loginTip.TabIndex = 6;
-            this.loginTip.Text = "账号或密码错误！";
-            this.loginTip.Visible = false;
-            this.loginTip.WordWrap = false;
             // 
             // Login
             // 
