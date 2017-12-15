@@ -45,7 +45,7 @@ namespace ProductManager.Entity {
         public DateTime CreateTime { set; get; }
 
         /// <summary>
-        /// 售电均价
+        /// 修改时间
         /// </summary>
         public DateTime ModifyTime { set; get; }
     }

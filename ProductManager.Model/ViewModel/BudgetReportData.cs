@@ -41,7 +41,10 @@ namespace ProductManager.Model.ViewModel
         /// </summary>
         public double? SellAvgPrice { set; get; }
 
-
+        /// <summary>
+        /// 线损
+        /// </summary>
+        public double? LineLoss => BuyElectricity - SellElectricity;
 
         #endregion
 
@@ -122,12 +125,6 @@ namespace ProductManager.Model.ViewModel
         /// 利润
         /// </summary>
         public double? ProfitValue { set; get; }
-
-        /// <summary>
-        /// 创建时间
-        /// </summary>
-        public DateTime CreateTime { set; get; }
-
 
         #endregion
     }
