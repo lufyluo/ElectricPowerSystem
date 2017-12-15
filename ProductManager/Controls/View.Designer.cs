@@ -39,6 +39,7 @@
             this.label6 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
+            this.lineChart1 = new ProductManager.Controls.LineChart();
             this.tabPage2 = new System.Windows.Forms.TabPage();
             this.dataReport = new System.Windows.Forms.Panel();
             this.search = new System.Windows.Forms.Button();
@@ -49,7 +50,6 @@
             this.companySelect = new System.Windows.Forms.ComboBox();
             this.label1 = new System.Windows.Forms.Label();
             this.report = new unvell.ReoGrid.ReoGridControl();
-            this.lineChart1 = new ProductManager.Controls.LineChart();
             this.tab.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.tabPage2.SuspendLayout();
@@ -180,6 +180,14 @@
             this.label4.TabIndex = 3;
             this.label4.Text = "趋势参数";
             // 
+            // lineChart1
+            // 
+            this.lineChart1.Location = new System.Drawing.Point(-5, 59);
+            this.lineChart1.Margin = new System.Windows.Forms.Padding(5);
+            this.lineChart1.Name = "lineChart1";
+            this.lineChart1.Size = new System.Drawing.Size(1126, 618);
+            this.lineChart1.TabIndex = 0;
+            // 
             // tabPage2
             // 
             this.tabPage2.Controls.Add(this.dataReport);
@@ -294,14 +302,6 @@
             this.report.Size = new System.Drawing.Size(1106, 518);
             this.report.TabIndex = 0;
             this.report.Text = "reoGridControl1";
-            // 
-            // lineChart1
-            // 
-            this.lineChart1.Location = new System.Drawing.Point(-5, 59);
-            this.lineChart1.Margin = new System.Windows.Forms.Padding(5);
-            this.lineChart1.Name = "lineChart1";
-            this.lineChart1.Size = new System.Drawing.Size(1126, 618);
-            this.lineChart1.TabIndex = 0;
             // 
             // View
             // 
