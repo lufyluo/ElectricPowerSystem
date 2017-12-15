@@ -62,8 +62,10 @@ namespace ProductManager.Logic {
                         from cost in tcost.DefaultIfEmpty()
                         join p in profitQueryable on new { CompanyId = cy.Id, cost.Year, cost.Month } equals new {p.CompanyId, p.Year, p.Month } into tp
                         from pt in tp.DefaultIfEmpty()
-                        select new BudgetReportData() {
+                        select new BudgetReportData {
                             CompanyName = cy.Name,
+                            Year = tc.Year,
+                            Month = tc.Month,
 
                             Electricity = tc.Electricity,
                             BuyElectricity = tc.BuyElectricity,
@@ -86,7 +88,7 @@ namespace ProductManager.Logic {
                             ProfitValue = pt.ProfitValue
                         };
 
-            return query.OrderBy(item=>$"{item.Year}-{item.Month}").ToList();
+            return query.OrderBy(item=>item.Year).ToList();
         }
 
         public IList<BudgetReportData> GetChartDatas(BaseParam baseParam) {
@@ -102,10 +104,23 @@ namespace ProductManager.Logic {
                     return GetProfitChartDataByMonthDemssion(baseParam);
                 }
             }
+
+            if (baseParam.Year.HasValue && baseParam.Month.HasValue) {
+                if (ElectricTargets.Contains(baseParam.TargetKey)) {
+                    return GetElectricChartDataByMonthDemssion(baseParam);
+                }
+                if (CostTargets.Contains(baseParam.TargetKey)) {
+                    return GetCostChartDataByMonthDemssion(baseParam);
+                }
+
+                if (ProfitTargets.Contains(baseParam.TargetKey)) {
+                    return GetProfitChartDataByMonthDemssion(baseParam);
+                }
+            }
             return null;
         }
 
-
+        #region 按年查看
         public IList<BudgetReportData> GetElectricChartDataByMonthDemssion(BaseParam baseParam) {
             var electricQueryable = _context.Electrics.Where(item => item.Year == baseParam.Year.Value && item.Month != null);
             if (baseParam.CompanyId.HasValue) {
@@ -179,6 +194,8 @@ namespace ProductManager.Logic {
             }
             return budgetReportDatas;
         }
+        #endregion
+
 
         private double GetModelValue(string fieldName, object obj) {
             try {
