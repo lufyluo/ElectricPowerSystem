@@ -29,5 +29,10 @@ namespace ProductManager.Controls
             var path = Environment.CurrentDirectory;
             excel.Load(path + "\\Template\\StatisticsTemplate.xlsx", FileFormat.Excel2007);
         }
+
+        public void LoadData(string name)
+        {
+            
+        }
     }
 }

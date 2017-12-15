@@ -106,18 +106,25 @@ namespace ProductManager.Controls
 
         private void line_Year_SelectedIndexChanged(object sender, EventArgs e)
         {
-            var selector = sender as ComboBox;
-            var value = selector.SelectedItem as YearSelect;
-            if (value.Id == -1)
+            try
             {
-                line_Month.SelectedIndex = 0;
-                line_Month.Enabled = true;
+                var selector = sender as ComboBox;
+                var value = selector.SelectedItem as YearSelect;
+                if (value.Id == -1)
+                {
+                    line_Month.SelectedIndex = line_Month.Items.IndexOf("无"); ;
+                    line_Month.Enabled = true;
+                }
+                else
+                {
+                    line_Month.Enabled = false;
+                }
             }
-            else
+            catch (Exception exception)
             {
-                line_Month.Enabled = false;
+                Console.WriteLine(exception);
             }
-          Console.WriteLine(value.Id);
+           
         }
         //趋势参数
         private void line_Property_SelectedIndexChanged(object sender, EventArgs e)
@@ -127,18 +134,25 @@ namespace ProductManager.Controls
 
         private void line_Month_SelectedIndexChanged(object sender, EventArgs e)
         {
-            var selector = sender as ComboBox;
-            var value = selector.SelectedItem as MonthSelect;
-            if (value.Id == -1)
+            try
             {
-                line_Year.SelectedIndex = 0;
-                line_Year.Enabled = true;
+                var selector = sender as ComboBox;
+                var value = selector.SelectedItem as MonthSelect;
+                if (value.Id == -1)
+                {
+                    line_Year.SelectedIndex = line_Year.Items.IndexOf("每年"); ;
+                    line_Year.Enabled = true;
+                }
+                else
+                {
+                    line_Year.Enabled = false;
+                }
             }
-            else
+            catch (Exception exception)
             {
-                line_Year.Enabled = false;
+                Console.WriteLine(exception);
             }
-            Console.WriteLine(value.Id);
+            
         }
 
         private void line_Company_SelectedIndexChanged(object sender, EventArgs e)

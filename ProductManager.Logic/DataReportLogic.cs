@@ -76,5 +76,11 @@ namespace ProductManager.Logic {
         
             return query.ToList();
         }
+
+
+        public IList<BudgetReportData> GetChartReportData(BaseParam baseParam)
+        {
+            return null;
+        }
     }
 }
