@@ -29,6 +29,8 @@
         private void InitializeComponent()
         {
             this.excel = new unvell.ReoGrid.ReoGridControl();
+            this.label1 = new System.Windows.Forms.Label();
+            this.comboBox1 = new System.Windows.Forms.ComboBox();
             this.SuspendLayout();
             // 
             // excel
@@ -36,7 +38,7 @@
             this.excel.BackColor = System.Drawing.Color.White;
             this.excel.ColumnHeaderContextMenuStrip = null;
             this.excel.LeadHeaderContextMenuStrip = null;
-            this.excel.Location = new System.Drawing.Point(3, 6);
+            this.excel.Location = new System.Drawing.Point(0, 47);
             this.excel.Name = "excel";
             this.excel.RowHeaderContextMenuStrip = null;
             this.excel.Script = null;
@@ -49,19 +51,45 @@
             this.excel.TabIndex = 0;
             this.excel.Text = "reoGridControl1";
             // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Font = new System.Drawing.Font("微软雅黑", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.label1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(51)))), ((int)(((byte)(51)))));
+            this.label1.Location = new System.Drawing.Point(22, 13);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(42, 21);
+            this.label1.TabIndex = 1;
+            this.label1.Text = "首页";
+            // 
+            // comboBox1
+            // 
+            this.comboBox1.Font = new System.Drawing.Font("微软雅黑", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.comboBox1.FormattingEnabled = true;
+            this.comboBox1.Location = new System.Drawing.Point(879, 9);
+            this.comboBox1.Name = "comboBox1";
+            this.comboBox1.Size = new System.Drawing.Size(201, 29);
+            this.comboBox1.TabIndex = 2;
+            this.comboBox1.SelectedIndexChanged += new System.EventHandler(this.comboBox1_SelectedIndexChanged);
+            // 
             // ViewReport
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.Controls.Add(this.comboBox1);
+            this.Controls.Add(this.label1);
             this.Controls.Add(this.excel);
             this.Name = "ViewReport";
             this.Size = new System.Drawing.Size(1126, 677);
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
         #endregion
 
         private unvell.ReoGrid.ReoGridControl excel;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.ComboBox comboBox1;
     }
 }

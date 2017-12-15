@@ -40,6 +40,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Dictionary\NormDictionary.cs" />
     <Compile Include="ItemModel\CompanyItem.cs" />
     <Compile Include="ItemModel\CostItem.cs" />
     <Compile Include="ItemModel\ElectricItem.cs" />
