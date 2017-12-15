@@ -15,6 +15,8 @@ namespace ProductManager.Model.ViewModel
 
         public string MonthShow => $"第{Month}月";
 
+        public int? Quarter { set; get; }
+
         /// <summary>
         /// 公司名称
         /// </summary>
