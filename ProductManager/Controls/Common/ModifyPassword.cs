@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using ProductManager.Logic;
 
 namespace ProductManager.Controls.Common
 {
@@ -103,7 +104,7 @@ namespace ProductManager.Controls.Common
                 var oldPasswordText = oldPassword.Text;
                 var newPasswordText = newPassword.Text;
                 var repeatPasswordText = repeatPassword.Text;
-                if (newPasswordText == repeatPasswordText && oldPasswordText.Length > 0)
+                if (newPasswordText == repeatPasswordText && oldPasswordText.Length > 0&& new UserLogic().Modify("admin", newPasswordText))
                 {
                     MessageBox.Show("修改成功！", "Info", MessageBoxButtons.OK);
                 }

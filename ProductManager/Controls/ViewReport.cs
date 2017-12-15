@@ -14,7 +14,7 @@ namespace ProductManager.Controls
 {
     public partial class ViewReport : UserControl
     {
-        private Worksheet sheet;
+        public Worksheet sheet;
         public ViewReport()
         {
             InitializeComponent();
@@ -28,6 +28,11 @@ namespace ProductManager.Controls
             FileFormat format = FileFormat.Excel2007;
             var path = Environment.CurrentDirectory;
             excel.Load(path + "\\Template\\StatisticsTemplate.xlsx", FileFormat.Excel2007);
+        }
+
+        public void LoadData(string name)
+        {
+            
         }
     }
 }

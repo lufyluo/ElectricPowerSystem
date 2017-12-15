@@ -11,6 +11,7 @@ using ProductManager.Controls;
 using ProductManager.Controls.Common;
 using ProductManager.MessageEvent;
 using ProductManager.Model.MessageModel;
+using unvell.ReoGrid;
 
 namespace ProductManager
 {
@@ -22,6 +23,7 @@ namespace ProductManager
         private ViewReport homeControl;
         private Controls.View view ;
         private Controls.ImportExcel importExcel;
+        private Worksheet sheet;
         private MyOpaqueLayer m_OpaqueLayer = null;//半透明蒙板层
         public Index()
         {
@@ -59,15 +61,19 @@ namespace ProductManager
             {
                 case "Home":
                     navigateTabContent.Controls.Add(homeControl);
+                    sheet = homeControl.sheet;
                     break;
                 case "Import":
                     navigateTabContent.Controls.Add(importExcel);
+                    sheet = null;
                     break;
                 case "View":
                     navigateTabContent.Controls.Add(view);
+                    sheet = homeControl.sheet;
                     break;
                 case "Set":
                     navigateTabContent.Controls.Add(setControl);
+                    sheet = null;
                     break;
                 case "ModifyPassword":
                     break;
@@ -81,8 +87,28 @@ namespace ProductManager
 
         private void logout_Click(object sender, EventArgs e)
         {
-            RaiseEvent(nameof(Messages.Logout));
+            if (sheet != null)
+            {
+                OpenFileDialog fileDialog = new OpenFileDialog();
+                fileDialog.Multiselect = true;
+                fileDialog.Title = "请选择文件";
+                fileDialog.Filter = "所有Excel(*.xlsx)";
+                if (fileDialog.ShowDialog() == DialogResult.OK)
+                {
+                    var file = fileDialog.FileName;
+                    sheet.Save(file, unvell.ReoGrid.IO.FileFormat.Excel2007);
+                    MessageBox.Show("已选择文件:" + file, "选择文件提示", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
+            }
+            else
+            {
+                MessageBox.Show("无导出内容", "Info", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
         }
+        //private void logout_Click(object sender, EventArgs e)
+        //{
+        //    RaiseEvent(nameof(Messages.Logout));
+        //}
 
         private void exit_Click(object sender, EventArgs e)
         {
