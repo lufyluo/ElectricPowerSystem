@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using ProductManager.Controls;
 using ProductManager.Controls.Common;
+using ProductManager.Helper;
 using ProductManager.MessageEvent;
 using ProductManager.Model.MessageModel;
 using unvell.ReoGrid;
@@ -25,6 +26,7 @@ namespace ProductManager
         private Controls.ImportExcel importExcel;
         private Worksheet sheet;
         private MyOpaqueLayer m_OpaqueLayer = null;//半透明蒙板层
+        private string currentOperation = "";
         public Index()
         {
             InitializeComponent();
@@ -35,7 +37,10 @@ namespace ProductManager
             navigate1.NavigateEvent += Navigate1_NavigateEvent;
             navigateTabContent.Controls.Add(homeControl);
             importExcel = new Controls.ImportExcel();
+            sheet = homeControl.sheet;
             //this.Closed += Index_Closed;
+            sheet.DeleteRows(0, 2);//删除模板第一行
+
         }
 
         private void M_OpaqueLayer_Click(object sender, EventArgs e)
@@ -57,6 +62,7 @@ namespace ProductManager
         private void Navigate1_NavigateEvent(object sender, MessageEventArgs e)
         {
             navigateTabContent.Controls.Clear();
+            currentOperation = e.Message;
             switch (e.Message)
             {
                 case "Home":
@@ -69,7 +75,7 @@ namespace ProductManager
                     break;
                 case "View":
                     navigateTabContent.Controls.Add(view);
-                    sheet = homeControl.sheet;
+                    sheet = view.sheet;
                     break;
                 case "Set":
                     navigateTabContent.Controls.Add(setControl);
@@ -84,26 +90,11 @@ namespace ProductManager
         {
             RaiseEvent(nameof(Messages.Exit));
         }
-
+        //导出excel
         private void logout_Click(object sender, EventArgs e)
         {
-            if (sheet != null)
-            {
-                OpenFileDialog fileDialog = new OpenFileDialog();
-                fileDialog.Multiselect = true;
-                fileDialog.Title = "请选择文件";
-                fileDialog.Filter = "所有Excel(*.xlsx)";
-                if (fileDialog.ShowDialog() == DialogResult.OK)
-                {
-                    var file = fileDialog.FileName;
-                    sheet.Save(file, unvell.ReoGrid.IO.FileFormat.Excel2007);
-                    MessageBox.Show("已选择文件:" + file, "选择文件提示", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                }
-            }
-            else
-            {
-                MessageBox.Show("无导出内容", "Info", MessageBoxButtons.OK, MessageBoxIcon.Information);
-            }
+            if(sheet!=null)
+            ExcelHelper.ExporAsExcel(sheet);
         }
         //private void logout_Click(object sender, EventArgs e)
         //{

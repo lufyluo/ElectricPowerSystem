@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using ProductManager.Helper;
 using ProductManager.Logic;
 using ProductManager.Model.ParamModel;
 using ProductManager.Model.ViewModel;
@@ -19,6 +20,7 @@ namespace ProductManager.Controls
     {
         public Worksheet sheet;
         private IList<BudgetReportData> reportDatas;
+        private DataTable dataTable;
         private IList<Company> selects;
         private DataReportLogic dataReport;
         private const int SELECTITEMSMAXCOUNT = 10;
@@ -28,6 +30,7 @@ namespace ProductManager.Controls
             sheet = excel.CurrentWorksheet;
             //sheet.InsertColumns(0,23);
             dataReport = new DataReportLogic();
+            selects = new List<Company>();
             LoadData();
             InitHeader();
         }
@@ -42,6 +45,7 @@ namespace ProductManager.Controls
         private void LoadData()
         {
             reportDatas = dataReport.GetBudgetReportData(new BaseParam());
+            dataTable = CommonHelper.ToDataTable(reportDatas);
             selects.Add(new Company()
             {
                 Id=0,Name = "无"
@@ -51,21 +55,36 @@ namespace ProductManager.Controls
                 selects.Add(new Company()
                 {
                     Id=i+1,
-                    Name = $"{reportDatas[i].CompanyName}{reportDatas[i]}年{reportDatas[i].Month}月预算表"//TODO:差年
+                    Name = $"{reportDatas[i].CompanyName}{reportDatas[i].Year}年{reportDatas[i].Month}月预算表"
                 });
             }
             comboBox1.DataSource = selects;
             comboBox1.DisplayMember = "Name";
+            pushInExcel(dataTable);
         }
-        private void pushInExcel(IList<BudgetReportData> rangData)
+        private void pushInExcel(DataTable data)
         {
-
+            var cell = sheet.GetCell("A1");
+            if (cell != null)
+            {
+                cell.Data = "";
+            }
+            sheet?.SetRangeData(new RangePosition(4, 0, data.Rows.Count, data.Columns.Count), data);
         }
 
         private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
         {
             var item = sender as ComboBox;
             var index = item.SelectedIndex;
+            var data = new List<BudgetReportData>();
+            if (index == 0)
+            {
+                data = reportDatas.ToList();
+            }
+            else
+            {
+                data.Add(reportDatas[index]);             }
+            pushInExcel(CommonHelper.ToDataTable(data));
         }
     }
 }
