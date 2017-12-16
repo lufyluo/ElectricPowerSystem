@@ -51,7 +51,7 @@ namespace ProductManager.Controls
             years.Add(new YearSelect() { Id = 0, Name = "每年" });
             for (int i = 0; i < 5; i++)
             {
-                years.Add(new YearSelect() { Id = year-4 - i, Name = "第" + (year-4+ i) + "年" });
+                years.Add(new YearSelect() { Id = year-4 + i, Name = "第" + (year-4+ i) + "年" });
             }
             yearSelect.DataSource = years;
             yearSelect.ValueMember = "Id";
