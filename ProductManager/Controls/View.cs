@@ -26,6 +26,7 @@ namespace ProductManager.Controls
         private BaseParam reportParam = new BaseParam();
         private BaseParam lineParam = new BaseParam();
         private DataReportLogic reportLogic;
+        private bool pageFlag =true;
         public View()
         {
             InitializeComponent();
@@ -44,7 +45,7 @@ namespace ProductManager.Controls
             var date = DateTime.Now;
 
             var year = date.Year;
-            years.Add(new YearSelect() { Id = -1, Name = "每年" });
+            years.Add(new YearSelect() { Id = 0, Name = "每年" });
             for (int i = 0; i < 5; i++)
             {
                 years.Add(new YearSelect() { Id = year - i, Name = year - i + "年" });
@@ -59,7 +60,7 @@ namespace ProductManager.Controls
             line_Year.SelectedIndex = 1;
 
 
-            months.Add(new MonthSelect() { Id = -1, Name = "无" });
+            months.Add(new MonthSelect() { Id = 0, Name = "无" });
             months.Add(new MonthSelect() { Id = 1, IsQuarter = true, Name = "第一季度" });
             months.Add(new MonthSelect() { Id = 2, IsQuarter = true, Name = "第二季度" });
             months.Add(new MonthSelect() { Id = 3, IsQuarter = true, Name = "第三季度" });
@@ -111,14 +112,14 @@ namespace ProductManager.Controls
 
         private void yearSelect_SelectedIndexChanged(object sender, EventArgs e)
         {
-            var year = sender as YearSelect;
-            reportParam.Year = year?.Id == 0 ? null : year?.Id;
+            var year = (sender as ComboBox).SelectedItem as YearSelect;
+            reportParam.Year = year?.Id ==0 ? null : year?.Id;
         }
 
         private void monthSelect_SelectedIndexChanged(object sender, EventArgs e)
         {
-            var month = sender as MonthSelect;
-            reportParam.Year = month?.Id == 0 ? null : month?.Id;
+            var month = (sender as ComboBox).SelectedItem as MonthSelect;
+            reportParam.Month = month?.Id == 0 ? null : month?.Id;
         }
 
         private void search_Click(object sender, EventArgs e)
@@ -130,15 +131,21 @@ namespace ProductManager.Controls
         {
             try
             {
+                ClearRange();
                 var budgetReportDatas = reportLogic.GetBudgetReportData(reportParam);
                 var dataTable = CommonHelper.ToDataTable(budgetReportDatas);
-                //sheet.clear
+                
                 sheet.SetRangeData(new RangePosition(3, 0, dataTable.Rows.Count, dataTable.Columns.Count), dataTable);
             }
             catch (Exception exception)
             {
                 MessageBox.Show("查询失败！", "Error", MessageBoxButtons.OK);
             }
+        }
+
+        private void ClearRange()
+        {
+            var range = sheet.Ranges[$"A3:V20"];
         }
 
         #endregion
@@ -148,9 +155,11 @@ namespace ProductManager.Controls
         {
             try
             {
+                if(!pageFlag)
+                    return;
                 var selector = sender as ComboBox;
                 var value = selector.SelectedItem as YearSelect;
-                if (value.Id == -1)
+                if (value.Id == 0)
                 {
                     line_Month.SelectedIndex = 1; ;
                     line_Month.Enabled = true;
@@ -171,6 +180,8 @@ namespace ProductManager.Controls
         //趋势参数
         private void line_Property_SelectedIndexChanged(object sender, EventArgs e)
         {
+            if (!pageFlag)
+                return;
             var selector = sender as ComboBox;
             var value = selector.SelectedValue.ToString();
             lineParam.TargetKey = value;
@@ -180,9 +191,11 @@ namespace ProductManager.Controls
         {
             try
             {
+                if (!pageFlag)
+                    return;
                 var selector = sender as ComboBox;
                 var value = selector.SelectedItem as MonthSelect;
-                if (value.Id == -1)
+                if (value.Id == 0)
                 {
                     line_Year.SelectedIndex =1; ;
                     line_Year.Enabled = true;
@@ -204,6 +217,8 @@ namespace ProductManager.Controls
 
         private void line_Company_SelectedIndexChanged(object sender, EventArgs e)
         {
+            if (!pageFlag)
+                return;
             var company = (sender as ComboBox).SelectedItem as Company;
             lineParam.CompanyId = company?.Id == 0 ? null : company?.Id;
         }
@@ -231,7 +246,7 @@ namespace ProductManager.Controls
 
         private void tab_SelectedIndexChanged(object sender, EventArgs e)
         {
-
+            pageFlag = tab.SelectedIndex == 0;
         }
 
         private void LoadCompanys()
