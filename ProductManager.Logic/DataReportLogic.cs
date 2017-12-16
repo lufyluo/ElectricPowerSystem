@@ -84,11 +84,35 @@ namespace ProductManager.Logic {
                             ProfitValue = pt.ProfitValue
                         };
 
-            var budgetReportDatas = query.OrderBy(item => item.Year).ToList();
-            var totalBudgetReportData = budgetReportDatas.GroupBy(item=>true).Select(g =>new BudgetReportData {
+             var budgetReportDatas = query.ToList().GroupBy(item => item.CompanyName)
+                    .Select(g => new BudgetReportData {
+                        CompanyName = g.Key,
+
+                        Electricity = g.Sum(x => x.Electricity),
+                        BuyElectricity = g.Sum(x => x.BuyElectricity),
+                        BuyAvgPrice = g.Sum(x => x.BuyAvgPrice),
+                        SellElectricity = g.Sum(x => x.SellElectricity),
+                        SellAvgPrice = g.Sum(x => x.SellAvgPrice),
+
+                        Salary = g.Sum(x => x.Salary),
+                        WorkersWelfare = g.Sum(x => x.WorkersWelfare),
+                        ControllableCost = g.Sum(x => x.ControllableCost),
+                        OtherControllableCost = g.Sum(x => x.OtherControllableCost),
+                        OtherUnControllableCost = g.Sum(x => x.OtherUnControllableCost),
+
+                        ThirdMaintenanceFee = g.Sum(x => x.ThirdMaintenanceFee),
+                        EngineeringAndLeasehold = g.Sum(x => x.EngineeringAndLeasehold),
+                        OtherCost = g.Sum(x => x.OtherCost),
+                        TaxAndAdditional = g.Sum(x => x.TaxAndAdditional),
+                        FinancialCost = g.Sum(x => x.FinancialCost),
+                        AssetsImpairmentLoss = g.Sum(x => x.AssetsImpairmentLoss),
+                        ProfitValue = g.Sum(x => x.ProfitValue),
+                    }).OrderBy(item => item.CompanyName).ToList();
+
+            var totalBudgetReportData = budgetReportDatas.GroupBy(item => true).Select(g => new BudgetReportData {
                 CompanyName = "全州公司合计",
 
-                Electricity =g.Sum(x=>x.Electricity),
+                Electricity = g.Sum(x => x.Electricity),
                 BuyElectricity = g.Sum(x => x.BuyElectricity),
                 BuyAvgPrice = g.Sum(x => x.BuyAvgPrice),
                 SellElectricity = g.Sum(x => x.SellElectricity),
