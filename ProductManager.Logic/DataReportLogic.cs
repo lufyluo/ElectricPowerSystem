@@ -11,9 +11,9 @@ namespace ProductManager.Logic {
     public class DataReportLogic {
         private readonly ProductManagerContext _context;
 
-        public List<string> ElectricTargets = new List<string> { "发电量", "购电量", "购电均价", "售电量", "售电均价", "线损" };
+        public List<string> ElectricTargets = new List<string> { "发电量", "购电量", "购电均价", "售电量", "售电均价", "线损" , "售电收入", "购电成本" };
 
-        public List<string> CostTargets = new List<string> { "职工福利费", "其它可控成本", "可控成本小计", "人工成本", "其它不可控成本", "其它不可控成本小计" };
+        public List<string> CostTargets = new List<string> { "福利费", "其它可控", "可控成本小计", "人工成本", "其它不可控", "其它不可控成本小计" };
 
         public List<string> ProfitTargets = new List<string> { "委托运行维护费", "用户工程及租赁收入", "其他业务成本", "营业税金及附加", "财务费用", "资产减值损失", "利润" };
 
