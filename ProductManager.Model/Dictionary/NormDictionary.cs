@@ -43,7 +43,7 @@ namespace ProductManager.Model.Dictionary
             _reportDictionary.Add("售电收入", "Income");
             _reportDictionary.Add("委托运行维护费", "ThirdMaintenanceFee");
             _reportDictionary.Add("用户工程及租赁收入", "EngineeringAndLeasehold");
-            _reportDictionary.Add("购电成本", "");
+            _reportDictionary.Add("购电成本", "ElectricityCost");
 
             //cost
             _reportDictionary.Add("福利费", "WorkersWelfare");

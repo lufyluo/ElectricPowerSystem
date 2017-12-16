@@ -53,7 +53,12 @@ namespace ProductManager.Model.ViewModel
         /// <summary>
         /// 售电收入
         /// </summary>
-        public double? Income => SellElectricity * BuyAvgPrice;
+        public double? Income => SellElectricity * SellAvgPrice;
+
+        /// <summary>
+        /// 购电成本
+        /// </summary>
+        public double? ElectricityCost => BuyElectricity * BuyAvgPrice;
 
         #endregion
 

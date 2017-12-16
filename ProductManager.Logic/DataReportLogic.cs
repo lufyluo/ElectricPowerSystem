@@ -11,9 +11,9 @@ namespace ProductManager.Logic {
     public class DataReportLogic {
         private readonly ProductManagerContext _context;
 
-        public List<string> ElectricTargets = new List<string> { "发电量", "购电量", "购电均价", "售电量", "售电均价", "线损" };
+        public List<string> ElectricTargets = new List<string> { "发电量", "购电量", "购电均价", "售电量", "售电均价", "线损" , "售电收入", "购电成本" };
 
-        public List<string> CostTargets = new List<string> { "职工福利费", "其它可控成本", "可控成本小计", "人工成本", "其它不可控成本", "其它不可控成本小计" };
+        public List<string> CostTargets = new List<string> { "福利费", "其它可控", "可控成本小计", "人工成本", "其它不可控", "其它不可控成本小计" };
 
         public List<string> ProfitTargets = new List<string> { "委托运行维护费", "用户工程及租赁收入", "其他业务成本", "营业税金及附加", "财务费用", "资产减值损失", "利润" };
 
@@ -86,14 +86,34 @@ namespace ProductManager.Logic {
 
             var budgetReportDatas = query.OrderBy(item => item.Year).ToList();
             var totalBudgetReportData = budgetReportDatas.GroupBy(item=>true).Select(g =>new BudgetReportData {
+                CompanyName = "全州公司合计",
+
                 Electricity =g.Sum(x=>x.Electricity),
-                BuyElectricity = g.Sum(x => x.BuyElectricity)
+                BuyElectricity = g.Sum(x => x.BuyElectricity),
+                BuyAvgPrice = g.Sum(x => x.BuyAvgPrice),
+                SellElectricity = g.Sum(x => x.SellElectricity),
+                SellAvgPrice = g.Sum(x => x.SellAvgPrice),
+
+                Salary = g.Sum(x => x.Salary),
+                WorkersWelfare = g.Sum(x => x.WorkersWelfare),
+                ControllableCost = g.Sum(x => x.ControllableCost),
+                OtherControllableCost = g.Sum(x => x.OtherControllableCost),
+                OtherUnControllableCost = g.Sum(x => x.OtherUnControllableCost),
+
+                ThirdMaintenanceFee = g.Sum(x => x.ThirdMaintenanceFee),
+                EngineeringAndLeasehold = g.Sum(x => x.EngineeringAndLeasehold),
+                OtherCost = g.Sum(x => x.OtherCost),
+                TaxAndAdditional = g.Sum(x => x.TaxAndAdditional),
+                FinancialCost = g.Sum(x => x.FinancialCost),
+                AssetsImpairmentLoss = g.Sum(x => x.AssetsImpairmentLoss),
+                ProfitValue = g.Sum(x => x.ProfitValue),
             }).FirstOrDefault();
             budgetReportDatas.Add(totalBudgetReportData);
             return budgetReportDatas;
         }
 
         public IList<BudgetReportData> GetChartDatas(BaseParam baseParam) {
+            //看某个12个月的数据
             if (baseParam.Year.HasValue && !baseParam.Month.HasValue && !baseParam.Quarter.HasValue) {
                 if (ElectricTargets.Contains(baseParam.TargetKey)) {
                     return GetElectricChartDataByMonthDemssion(baseParam);
@@ -106,7 +126,7 @@ namespace ProductManager.Logic {
                     return GetProfitChartDataByMonthDemssion(baseParam);
                 }
             }
-
+            //看每年的某个月的数据
             if (!baseParam.Year.HasValue && baseParam.Month.HasValue) {
                 if (ElectricTargets.Contains(baseParam.TargetKey)) {
                     return GetElectricChartDataByYearAndMonthDemssion(baseParam);
@@ -120,6 +140,7 @@ namespace ProductManager.Logic {
                 }
             }
 
+            //看每年某个季度的数据
             if (!baseParam.Year.HasValue && baseParam.Quarter.HasValue) {
                 if (ElectricTargets.Contains(baseParam.TargetKey)) {
                     return GetElectricChartDataByYearAndQuarterDemssion(baseParam);
@@ -135,7 +156,7 @@ namespace ProductManager.Logic {
             return null;
         }
 
-        #region 看一个中12个月的数据
+        #region 看某个12个月的数据
 
         private IList<BudgetReportData> GetElectricChartDataByMonthDemssion(BaseParam baseParam) {
             var electricQueryable = _context.Electrics.Where(item => item.Year == baseParam.Year.Value && item.Month != null);
@@ -211,7 +232,7 @@ namespace ProductManager.Logic {
             return budgetReportDatas;
         }
 
-        #endregion 看一个中12个月的数据
+        #endregion 
 
         #region 看每年的某个月的数据
 

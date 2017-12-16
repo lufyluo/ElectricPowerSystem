@@ -32,6 +32,11 @@ namespace ProductManager
             content.IndexEvent += Dispatcher_MessageEvent;
             _top = Top;
 
+            //var importLogic = new ImportLogic();
+            //var xx1 = importLogic.ImportExcel(@"C:\Users\zhaob\Desktop\luofly\财务类型表\财务快报-其他指标表_国网四川省电力公司.xls");
+            //var xx2 = importLogic.ImportExcel(@"C:\Users\zhaob\Desktop\luofly\财务类型表\财务快报-成本费用表_国网四川省电力公司.xls");
+            //var xx3 = importLogic.ImportExcel(@"C:\Users\zhaob\Desktop\luofly\财务类型表\财务快报-利润表_国网四川省电力公司.xls");
+
             //var dataReportLogic = new DataReportLogic();
             //var xx = dataReportLogic.GetBudgetReportData(new BaseParam());
 
