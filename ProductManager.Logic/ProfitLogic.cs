@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Linq;
 using ProductManager.Entity;
 using ProductManager.Model.ItemModel;
 
@@ -9,24 +10,37 @@ namespace ProductManager.Logic {
             _context = new ProductManagerContext();
         }
 
-        public bool Add(ProfitItem item) {
-            var entity = new Profit {
-                Year = item.Year,
-                Month = item.Month,
-                AssetsImpairmentLoss = item.AssetsImpairmentLoss,
-                EngineeringAndLeasehold = item.EngineeringAndLeasehold,
-                FinancialCost = item.FinancialCost,
-                ProfitValue = item.ProfitValue,
-                OtherCost = item.OtherCost,
-                TaxAndAdditional = item.TaxAndAdditional,
-                ThirdMaintenanceFee = item.ThirdMaintenanceFee,
-                CreateTime = DateTime.Now,
-                ModifyTime = DateTime.Now
-            };
-
+        public bool Add(ProfitItem profitItem) {
             var companyLogic = new CompanyLogic();
-            entity.CompanyId = companyLogic.GetCompanyId(item.CompanyName);
-            _context.Profits.Add(entity);
+            var companyId = companyLogic.GetCompanyId(profitItem.CompanyName);
+            var profit = _context.Profits.FirstOrDefault(item => item.CompanyId == companyId && item.Year == profitItem.Year && item.Month == profitItem.Month);
+            if (profit != null) {
+                profit.AssetsImpairmentLoss = profitItem.AssetsImpairmentLoss;
+                profit.EngineeringAndLeasehold = profitItem.EngineeringAndLeasehold;
+                profit.FinancialCost = profitItem.FinancialCost;
+                profit.ProfitValue = profitItem.ProfitValue;
+                profit.OtherCost = profitItem.OtherCost ;
+                profit.TaxAndAdditional = profitItem.TaxAndAdditional ;
+                profit.ThirdMaintenanceFee = profitItem.ThirdMaintenanceFee;
+                profit.ModifyTime = DateTime.Now;
+            }
+            else {
+                var entity = new Profit {
+                    CompanyId = companyId,
+                    Year = profitItem.Year,
+                    Month = profitItem.Month,
+                    AssetsImpairmentLoss = profitItem.AssetsImpairmentLoss,
+                    EngineeringAndLeasehold = profitItem.EngineeringAndLeasehold,
+                    FinancialCost = profitItem.FinancialCost,
+                    ProfitValue = profitItem.ProfitValue,
+                    OtherCost = profitItem.OtherCost,
+                    TaxAndAdditional = profitItem.TaxAndAdditional,
+                    ThirdMaintenanceFee = profitItem.ThirdMaintenanceFee,
+                    CreateTime = DateTime.Now,
+                    ModifyTime = DateTime.Now
+                };
+                _context.Profits.Add(entity);
+            }
             _context.SaveChanges();
             return true;
         }
