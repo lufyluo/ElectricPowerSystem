@@ -31,8 +31,8 @@ namespace ProductManager.Controls
             //sheet.InsertColumns(0,23);
             dataReport = new DataReportLogic();
             selects = new List<Company>();
-            LoadData();
-            InitHeader();
+            //LoadData();
+            //InitHeader();
         }
 
         private void InitHeader()
