@@ -3,7 +3,6 @@ using ProductManager.Model.ParamModel;
 using ProductManager.Model.ViewModel;
 using System;
 using System.Collections.Generic;
-using System.Data;
 using System.Linq;
 
 namespace ProductManager.Logic {
@@ -84,30 +83,30 @@ namespace ProductManager.Logic {
                             ProfitValue = pt.ProfitValue
                         };
 
-             var budgetReportDatas = query.ToList().GroupBy(item => item.CompanyName)
-                    .Select(g => new BudgetReportData {
-                        CompanyName = g.Key,
+            var budgetReportDatas = query.ToList().GroupBy(item => item.CompanyName)
+                   .Select(g => new BudgetReportData {
+                       CompanyName = g.Key,
 
-                        Electricity = g.Sum(x => x.Electricity),
-                        BuyElectricity = g.Sum(x => x.BuyElectricity),
-                        BuyAvgPrice = g.Sum(x => x.BuyAvgPrice),
-                        SellElectricity = g.Sum(x => x.SellElectricity),
-                        SellAvgPrice = g.Sum(x => x.SellAvgPrice),
+                       Electricity = g.Sum(x => x.Electricity),
+                       BuyElectricity = g.Sum(x => x.BuyElectricity),
+                       BuyAvgPrice = g.Sum(x => x.BuyAvgPrice),
+                       SellElectricity = g.Sum(x => x.SellElectricity),
+                       SellAvgPrice = g.Sum(x => x.SellAvgPrice),
 
-                        Salary = g.Sum(x => x.Salary),
-                        WorkersWelfare = g.Sum(x => x.WorkersWelfare),
-                        ControllableCost = g.Sum(x => x.ControllableCost),
-                        OtherControllableCost = g.Sum(x => x.OtherControllableCost),
-                        OtherUnControllableCost = g.Sum(x => x.OtherUnControllableCost),
+                       Salary = g.Sum(x => x.Salary),
+                       WorkersWelfare = g.Sum(x => x.WorkersWelfare),
+                       ControllableCost = g.Sum(x => x.ControllableCost),
+                       OtherControllableCost = g.Sum(x => x.OtherControllableCost),
+                       OtherUnControllableCost = g.Sum(x => x.OtherUnControllableCost),
 
-                        ThirdMaintenanceFee = g.Sum(x => x.ThirdMaintenanceFee),
-                        EngineeringAndLeasehold = g.Sum(x => x.EngineeringAndLeasehold),
-                        OtherCost = g.Sum(x => x.OtherCost),
-                        TaxAndAdditional = g.Sum(x => x.TaxAndAdditional),
-                        FinancialCost = g.Sum(x => x.FinancialCost),
-                        AssetsImpairmentLoss = g.Sum(x => x.AssetsImpairmentLoss),
-                        ProfitValue = g.Sum(x => x.ProfitValue),
-                    }).OrderBy(item => item.CompanyName).ToList();
+                       ThirdMaintenanceFee = g.Sum(x => x.ThirdMaintenanceFee),
+                       EngineeringAndLeasehold = g.Sum(x => x.EngineeringAndLeasehold),
+                       OtherCost = g.Sum(x => x.OtherCost),
+                       TaxAndAdditional = g.Sum(x => x.TaxAndAdditional),
+                       FinancialCost = g.Sum(x => x.FinancialCost),
+                       AssetsImpairmentLoss = g.Sum(x => x.AssetsImpairmentLoss),
+                       ProfitValue = g.Sum(x => x.ProfitValue),
+                   }).OrderBy(item => item.CompanyName).ToList();
 
             var totalBudgetReportData = budgetReportDatas.GroupBy(item => true).Select(g => new BudgetReportData {
                 CompanyName = "全州公司合计",
@@ -187,7 +186,14 @@ namespace ProductManager.Logic {
             if (baseParam.CompanyId.HasValue) {
                 electricQueryable = electricQueryable.Where(item => item.CompanyId == baseParam.CompanyId.Value);
             }
-            var lst = electricQueryable.ToList();
+            var lst = electricQueryable.GroupBy(item => item.Month).Select(item => new {
+                Month = item.Key,
+                Electricity = item.Sum(x => x.Electricity),
+                BuyElectricity = item.Sum(x => x.BuyElectricity),
+                BuyAvgPrice = item.Sum(x => x.BuyAvgPrice),
+                SellElectricity = item.Sum(x => x.SellElectricity),
+                SellAvgPrice = item.Sum(x => x.SellAvgPrice)
+            }).ToList();
             var budgetReportDatas = GetCharDataInfoOfMonth();
             foreach (var budgetReportData in budgetReportDatas) {
                 var electric = lst.FirstOrDefault(item => item.Month == budgetReportData.Month);
@@ -208,7 +214,14 @@ namespace ProductManager.Logic {
             if (baseParam.CompanyId.HasValue) {
                 costsQueryable = costsQueryable.Where(item => item.CompanyId == baseParam.CompanyId.Value);
             }
-            var lst = costsQueryable.ToList();
+            var lst = costsQueryable.GroupBy(item => item.Month).Select(item => new {
+                Month = item.Key,
+                Salary = item.Sum(x => x.Salary),
+                WorkersWelfare = item.Sum(x => x.WorkersWelfare),
+                ControllableCost = item.Sum(x => x.ControllableCost),
+                OtherControllableCost = item.Sum(x => x.OtherControllableCost),
+                OtherUnControllableCost = item.Sum(x => x.OtherUnControllableCost)
+            }).ToList();
             var budgetReportDatas = GetCharDataInfoOfMonth();
             foreach (var budgetReportData in budgetReportDatas) {
                 var cost = lst.FirstOrDefault(item => item.Month == budgetReportData.Month);
@@ -229,7 +242,16 @@ namespace ProductManager.Logic {
             if (baseParam.CompanyId.HasValue) {
                 profitsQueryable = profitsQueryable.Where(item => item.CompanyId == baseParam.CompanyId.Value);
             }
-            var lst = profitsQueryable.ToList();
+            var lst = profitsQueryable.GroupBy(item => item.Month).Select(item => new {
+                Month = item.Key,
+                ThirdMaintenanceFee = item.Sum(x => x.ThirdMaintenanceFee),
+                EngineeringAndLeasehold = item.Sum(x => x.EngineeringAndLeasehold),
+                OtherCost = item.Sum(x => x.OtherCost),
+                TaxAndAdditional = item.Sum(x => x.TaxAndAdditional),
+                FinancialCost = item.Sum(x => x.FinancialCost),
+                AssetsImpairmentLoss = item.Sum(x => x.AssetsImpairmentLoss),
+                ProfitValue = item.Sum(x => x.ProfitValue)
+            }).ToList();
             var budgetReportDatas = GetCharDataInfoOfMonth();
             foreach (var budgetReportData in budgetReportDatas) {
                 var cost = lst.FirstOrDefault(item => item.Month == budgetReportData.Month);
@@ -256,7 +278,7 @@ namespace ProductManager.Logic {
             return budgetReportDatas;
         }
 
-        #endregion 
+        #endregion 看某个12个月的数据
 
         #region 看每年的某个月的数据
 
@@ -265,7 +287,15 @@ namespace ProductManager.Logic {
             if (baseParam.CompanyId.HasValue) {
                 electricQueryable = electricQueryable.Where(item => item.CompanyId == baseParam.CompanyId.Value);
             }
-            var lst = electricQueryable.ToList();
+            var lst = electricQueryable.GroupBy(item => new { item.Year, item.Month }).Select(item => new {
+                Year = item.Key.Year,
+                Month = item.Key.Month,
+                Electricity = item.Sum(x => x.Electricity),
+                BuyElectricity = item.Sum(x => x.BuyElectricity),
+                BuyAvgPrice = item.Sum(x => x.BuyAvgPrice),
+                SellElectricity = item.Sum(x => x.SellElectricity),
+                SellAvgPrice = item.Sum(x => x.SellAvgPrice)
+            }).ToList();
             var budgetReportDatas = GetCharDataInfoOfYearAndMonth(baseParam.Month.GetValueOrDefault());
             foreach (var budgetReportData in budgetReportDatas) {
                 var electric = lst.FirstOrDefault(item => item.Year == budgetReportData.Year && item.Month == budgetReportData.Month);
@@ -286,7 +316,15 @@ namespace ProductManager.Logic {
             if (baseParam.CompanyId.HasValue) {
                 costQueryable = costQueryable.Where(item => item.CompanyId == baseParam.CompanyId.Value);
             }
-            var lst = costQueryable.ToList();
+            var lst = costQueryable.GroupBy(item => new { item.Year, item.Month }).Select(item => new {
+                item.Key.Year,
+                item.Key.Month,
+                Salary = item.Sum(x => x.Salary),
+                WorkersWelfare = item.Sum(x => x.WorkersWelfare),
+                ControllableCost = item.Sum(x => x.ControllableCost),
+                OtherControllableCost = item.Sum(x => x.OtherControllableCost),
+                OtherUnControllableCost = item.Sum(x => x.OtherUnControllableCost)
+            }).ToList();
             var budgetReportDatas = GetCharDataInfoOfYearAndMonth(baseParam.Month.GetValueOrDefault());
             foreach (var budgetReportData in budgetReportDatas) {
                 var cost = lst.FirstOrDefault(item => item.Year == budgetReportData.Year && item.Month == budgetReportData.Month);
@@ -307,7 +345,17 @@ namespace ProductManager.Logic {
             if (baseParam.CompanyId.HasValue) {
                 profitQueryable = profitQueryable.Where(item => item.CompanyId == baseParam.CompanyId.Value);
             }
-            var lst = profitQueryable.ToList();
+            var lst = profitQueryable.GroupBy(item => new { item.Year, item.Month }).Select(item => new {
+                item.Key.Year,
+                item.Key.Month,
+                ThirdMaintenanceFee = item.Sum(x => x.ThirdMaintenanceFee),
+                EngineeringAndLeasehold = item.Sum(x => x.EngineeringAndLeasehold),
+                OtherCost = item.Sum(x => x.OtherCost),
+                TaxAndAdditional = item.Sum(x => x.TaxAndAdditional),
+                FinancialCost = item.Sum(x => x.FinancialCost),
+                AssetsImpairmentLoss = item.Sum(x => x.AssetsImpairmentLoss),
+                ProfitValue = item.Sum(x => x.ProfitValue)
+            }).ToList();
             var budgetReportDatas = GetCharDataInfoOfYearAndMonth(baseParam.Month.GetValueOrDefault());
             foreach (var budgetReportData in budgetReportDatas) {
                 var profit = lst.FirstOrDefault(item => item.Year == budgetReportData.Year && item.Month == budgetReportData.Month);
