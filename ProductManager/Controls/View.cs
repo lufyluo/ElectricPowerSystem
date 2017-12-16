@@ -21,6 +21,7 @@ namespace ProductManager.Controls
 {
     public partial class View : UserControl
     {
+        public ReoGridControl workBook=>this.report;
         public Worksheet sheet;
         private List<Company> companies = new List<Company>();
         private List<YearSelect> years = new List<YearSelect>();
@@ -50,7 +51,7 @@ namespace ProductManager.Controls
             years.Add(new YearSelect() { Id = 0, Name = "每年" });
             for (int i = 0; i < 5; i++)
             {
-                years.Add(new YearSelect() { Id = year - i, Name = "第" + (year - i) + "年" });
+                years.Add(new YearSelect() { Id = year - i, Name = "第" + (year-4+ i) + "年" });
             }
             yearSelect.DataSource = years;
             yearSelect.ValueMember = "Id";

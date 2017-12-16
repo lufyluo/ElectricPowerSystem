@@ -73,9 +73,8 @@
             this.repeatPassword.Font = new System.Drawing.Font("微软雅黑", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.repeatPassword.Location = new System.Drawing.Point(82, 267);
             this.repeatPassword.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.repeatPassword.Multiline = true;
             this.repeatPassword.Name = "repeatPassword";
-            this.repeatPassword.Size = new System.Drawing.Size(448, 55);
+            this.repeatPassword.Size = new System.Drawing.Size(448, 34);
             this.repeatPassword.TabIndex = 0;
             this.repeatPassword.Text = "再次输入新密码";
             this.repeatPassword.MouseEnter += new System.EventHandler(this.repeatPassword_MouseEnter);
@@ -86,12 +85,10 @@
             this.newPassword.Font = new System.Drawing.Font("微软雅黑", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.newPassword.Location = new System.Drawing.Point(82, 167);
             this.newPassword.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.newPassword.Multiline = true;
             this.newPassword.Name = "newPassword";
-            this.newPassword.Size = new System.Drawing.Size(448, 55);
+            this.newPassword.Size = new System.Drawing.Size(448, 34);
             this.newPassword.TabIndex = 0;
             this.newPassword.Text = "请输入新密码";
-            this.newPassword.UseSystemPasswordChar = true;
             this.newPassword.MouseEnter += new System.EventHandler(this.newPassword_MouseEnter);
             this.newPassword.MouseLeave += new System.EventHandler(this.newPassword_MouseLeave);
             // 

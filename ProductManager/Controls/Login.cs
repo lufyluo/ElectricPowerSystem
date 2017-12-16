@@ -30,6 +30,7 @@ namespace ProductManager.Controls
         {
             this.accountInput.Text = accountTip;
             this.passwordInput.Text = passwordTip;
+            accountInput.Focus();
         }
         private void accountInput_MouseEnter(object sender, EventArgs e)
         {
