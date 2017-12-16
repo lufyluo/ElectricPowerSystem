@@ -62,7 +62,7 @@
             this.tab.Controls.Add(this.tabPage2);
             this.tab.Font = new System.Drawing.Font("微软雅黑", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.tab.ItemSize = new System.Drawing.Size(121, 40);
-            this.tab.Location = new System.Drawing.Point(3, 3);
+            this.tab.Location = new System.Drawing.Point(0, 0);
             this.tab.Name = "tab";
             this.tab.SelectedIndex = 0;
             this.tab.Size = new System.Drawing.Size(1126, 687);
@@ -310,6 +310,7 @@
             this.Controls.Add(this.tab);
             this.Name = "View";
             this.Size = new System.Drawing.Size(1126, 677);
+            this.Load += new System.EventHandler(this.View_Load);
             this.tab.ResumeLayout(false);
             this.tabPage1.ResumeLayout(false);
             this.tabPage1.PerformLayout();

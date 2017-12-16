@@ -241,6 +241,10 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\ProductManager.Entity\ProductManager.Entity.csproj">
+      <Project>{5241ED2A-224E-4FEF-9D32-EF6DBEF192A5}</Project>
+      <Name>ProductManager.Entity</Name>
+    </ProjectReference>
     <ProjectReference Include="..\ProductManager.Logic\ProductManager.Logic.csproj">
       <Project>{1CA1D809-ABB0-4DFC-A3EA-63BBF69E0C68}</Project>
       <Name>ProductManager.Logic</Name>

@@ -68,11 +68,6 @@ namespace ProductManager.Controls
         }
         private void pushInExcel(DataTable data)
         {
-            var cell = sheet.GetCell("A1");
-            if (cell != null)
-            {
-                cell.Data = "";
-            }
             sheet?.SetRangeData(new RangePosition(4, 0, data.Rows.Count, data.Columns.Count), data);
         }
 

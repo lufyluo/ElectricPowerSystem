@@ -74,12 +74,16 @@ namespace ProductManager.Helper {
 
         private static PropertyInfo[] SortPropertyInfosByReportDictionary(PropertyInfo[] propertyInfos)
         {
-            PropertyInfo[] newPropertyInfos = new PropertyInfo[propertyInfos.Length];
             int index = 0;
-            foreach (var item in NormDictionary.GetReportDictionary())
+            var dics = NormDictionary.GetReportDictionary();
+            PropertyInfo[] newPropertyInfos = new PropertyInfo[dics.Keys.Count];
+            foreach (var item in dics)
             {
-                var property = propertyInfos.FirstOrDefault(n => n.Name == item.Key);
+                var property = propertyInfos.FirstOrDefault(n => n.Name == item.Value);
                 newPropertyInfos[index] = property;
+                index++;
+                if(index == dics.Keys.Count)
+                    break;
             }
             return newPropertyInfos;
         }
