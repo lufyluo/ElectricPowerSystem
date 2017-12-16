@@ -51,7 +51,7 @@ namespace ProductManager.Controls
             years.Add(new YearSelect() { Id = 0, Name = "每年" });
             for (int i = 0; i < 5; i++)
             {
-                years.Add(new YearSelect() { Id = year - i, Name = "第" + (year-4+ i) + "年" });
+                years.Add(new YearSelect() { Id = year-4 - i, Name = "第" + (year-4+ i) + "年" });
             }
             yearSelect.DataSource = years;
             yearSelect.ValueMember = "Id";
@@ -122,7 +122,20 @@ namespace ProductManager.Controls
         private void monthSelect_SelectedIndexChanged(object sender, EventArgs e)
         {
             var month = (sender as ComboBox).SelectedItem as MonthSelect;
-            reportParam.Month = month?.Id == 0 ? null : month?.Id;
+            if (month?.Id == 0)
+            {
+                reportParam.Month = null;
+                return;
+            }
+            if (month.IsQuarter)
+            {
+                reportParam.Quarter = month.Id;
+            }
+            else
+            {
+                reportParam.Month = month.Id;
+            }
+            
         }
 
         private void search_Click(object sender, EventArgs e)
@@ -212,7 +225,14 @@ namespace ProductManager.Controls
                 else
                 {
                     line_Year.Enabled = false;
+                    if (value.IsQuarter)
+                    {
+                        lineParam.Quarter = value.Id;
+                    }
+                    else
+                    {
                     lineParam.Month = value.Id;
+                    }
                 }
 
             }
