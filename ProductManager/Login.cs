@@ -81,7 +81,12 @@ namespace ProductManager
 
         private void login1_Load(object sender, EventArgs e)
         {
+            
+        }
 
+        private void Login_Activated(object sender, EventArgs e)
+        {
+            this.login1.SetFucos();
         }
     }
 }
