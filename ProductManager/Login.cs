@@ -37,8 +37,14 @@ namespace ProductManager
             //var xx2 = importLogic.ImportExcel(@"C:\Users\zhaob\Desktop\luofly\财务类型表\财务快报-成本费用表_国网四川省电力公司.xls");
             //var xx3 = importLogic.ImportExcel(@"C:\Users\zhaob\Desktop\luofly\财务类型表\财务快报-利润表_国网四川省电力公司.xls");
 
-            var dataReportLogic = new DataReportLogic();
-            var xx = dataReportLogic.GetBudgetReportData(new BaseParam());
+            //var dataReportLogic = new DataReportLogic();
+            //var xx = dataReportLogic.GetBudgetReportData(new BaseParam());
+            ////看某个12个月的数据
+            //var xxx1 = dataReportLogic.GetChartDatas(new BaseParam() {CompanyId = 1, Year = 2017,TargetKey = "发电量" });
+            ////看每年的某个月的数据
+            //var xxx2 = dataReportLogic.GetChartDatas(new BaseParam() { CompanyId = 1, Month = 12, TargetKey = "发电量" });
+            ////看每年某个季度的数据
+            //var xxx3 = dataReportLogic.GetChartDatas(new BaseParam() { CompanyId = 1, Quarter = 4, TargetKey = "发电量" });
         }
 
         private void LoginEvent(object sender, MessageEvent.MessageEventArgs e)

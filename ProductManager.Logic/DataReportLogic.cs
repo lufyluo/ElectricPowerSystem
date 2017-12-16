@@ -113,6 +113,7 @@ namespace ProductManager.Logic {
         }
 
         public IList<BudgetReportData> GetChartDatas(BaseParam baseParam) {
+            //看某个12个月的数据
             if (baseParam.Year.HasValue && !baseParam.Month.HasValue && !baseParam.Quarter.HasValue) {
                 if (ElectricTargets.Contains(baseParam.TargetKey)) {
                     return GetElectricChartDataByMonthDemssion(baseParam);
@@ -125,7 +126,7 @@ namespace ProductManager.Logic {
                     return GetProfitChartDataByMonthDemssion(baseParam);
                 }
             }
-
+            //看每年的某个月的数据
             if (!baseParam.Year.HasValue && baseParam.Month.HasValue) {
                 if (ElectricTargets.Contains(baseParam.TargetKey)) {
                     return GetElectricChartDataByYearAndMonthDemssion(baseParam);
@@ -139,6 +140,7 @@ namespace ProductManager.Logic {
                 }
             }
 
+            //看每年某个季度的数据
             if (!baseParam.Year.HasValue && baseParam.Quarter.HasValue) {
                 if (ElectricTargets.Contains(baseParam.TargetKey)) {
                     return GetElectricChartDataByYearAndQuarterDemssion(baseParam);
@@ -154,7 +156,7 @@ namespace ProductManager.Logic {
             return null;
         }
 
-        #region 看一个中12个月的数据
+        #region 看某个12个月的数据
 
         private IList<BudgetReportData> GetElectricChartDataByMonthDemssion(BaseParam baseParam) {
             var electricQueryable = _context.Electrics.Where(item => item.Year == baseParam.Year.Value && item.Month != null);
@@ -230,7 +232,7 @@ namespace ProductManager.Logic {
             return budgetReportDatas;
         }
 
-        #endregion 看一个中12个月的数据
+        #endregion 
 
         #region 看每年的某个月的数据
 
