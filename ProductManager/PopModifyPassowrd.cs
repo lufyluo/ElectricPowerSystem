@@ -21,6 +21,13 @@ namespace ProductManager
         {
             this.TransparencyKey = Color.Gray;
             this.BackColor = Color.Gray;
+            modifyPassword1.VisibleChanged += ModifyPassword1_VisibleChanged;
+        }
+
+        private void ModifyPassword1_VisibleChanged(object sender, EventArgs e)
+        {
+            if(modifyPassword1.Visible ==false)
+                this.Close();
         }
 
         private void pictureBox1_Click(object sender, EventArgs e)

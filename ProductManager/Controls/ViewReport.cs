@@ -68,7 +68,7 @@ namespace ProductManager.Controls
         }
         private void pushInExcel(DataTable data)
         {
-            sheet?.SetRangeData(new RangePosition(4, 0, data.Rows.Count, data.Columns.Count), data);
+            sheet?.SetRangeData(new RangePosition(3, 0, data.Rows.Count, data.Columns.Count), data);
         }
 
         private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)

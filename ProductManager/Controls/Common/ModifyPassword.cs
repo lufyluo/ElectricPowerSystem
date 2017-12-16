@@ -106,7 +106,8 @@ namespace ProductManager.Controls.Common
                 var repeatPasswordText = repeatPassword.Text;
                 if (newPasswordText == repeatPasswordText && oldPasswordText.Length > 0&& new UserLogic().Modify("admin", newPasswordText))
                 {
-                    MessageBox.Show("修改成功！", "Info", MessageBoxButtons.OK);
+                    this.Hide();
+                    return;
                 }
                 MessageBox.Show("请输入正确参数！", "Info", MessageBoxButtons.OK);
             }

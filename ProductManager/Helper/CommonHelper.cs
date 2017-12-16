@@ -54,7 +54,8 @@ namespace ProductManager.Helper {
                 PropertyInfo[] propertys = SortPropertyInfosByReportDictionary(list[0].GetType().GetProperties());
                 foreach (PropertyInfo pi in propertys)
                 {
-                    result.Columns.Add(pi.Name, pi.PropertyType);
+                    var property =( pi.GetValue(list[0])??"0").GetType();
+                    result.Columns.Add(pi.Name, property);
                 }
 
                 for (int i = 0; i < list.Count; i++)
@@ -62,7 +63,7 @@ namespace ProductManager.Helper {
                     ArrayList tempList = new ArrayList();
                     foreach (PropertyInfo pi in propertys)
                     {
-                        object obj = pi.GetValue(list[i], null)??0;
+                        object obj = pi.GetValue(list[i], null)??"0";
                         tempList.Add(obj);
                     }
                     object[] array = tempList.ToArray();

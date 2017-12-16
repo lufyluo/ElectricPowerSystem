@@ -56,7 +56,7 @@ namespace ProductManager.Controls
             line_Year.DataSource = years;
             line_Year.ValueMember = "Id";
             line_Year.DisplayMember = "Name";
-            line_Year.SelectedIndex = 0;
+            line_Year.SelectedIndex = 1;
 
 
             months.Add(new MonthSelect() { Id = -1, Name = "无" });
@@ -65,18 +65,18 @@ namespace ProductManager.Controls
             months.Add(new MonthSelect() { Id = 3, IsQuarter = true, Name = "第三季度" });
             months.Add(new MonthSelect() { Id = 4, IsQuarter = true, Name = "第四季度" });
 
-            months.Add(new MonthSelect() { Id = 1, Name = "1月" });
-            months.Add(new MonthSelect() { Id = 2, Name = "2月" });
-            months.Add(new MonthSelect() { Id = 3, Name = "3月" });
-            months.Add(new MonthSelect() { Id = 4, Name = "4月" });
-            months.Add(new MonthSelect() { Id = 5, Name = "5月" });
-            months.Add(new MonthSelect() { Id = 6, Name = "6月" });
-            months.Add(new MonthSelect() { Id = 7, Name = "7月" });
-            months.Add(new MonthSelect() { Id = 8, Name = "8月" });
-            months.Add(new MonthSelect() { Id = 9, Name = "9月" });
-            months.Add(new MonthSelect() { Id = 10, Name = "10月" });
-            months.Add(new MonthSelect() { Id = 11, Name = "11月" });
-            months.Add(new MonthSelect() { Id = 12, Name = "12月" });
+            months.Add(new MonthSelect() { Id = 1, Name = "一月" });
+            months.Add(new MonthSelect() { Id = 2, Name = "二月" });
+            months.Add(new MonthSelect() { Id = 3, Name = "三月" });
+            months.Add(new MonthSelect() { Id = 4, Name = "四月" });
+            months.Add(new MonthSelect() { Id = 5, Name = "五月" });
+            months.Add(new MonthSelect() { Id = 6, Name = "六月" });
+            months.Add(new MonthSelect() { Id = 7, Name = "七月" });
+            months.Add(new MonthSelect() { Id = 8, Name = "八月" });
+            months.Add(new MonthSelect() { Id = 9, Name = "九月" });
+            months.Add(new MonthSelect() { Id = 10, Name = "十月" });
+            months.Add(new MonthSelect() { Id = 11, Name = "十一月" });
+            months.Add(new MonthSelect() { Id = 12, Name = "十二月" });
             monthSelect.DataSource = months;
             monthSelect.ValueMember = "Id";
             monthSelect.DisplayMember = "Name";
@@ -86,7 +86,9 @@ namespace ProductManager.Controls
             line_Month.ValueMember = "Id";
             line_Month.SelectedIndex = 0;
 
-            line_Property.DataSource = NormDictionary.GetReportDictionary().ToList();
+            var properties = NormDictionary.GetReportDictionary().ToList();
+            properties.RemoveAt(0);
+            line_Property.DataSource = properties;
             line_Property.ValueMember = "value";
             line_Property.DisplayMember = "key";
             line_Property.SelectedIndex = 0;
@@ -103,7 +105,7 @@ namespace ProductManager.Controls
         #region 报表
         private void companySelect_SelectedIndexChanged(object sender, EventArgs e)
         {
-            var company = sender as Company;
+            var company = (sender as ComboBox).SelectedItem as Company;
             reportParam.CompanyId = company?.Id == 0 ? null : company?.Id;
         }
 
@@ -121,18 +123,24 @@ namespace ProductManager.Controls
 
         private void search_Click(object sender, EventArgs e)
         {
+            LoadReportData();
+        }
+
+        private void LoadReportData()
+        {
             try
             {
                 var budgetReportDatas = reportLogic.GetBudgetReportData(reportParam);
                 var dataTable = CommonHelper.ToDataTable(budgetReportDatas);
-                sheet?.SetRangeData(new RangePosition(4, 0, dataTable.Rows.Count, dataTable.Columns.Count), dataTable);
+                //sheet.clear
+                sheet.SetRangeData(new RangePosition(3, 0, dataTable.Rows.Count, dataTable.Columns.Count), dataTable);
             }
             catch (Exception exception)
             {
                 MessageBox.Show("查询失败！", "Error", MessageBoxButtons.OK);
             }
-            
         }
+
         #endregion
 
         #region 折线图
@@ -144,7 +152,7 @@ namespace ProductManager.Controls
                 var value = selector.SelectedItem as YearSelect;
                 if (value.Id == -1)
                 {
-                    line_Month.SelectedIndex = line_Month.Items.IndexOf("无") + 1; ;
+                    line_Month.SelectedIndex = 1; ;
                     line_Month.Enabled = true;
                     lineParam.Year = null;
                 }
@@ -176,7 +184,7 @@ namespace ProductManager.Controls
                 var value = selector.SelectedItem as MonthSelect;
                 if (value.Id == -1)
                 {
-                    line_Year.SelectedIndex = line_Year.Items.IndexOf("每年") + 1; ;
+                    line_Year.SelectedIndex =1; ;
                     line_Year.Enabled = true;
                     lineParam.Month = null;
                 }
@@ -196,16 +204,20 @@ namespace ProductManager.Controls
 
         private void line_Company_SelectedIndexChanged(object sender, EventArgs e)
         {
-            var company = sender as Company;
+            var company = (sender as ComboBox).SelectedItem as Company;
             lineParam.CompanyId = company?.Id == 0 ? null : company?.Id;
         }
 
         private void line_search_Click(object sender, EventArgs e)
         {
+            LoadCharData();
+        }
+
+        private void LoadCharData()
+        {
             try
             {
-                var chartReportDatas = reportLogic.GetBudgetReportData(reportParam);
-                chartReportDatas[0] = new BudgetReportData();
+                var chartReportDatas = reportLogic.GetChartDatas(lineParam);
                 var dataTable = CommonHelper.ToDataTable(chartReportDatas);
                 lineChart1?.LoadData(dataTable, GetSerials());
             }
@@ -214,6 +226,7 @@ namespace ProductManager.Controls
                 MessageBox.Show("查询失败！", "Error", MessageBoxButtons.OK);
             }
         }
+
         #endregion
 
         private void tab_SelectedIndexChanged(object sender, EventArgs e)
@@ -242,6 +255,8 @@ namespace ProductManager.Controls
             sheet.DeleteRows(0, 2);//删除模板1、2行
             LoadCompanys();
             reportLogic = new DataReportLogic();
+            LoadCharData();
+            LoadReportData();
         }
 
         private string[] GetSerials()
@@ -256,7 +271,7 @@ namespace ProductManager.Controls
                 var quarterSerial = this.months.Where(n => n.IsQuarter).Select(n => n.Name).ToArray();
                 return quarterSerial;
             }
-            return months.Where(n => !n.IsQuarter).Select(n => n.Name).ToArray();
+            return months.Where(n => !n.IsQuarter&&n.Id>0).Select(n => n.Name).ToArray();
         }
     }
 }
