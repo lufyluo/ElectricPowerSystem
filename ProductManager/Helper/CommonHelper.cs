@@ -72,7 +72,22 @@ namespace ProductManager.Helper {
             }
             return result;
         }
-
+        public static DataTable StringListToDataTable<T>(string propertyName,IList<T> list)
+        {
+            DataTable result = new DataTable();
+            if (list.Count > 0)
+            {
+               
+                for (int i = 0; i < list.Count; i++)
+                {
+                    ArrayList tempList = new ArrayList();
+                    tempList.Add(list[i]);
+                    object[] array = tempList.ToArray();
+                    result.LoadDataRow(array, true);
+                }
+            }
+            return result;
+        }
         private static PropertyInfo[] SortPropertyInfosByReportDictionary(PropertyInfo[] propertyInfos)
         {
             int index = 0;

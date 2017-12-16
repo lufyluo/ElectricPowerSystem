@@ -27,32 +27,39 @@ namespace ProductManager.Controls
         void initData()
         {
             worksheet = this.reoGridControl1.CurrentWorksheet;
+            worksheet.SetRows(49);
 
-            // prepare the data source on worksheet
-            worksheet["A2"] = new object[,] {
-                { null, 2008, 2009, 2010, 2011, 2012 },
-                { "City 1", 3, 2, 4, 2, 6 },
-                { "City 2", 7, 5, 3, 6, 4 },
-                { "City 3", 13, 10, 9, 10, 9 },
-                { "City 4", 13, 10, 9, 10, 9 },
-                { "City 5", 13, 10, 9, 10, 9 },
-                { "City 6", 13, 10, 9, 10, 9 },
-                { "City 7", 13, 10, 9, 10, 9 },
-                { "Total", "=SUM(B3:B9)", "=SUM(C3:C9)", "=SUM(D3:D9)",
-                    "=SUM(E3:E9)", "=SUM(F3:F9)" },
-            };
-            var dataRange = worksheet.Ranges["B3:F9"];
-            var serialNamesRange = worksheet.Ranges["A3:A10"];
-            var categoryNamesRange = worksheet.Ranges["B2:F2"];
+        }
+        //废除但保留
+        public void LoadData(DataTable dataTable, string[] serialName)
+        {
+            //worksheet.Reset();
+            ClearRange(worksheet);
+            worksheet["A2"] = serialName;
+            worksheet.SetRangeData(new RangePosition(2, 0, dataTable.Rows.Count, dataTable.Columns.Count), dataTable);
+            ChartRender(dataTable, serialName);
+        }
+        public void LoadData(string[] dataTable, string[] serialName)
+        {
+            //worksheet.Reset();
+            ClearRange(worksheet);
+            worksheet["A2"] = serialName;
+            worksheet["A3"] = dataTable;
+            //worksheet.SetRangeData(new RangePosition(2, 0, 1, dataTable.Length), dataTable);
+            ChartRender(dataTable, serialName);
+        }
+
+        private void ChartRender(string[] dataTable, string[] serialName)
+        {
+            var dataRange = worksheet.Ranges[$"A3:{NunberToChar(serialName.Length)}3"];
+            var serialNamesRange = worksheet.Ranges[$"P3:P3"];
+            var categoryNamesRange = worksheet.Ranges[$"A2:{NunberToChar(serialName.Length)}2"];
             chart = new unvell.ReoGrid.Chart.LineChart()
             {
                 Location = new unvell.ReoGrid.Graphics.Point(0, 0),//new Graphics.Point(220, 160),
                 Size = new unvell.ReoGrid.Graphics.Size(1200, 553),//new Graphics.Size(400, 260),
 
                 Title = "",
-
-                // Specify data source.
-                // Data source is created from serial data and names for every serial data.
                 DataSource = new WorksheetChartDataSource(worksheet, serialNamesRange, dataRange)
                 {
                     CategoryNameRange = categoryNamesRange,
@@ -61,14 +68,7 @@ namespace ProductManager.Controls
             worksheet.FloatingObjects.Add(chart);
         }
 
-        public void LoadData(DataTable dataTable, string[] serialName)
-        {
-            worksheet.Reset();
-            worksheet["A2"] = serialName;
-            worksheet.SetRangeData(new RangePosition(2, 0, dataTable.Rows.Count, dataTable.Columns.Count), dataTable);
-            ChartRender(dataTable, serialName);
-        }
-
+        //废除但保留
         private void ChartRender(DataTable dataTable, string[] serialName)
         {
             var dataStartRow = 3;
@@ -78,16 +78,21 @@ namespace ProductManager.Controls
             var dataRange = worksheet.Ranges[$"{dataStartColumn}{dataStartRow}:{NunberToChar(dataTable.Columns.Count + 1)}{dataTable.Rows.Count + dataStartRow}"];
             var serialNamesRange = worksheet.Ranges[$"{categoryNameColumn}{dataStartRow}:{categoryNameColumn}{dataTable.Rows.Count + dataStartRow}"];
             var categoryNamesRange = worksheet.Ranges[$"{categoryNameColumn}{categoryNameRow}:{NunberToChar(serialName.Length + 1)}{categoryNameRow}"];
-            chart.DataSource = new WorksheetChartDataSource(worksheet, serialNamesRange, dataRange)
-            {
-                CategoryNameRange = categoryNamesRange,
-            };
-            worksheet.FloatingObjects.Add(chart);
-        }
+            //chart = new unvell.ReoGrid.Chart.LineChart()
+            //{
+            //    Location = new unvell.ReoGrid.Graphics.Point(0, 0),//new Graphics.Point(220, 160),
+            //    Size = new unvell.ReoGrid.Graphics.Size(1200, 553),//new Graphics.Size(400, 260),
 
-        private ReferenceRange GetSerial()
-        {
-            return worksheet.Ranges[$"A2:A10"];
+            //    Title = "",
+
+            //    // Specify data source.
+            //    // Data source is created from serial data and names for every serial data.
+            //    DataSource = new WorksheetChartDataSource(worksheet, serialNamesRange, dataRange)
+            //    {
+            //        CategoryNameRange = categoryNamesRange,
+            //    }
+            //};
+            //worksheet.FloatingObjects.Add(chart);
         }
 
         private string NunberToChar(int number)
@@ -100,6 +105,15 @@ namespace ProductManager.Controls
                 return asciiEncoding.GetString(btNumber).ToUpper();
             }
             return "数字不在转换范围内";
+        }
+        private void ClearRange(Worksheet sheet)
+        {
+            var range = sheet.Ranges[$"A3:V20"];
+            foreach (var rangeCell in range.Cells)
+            {
+
+                rangeCell.Data = "";
+            }
         }
     }
 }

@@ -1,9 +1,11 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Drawing;
 using System.Data;
 using System.Linq;
+using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -26,11 +28,11 @@ namespace ProductManager.Controls
         private BaseParam reportParam = new BaseParam();
         private BaseParam lineParam = new BaseParam();
         private DataReportLogic reportLogic;
-        private bool pageFlag =true;
+        private bool pageFlag = true;
         public View()
         {
             InitializeComponent();
-           
+
         }
 
         private void InitSelectData()
@@ -40,7 +42,7 @@ namespace ProductManager.Controls
                 Id = 0,
                 Name = "全部公司"
             });
-            
+
 
             var date = DateTime.Now;
 
@@ -48,7 +50,7 @@ namespace ProductManager.Controls
             years.Add(new YearSelect() { Id = 0, Name = "每年" });
             for (int i = 0; i < 5; i++)
             {
-                years.Add(new YearSelect() { Id = year - i, Name = year - i + "年" });
+                years.Add(new YearSelect() { Id = year - i, Name = "第" + (year - i) + "年" });
             }
             yearSelect.DataSource = years;
             yearSelect.ValueMember = "Id";
@@ -113,7 +115,7 @@ namespace ProductManager.Controls
         private void yearSelect_SelectedIndexChanged(object sender, EventArgs e)
         {
             var year = (sender as ComboBox).SelectedItem as YearSelect;
-            reportParam.Year = year?.Id ==0 ? null : year?.Id;
+            reportParam.Year = year?.Id == 0 ? null : year?.Id;
         }
 
         private void monthSelect_SelectedIndexChanged(object sender, EventArgs e)
@@ -134,7 +136,7 @@ namespace ProductManager.Controls
                 ClearRange();
                 var budgetReportDatas = reportLogic.GetBudgetReportData(reportParam);
                 var dataTable = CommonHelper.ToDataTable(budgetReportDatas);
-                
+
                 sheet.SetRangeData(new RangePosition(3, 0, dataTable.Rows.Count, dataTable.Columns.Count), dataTable);
             }
             catch (Exception exception)
@@ -146,6 +148,11 @@ namespace ProductManager.Controls
         private void ClearRange()
         {
             var range = sheet.Ranges[$"A3:V20"];
+            foreach (var rangeCell in range.Cells)
+            {
+
+                rangeCell.Data = "";
+            }
         }
 
         #endregion
@@ -155,7 +162,7 @@ namespace ProductManager.Controls
         {
             try
             {
-                if(!pageFlag)
+                if (!pageFlag)
                     return;
                 var selector = sender as ComboBox;
                 var value = selector.SelectedItem as YearSelect;
@@ -168,7 +175,7 @@ namespace ProductManager.Controls
                 else
                 {
                     line_Month.Enabled = false;
-                lineParam.Year = value.Id;
+                    lineParam.Year = value.Id;
                 }
             }
             catch (Exception exception)
@@ -197,7 +204,7 @@ namespace ProductManager.Controls
                 var value = selector.SelectedItem as MonthSelect;
                 if (value.Id == 0)
                 {
-                    line_Year.SelectedIndex =1; ;
+                    line_Year.SelectedIndex = 1; ;
                     line_Year.Enabled = true;
                     lineParam.Month = null;
                 }
@@ -206,7 +213,7 @@ namespace ProductManager.Controls
                     line_Year.Enabled = false;
                     lineParam.Month = value.Id;
                 }
-                
+
             }
             catch (Exception exception)
             {
@@ -233,13 +240,26 @@ namespace ProductManager.Controls
             try
             {
                 var chartReportDatas = reportLogic.GetChartDatas(lineParam);
-                var dataTable = CommonHelper.ToDataTable(chartReportDatas);
+                var dataTable = LineDataRebuild(lineParam.TargetKey, chartReportDatas).ToArray();
                 lineChart1?.LoadData(dataTable, GetSerials());
             }
             catch (Exception exception)
             {
                 MessageBox.Show("查询失败！", "Error", MessageBoxButtons.OK);
             }
+        }
+
+        private IList<string> LineDataRebuild(string propertyName, IList<BudgetReportData> list)
+        {
+            IList<string> tempList = new List<string>();
+            PropertyInfo[] propertys = typeof(BudgetReportData).GetProperties();
+            var pi = propertys.FirstOrDefault(n => n.Name == propertyName);
+            for (int i = 0; i < list.Count; i++)
+            {
+                object obj = pi.GetValue(list[i], null) ?? "0";
+                tempList.Add(obj.ToString());
+            }
+            return tempList;
         }
 
         #endregion
@@ -251,7 +271,7 @@ namespace ProductManager.Controls
 
         private void LoadCompanys()
         {
-            var companyData = new CompanyLogic().GetCompanys().Select(n=>new Company(){Id=n.Id,Name = n.Name});
+            var companyData = new CompanyLogic().GetCompanys().Select(n => new Company() { Id = n.Id, Name = n.Name });
             companies.AddRange(companyData);
             companySelect.DataSource = companies;
             companySelect.ValueMember = "Id";
@@ -260,7 +280,7 @@ namespace ProductManager.Controls
             line_Company.DataSource = companies;
             line_Company.ValueMember = "Id";
             line_Company.DisplayMember = "Name";
-            
+
         }
         private void View_Load(object sender, EventArgs e)
         {
@@ -278,15 +298,14 @@ namespace ProductManager.Controls
         {
             if (lineParam.Year != null)
             {
-                var yearsSerial = this.years.Where(n => n.Id > 0).Select(n=>n.Name).ToArray();
-                return yearsSerial;
+                return months.Where(n => !n.IsQuarter && n.Id > 0).Select(n => n.Name).ToArray();
             }
             if (lineParam.Quarter != null)
             {
                 var quarterSerial = this.months.Where(n => n.IsQuarter).Select(n => n.Name).ToArray();
                 return quarterSerial;
             }
-            return months.Where(n => !n.IsQuarter&&n.Id>0).Select(n => n.Name).ToArray();
+            return this.years.Where(n => n.Id > 0).Select(n => n.Name).ToArray();
         }
     }
 }
