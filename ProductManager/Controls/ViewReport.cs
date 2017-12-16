@@ -27,12 +27,7 @@ namespace ProductManager.Controls
         public ViewReport()
         {
             InitializeComponent();
-            sheet = excel.CurrentWorksheet;
-            //sheet.InsertColumns(0,23);
-            dataReport = new DataReportLogic();
-            selects = new List<Company>();
-            LoadData();
-            InitHeader();
+            
         }
 
         private void InitHeader()
@@ -44,23 +39,32 @@ namespace ProductManager.Controls
 
         private void LoadData()
         {
-            reportDatas = dataReport.GetBudgetReportData(new BaseParam());
-            dataTable = CommonHelper.ToDataTable(reportDatas);
-            selects.Add(new Company()
+            try
             {
-                Id=0,Name = "无"
-            });
-            for (int i = 0; i < reportDatas.Count&&i<SELECTITEMSMAXCOUNT; i++)
-            {
+                reportDatas = dataReport.GetBudgetReportData(new BaseParam());
+                dataTable = CommonHelper.ToDataTable(reportDatas);
                 selects.Add(new Company()
                 {
-                    Id=i+1,
-                    Name = $"{reportDatas[i].CompanyName}{reportDatas[i].Year}年{reportDatas[i].Month}月预算表"
+                    Id = 0,
+                    Name = "无"
                 });
+                for (int i = 0; i < reportDatas.Count && i < SELECTITEMSMAXCOUNT; i++)
+                {
+                    selects.Add(new Company()
+                    {
+                        Id = i + 1,
+                        Name = $"{reportDatas[i].CompanyName}{reportDatas[i].Year}年{reportDatas[i].Month}月预算表"
+                    });
+                }
+                comboBox1.DataSource = selects;
+                comboBox1.DisplayMember = "Name";
+                pushInExcel(dataTable);
             }
-            comboBox1.DataSource = selects;
-            comboBox1.DisplayMember = "Name";
-            pushInExcel(dataTable);
+            catch (Exception e)
+            {
+                Console.WriteLine(e);
+            }
+           
         }
         private void pushInExcel(DataTable data)
         {
@@ -83,8 +87,19 @@ namespace ProductManager.Controls
             }
             else
             {
-                data.Add(reportDatas[index]);             }
+                data.Add(reportDatas[index-1]);             }
             pushInExcel(CommonHelper.ToDataTable(data));
+        }
+
+        private void ViewReport_Load(object sender, EventArgs e)
+        {
+            //sheet.InsertColumns(0,23);
+            dataReport = new DataReportLogic();
+            selects = new List<Company>();
+            LoadData();
+            InitHeader();
+            sheet = excel.CurrentWorksheet;
+            sheet.DeleteRows(0, 2);//删除模板1、2行
         }
     }
 }

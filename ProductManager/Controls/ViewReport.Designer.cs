@@ -47,7 +47,7 @@
             this.excel.SheetTabVisible = true;
             this.excel.SheetTabWidth = 60;
             this.excel.ShowScrollEndSpacing = true;
-            this.excel.Size = new System.Drawing.Size(1110, 630);
+            this.excel.Size = new System.Drawing.Size(1113, 576);
             this.excel.TabIndex = 0;
             this.excel.Text = "reoGridControl1";
             // 
@@ -76,11 +76,13 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.BackColor = System.Drawing.SystemColors.ButtonHighlight;
             this.Controls.Add(this.comboBox1);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.excel);
             this.Name = "ViewReport";
-            this.Size = new System.Drawing.Size(1126, 677);
+            this.Size = new System.Drawing.Size(1126, 629);
+            this.Load += new System.EventHandler(this.ViewReport_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 

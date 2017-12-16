@@ -30,16 +30,7 @@ namespace ProductManager
         public Index()
         {
             InitializeComponent();
-            setControl = new Set();
-            setControl.SetEvent += SetControl_SetEvent;
-            homeControl = new ViewReport();
-            view = new Controls.View();
-            navigate1.NavigateEvent += Navigate1_NavigateEvent;
-            navigateTabContent.Controls.Add(homeControl);
-            importExcel = new Controls.ImportExcel();
-            sheet = homeControl.sheet;
-            //this.Closed += Index_Closed;
-            sheet.DeleteRows(0, 2);//删除模板第一行
+            
 
         }
 
@@ -143,6 +134,20 @@ namespace ProductManager
                 this.m_OpaqueLayer.Enabled = false;
                 this.m_OpaqueLayer.Visible = false;
             }
+        }
+
+        private void Index_Load(object sender, EventArgs e)
+        {
+            setControl = new Set();
+            setControl.SetEvent += SetControl_SetEvent;
+            homeControl = new ViewReport();
+            view = new Controls.View();
+            navigate1.NavigateEvent += Navigate1_NavigateEvent;
+            navigateTabContent.Controls.Add(homeControl);
+            importExcel = new Controls.ImportExcel();
+            sheet = homeControl.sheet;
+            //this.Closed += Index_Closed;
+            //sheet.DeleteRows(0, 2);//删除模板第一行
         }
     }
 }
