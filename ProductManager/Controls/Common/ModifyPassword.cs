@@ -68,6 +68,7 @@ namespace ProductManager.Controls.Common
 
         private void newPassword_MouseLeave(object sender, EventArgs e)
         {
+            var a = newPassword.UseSystemPasswordChar;
             if (this.newPassword.Text.Length == 0)
             {
                 this.newPassword.Text = newPasswordTip;

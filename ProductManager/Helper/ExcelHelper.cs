@@ -65,18 +65,18 @@ namespace ProductManager.Helper
             }
         }
 
-        public static void ExporAsExcel(Worksheet sheet)
+        public static void ExporAsExcel(ReoGridControl workbook)
         {
-            if (sheet != null)
+            if (workbook != null)
             {
                 OpenFileDialog fileDialog = new OpenFileDialog();
                 fileDialog.Multiselect = true;
                 fileDialog.Title = "请选择文件";
-                fileDialog.Filter = "*.xlsx";
+                fileDialog.Filter = "|*.xlsx";
                 if (fileDialog.ShowDialog() == DialogResult.OK)
                 {
                     var file = fileDialog.FileName;
-                    sheet.Save(file, unvell.ReoGrid.IO.FileFormat.Excel2007);
+                    workbook.Save(file, unvell.ReoGrid.IO.FileFormat.Excel2007);
                     MessageBox.Show("已选择文件:" + file, "选择文件提示", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
             }

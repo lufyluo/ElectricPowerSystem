@@ -13,6 +13,8 @@ using ProductManager.Helper;
 using ProductManager.MessageEvent;
 using ProductManager.Model.MessageModel;
 using unvell.ReoGrid;
+using unvell.ReoGrid.IO.OpenXML.Schema;
+using Worksheet = unvell.ReoGrid.Worksheet;
 
 namespace ProductManager
 {
@@ -25,6 +27,7 @@ namespace ProductManager
         private Controls.View view ;
         private Controls.ImportExcel importExcel;
         private Worksheet sheet;
+        public ReoGridControl workBook;
         private MyOpaqueLayer m_OpaqueLayer = null;//半透明蒙板层
         private string currentOperation = "";
         public Index()
@@ -59,6 +62,7 @@ namespace ProductManager
                 case "Home":
                     navigateTabContent.Controls.Add(homeControl);
                     sheet = homeControl.sheet;
+                    workBook = homeControl.workBook;
                     break;
                 case "Import":
                     navigateTabContent.Controls.Add(importExcel);
@@ -67,6 +71,7 @@ namespace ProductManager
                 case "View":
                     navigateTabContent.Controls.Add(view);
                     sheet = view.sheet;
+                    workBook = view.workBook;
                     break;
                 case "Set":
                     navigateTabContent.Controls.Add(setControl);
@@ -85,7 +90,7 @@ namespace ProductManager
         private void logout_Click(object sender, EventArgs e)
         {
             if(sheet!=null)
-            ExcelHelper.ExporAsExcel(sheet);
+            ExcelHelper.ExporAsExcel(workBook);
         }
         //private void logout_Click(object sender, EventArgs e)
         //{
@@ -146,6 +151,7 @@ namespace ProductManager
             navigateTabContent.Controls.Add(homeControl);
             importExcel = new Controls.ImportExcel();
             sheet = homeControl.sheet;
+            workBook = homeControl.workBook;
             //this.Closed += Index_Closed;
             //sheet.DeleteRows(0, 2);//删除模板第一行
         }

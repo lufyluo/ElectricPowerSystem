@@ -13,12 +13,15 @@ using ProductManager.Model.ParamModel;
 using ProductManager.Model.ViewModel;
 using unvell.ReoGrid;
 using unvell.ReoGrid.IO;
+using unvell.ReoGrid.IO.OpenXML.Schema;
+using Worksheet = unvell.ReoGrid.Worksheet;
 
 namespace ProductManager.Controls
 {
     public partial class ViewReport : UserControl
     {
         public Worksheet sheet;
+        public ReoGridControl workBook=>this.excel;
         private IList<BudgetReportData> reportDatas;
         private DataTable dataTable;
         private IList<Company> selects;
@@ -91,10 +94,11 @@ namespace ProductManager.Controls
             //sheet.InsertColumns(0,23);
             dataReport = new DataReportLogic();
             selects = new List<Company>();
-            LoadData();
             InitHeader();
             sheet = excel.CurrentWorksheet;
             sheet.DeleteRows(0, 2);//删除模板1、2行
+            LoadData();
         }
+
     }
 }
