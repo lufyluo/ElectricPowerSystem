@@ -41,15 +41,15 @@
             this.label4 = new System.Windows.Forms.Label();
             this.lineChart1 = new ProductManager.Controls.LineChart();
             this.tabPage2 = new System.Windows.Forms.TabPage();
-            this.dataReport = new System.Windows.Forms.Panel();
-            this.search = new System.Windows.Forms.Button();
-            this.monthSelect = new System.Windows.Forms.ComboBox();
-            this.label3 = new System.Windows.Forms.Label();
-            this.yearSelect = new System.Windows.Forms.ComboBox();
-            this.label2 = new System.Windows.Forms.Label();
-            this.companySelect = new System.Windows.Forms.ComboBox();
-            this.label1 = new System.Windows.Forms.Label();
             this.report = new unvell.ReoGrid.ReoGridControl();
+            this.label1 = new System.Windows.Forms.Label();
+            this.companySelect = new System.Windows.Forms.ComboBox();
+            this.label2 = new System.Windows.Forms.Label();
+            this.yearSelect = new System.Windows.Forms.ComboBox();
+            this.label3 = new System.Windows.Forms.Label();
+            this.monthSelect = new System.Windows.Forms.ComboBox();
+            this.search = new System.Windows.Forms.Button();
+            this.dataReport = new System.Windows.Forms.Panel();
             this.tab.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.tabPage2.SuspendLayout();
@@ -65,7 +65,7 @@
             this.tab.Location = new System.Drawing.Point(0, 0);
             this.tab.Name = "tab";
             this.tab.SelectedIndex = 0;
-            this.tab.Size = new System.Drawing.Size(1126, 687);
+            this.tab.Size = new System.Drawing.Size(1155, 687);
             this.tab.SizeMode = System.Windows.Forms.TabSizeMode.Fixed;
             this.tab.TabIndex = 0;
             this.tab.SelectedIndexChanged += new System.EventHandler(this.tab_SelectedIndexChanged);
@@ -185,7 +185,7 @@
             this.lineChart1.Location = new System.Drawing.Point(-5, 59);
             this.lineChart1.Margin = new System.Windows.Forms.Padding(5);
             this.lineChart1.Name = "lineChart1";
-            this.lineChart1.Size = new System.Drawing.Size(1126, 618);
+            this.lineChart1.Size = new System.Drawing.Size(1136, 618);
             this.lineChart1.TabIndex = 0;
             // 
             // tabPage2
@@ -195,95 +195,10 @@
             this.tabPage2.Location = new System.Drawing.Point(4, 44);
             this.tabPage2.Name = "tabPage2";
             this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage2.Size = new System.Drawing.Size(1118, 639);
+            this.tabPage2.Size = new System.Drawing.Size(1147, 639);
             this.tabPage2.TabIndex = 1;
             this.tabPage2.Text = "数据报表";
             this.tabPage2.UseVisualStyleBackColor = true;
-            // 
-            // dataReport
-            // 
-            this.dataReport.Controls.Add(this.search);
-            this.dataReport.Controls.Add(this.monthSelect);
-            this.dataReport.Controls.Add(this.label3);
-            this.dataReport.Controls.Add(this.yearSelect);
-            this.dataReport.Controls.Add(this.label2);
-            this.dataReport.Controls.Add(this.companySelect);
-            this.dataReport.Controls.Add(this.label1);
-            this.dataReport.Controls.Add(this.report);
-            this.dataReport.Location = new System.Drawing.Point(0, 0);
-            this.dataReport.Name = "dataReport";
-            this.dataReport.Size = new System.Drawing.Size(1118, 617);
-            this.dataReport.TabIndex = 0;
-            // 
-            // search
-            // 
-            this.search.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(166)))), ((int)(((byte)(244)))));
-            this.search.Font = new System.Drawing.Font("微软雅黑", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.search.ForeColor = System.Drawing.Color.White;
-            this.search.Location = new System.Drawing.Point(727, 15);
-            this.search.Name = "search";
-            this.search.Size = new System.Drawing.Size(90, 32);
-            this.search.TabIndex = 3;
-            this.search.Text = "查询";
-            this.search.UseVisualStyleBackColor = false;
-            this.search.Click += new System.EventHandler(this.search_Click);
-            // 
-            // monthSelect
-            // 
-            this.monthSelect.FormattingEnabled = true;
-            this.monthSelect.Location = new System.Drawing.Point(574, 17);
-            this.monthSelect.Name = "monthSelect";
-            this.monthSelect.Size = new System.Drawing.Size(121, 29);
-            this.monthSelect.TabIndex = 2;
-            this.monthSelect.SelectedIndexChanged += new System.EventHandler(this.monthSelect_SelectedIndexChanged);
-            // 
-            // label3
-            // 
-            this.label3.AutoSize = true;
-            this.label3.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(102)))), ((int)(((byte)(102)))), ((int)(((byte)(102)))));
-            this.label3.Location = new System.Drawing.Point(484, 20);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(74, 21);
-            this.label3.TabIndex = 1;
-            this.label3.Text = "选择时间";
-            // 
-            // yearSelect
-            // 
-            this.yearSelect.FormattingEnabled = true;
-            this.yearSelect.Location = new System.Drawing.Point(341, 17);
-            this.yearSelect.Name = "yearSelect";
-            this.yearSelect.Size = new System.Drawing.Size(121, 29);
-            this.yearSelect.TabIndex = 2;
-            this.yearSelect.SelectedIndexChanged += new System.EventHandler(this.yearSelect_SelectedIndexChanged);
-            // 
-            // label2
-            // 
-            this.label2.AutoSize = true;
-            this.label2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(102)))), ((int)(((byte)(102)))), ((int)(((byte)(102)))));
-            this.label2.Location = new System.Drawing.Point(251, 20);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(74, 21);
-            this.label2.TabIndex = 1;
-            this.label2.Text = "选择年份";
-            // 
-            // companySelect
-            // 
-            this.companySelect.FormattingEnabled = true;
-            this.companySelect.Location = new System.Drawing.Point(109, 17);
-            this.companySelect.Name = "companySelect";
-            this.companySelect.Size = new System.Drawing.Size(121, 29);
-            this.companySelect.TabIndex = 2;
-            this.companySelect.SelectedIndexChanged += new System.EventHandler(this.companySelect_SelectedIndexChanged);
-            // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(102)))), ((int)(((byte)(102)))), ((int)(((byte)(102)))));
-            this.label1.Location = new System.Drawing.Point(19, 20);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(74, 21);
-            this.label1.TabIndex = 1;
-            this.label1.Text = "选择公司";
             // 
             // report
             // 
@@ -299,9 +214,94 @@
             this.report.SheetTabVisible = true;
             this.report.SheetTabWidth = 60;
             this.report.ShowScrollEndSpacing = true;
-            this.report.Size = new System.Drawing.Size(1106, 518);
+            this.report.Size = new System.Drawing.Size(1130, 535);
             this.report.TabIndex = 0;
             this.report.Text = "reoGridControl1";
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(102)))), ((int)(((byte)(102)))), ((int)(((byte)(102)))));
+            this.label1.Location = new System.Drawing.Point(19, 20);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(74, 21);
+            this.label1.TabIndex = 1;
+            this.label1.Text = "选择公司";
+            // 
+            // companySelect
+            // 
+            this.companySelect.FormattingEnabled = true;
+            this.companySelect.Location = new System.Drawing.Point(109, 17);
+            this.companySelect.Name = "companySelect";
+            this.companySelect.Size = new System.Drawing.Size(121, 29);
+            this.companySelect.TabIndex = 2;
+            this.companySelect.SelectedIndexChanged += new System.EventHandler(this.companySelect_SelectedIndexChanged);
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(102)))), ((int)(((byte)(102)))), ((int)(((byte)(102)))));
+            this.label2.Location = new System.Drawing.Point(251, 20);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(74, 21);
+            this.label2.TabIndex = 1;
+            this.label2.Text = "选择年份";
+            // 
+            // yearSelect
+            // 
+            this.yearSelect.FormattingEnabled = true;
+            this.yearSelect.Location = new System.Drawing.Point(341, 17);
+            this.yearSelect.Name = "yearSelect";
+            this.yearSelect.Size = new System.Drawing.Size(121, 29);
+            this.yearSelect.TabIndex = 2;
+            this.yearSelect.SelectedIndexChanged += new System.EventHandler(this.yearSelect_SelectedIndexChanged);
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(102)))), ((int)(((byte)(102)))), ((int)(((byte)(102)))));
+            this.label3.Location = new System.Drawing.Point(484, 20);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(74, 21);
+            this.label3.TabIndex = 1;
+            this.label3.Text = "选择时间";
+            // 
+            // monthSelect
+            // 
+            this.monthSelect.FormattingEnabled = true;
+            this.monthSelect.Location = new System.Drawing.Point(574, 17);
+            this.monthSelect.Name = "monthSelect";
+            this.monthSelect.Size = new System.Drawing.Size(121, 29);
+            this.monthSelect.TabIndex = 2;
+            this.monthSelect.SelectedIndexChanged += new System.EventHandler(this.monthSelect_SelectedIndexChanged);
+            // 
+            // search
+            // 
+            this.search.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(166)))), ((int)(((byte)(244)))));
+            this.search.Font = new System.Drawing.Font("微软雅黑", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.search.ForeColor = System.Drawing.Color.White;
+            this.search.Location = new System.Drawing.Point(727, 15);
+            this.search.Name = "search";
+            this.search.Size = new System.Drawing.Size(90, 32);
+            this.search.TabIndex = 3;
+            this.search.Text = "查询";
+            this.search.UseVisualStyleBackColor = false;
+            this.search.Click += new System.EventHandler(this.search_Click);
+            // 
+            // dataReport
+            // 
+            this.dataReport.Controls.Add(this.search);
+            this.dataReport.Controls.Add(this.monthSelect);
+            this.dataReport.Controls.Add(this.label3);
+            this.dataReport.Controls.Add(this.yearSelect);
+            this.dataReport.Controls.Add(this.label2);
+            this.dataReport.Controls.Add(this.companySelect);
+            this.dataReport.Controls.Add(this.label1);
+            this.dataReport.Controls.Add(this.report);
+            this.dataReport.Location = new System.Drawing.Point(1, 3);
+            this.dataReport.Name = "dataReport";
+            this.dataReport.Size = new System.Drawing.Size(1146, 617);
+            this.dataReport.TabIndex = 0;
             // 
             // View
             // 
@@ -309,7 +309,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.Controls.Add(this.tab);
             this.Name = "View";
-            this.Size = new System.Drawing.Size(1126, 677);
+            this.Size = new System.Drawing.Size(1155, 677);
             this.Load += new System.EventHandler(this.View_Load);
             this.tab.ResumeLayout(false);
             this.tabPage1.ResumeLayout(false);
@@ -325,16 +325,6 @@
 
         private System.Windows.Forms.TabControl tab;
         private System.Windows.Forms.TabPage tabPage1;
-        private System.Windows.Forms.TabPage tabPage2;
-        private System.Windows.Forms.Panel dataReport;
-        private unvell.ReoGrid.ReoGridControl report;
-        private System.Windows.Forms.Button search;
-        private System.Windows.Forms.ComboBox monthSelect;
-        private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.ComboBox yearSelect;
-        private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.ComboBox companySelect;
-        private System.Windows.Forms.Label label1;
         private LineChart lineChart1;
         private System.Windows.Forms.ComboBox line_Month;
         private System.Windows.Forms.ComboBox line_Year;
@@ -345,5 +335,15 @@
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Button line_search;
+        private System.Windows.Forms.Panel dataReport;
+        private System.Windows.Forms.Button search;
+        private System.Windows.Forms.ComboBox monthSelect;
+        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.ComboBox yearSelect;
+        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.ComboBox companySelect;
+        private System.Windows.Forms.Label label1;
+        private unvell.ReoGrid.ReoGridControl report;
+        private System.Windows.Forms.TabPage tabPage2;
     }
 }

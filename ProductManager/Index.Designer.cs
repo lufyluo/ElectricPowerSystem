@@ -32,9 +32,9 @@
             this.exit = new System.Windows.Forms.PictureBox();
             this.logout = new System.Windows.Forms.PictureBox();
             this.label1 = new System.Windows.Forms.Label();
-            this.navigate1 = new ProductManager.Controls.Common.Navigate();
             this.navigateTabContent = new System.Windows.Forms.Panel();
             this.transparentPanel1 = new ProductManager.Controls.Common.TransparentPanel();
+            this.navigate1 = new ProductManager.Controls.Common.Navigate();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.exit)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.logout)).BeginInit();
@@ -83,20 +83,12 @@
             this.label1.TabIndex = 0;
             this.label1.Text = "甘孜电力生产管理系统";
             // 
-            // navigate1
-            // 
-            this.navigate1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(28)))), ((int)(((byte)(28)))), ((int)(((byte)(28)))));
-            this.navigate1.Location = new System.Drawing.Point(0, 60);
-            this.navigate1.Name = "navigate1";
-            this.navigate1.Size = new System.Drawing.Size(200, 708);
-            this.navigate1.TabIndex = 0;
-            // 
             // navigateTabContent
             // 
             this.navigateTabContent.Controls.Add(this.transparentPanel1);
             this.navigateTabContent.Location = new System.Drawing.Point(212, 90);
             this.navigateTabContent.Name = "navigateTabContent";
-            this.navigateTabContent.Size = new System.Drawing.Size(1126, 677);
+            this.navigateTabContent.Size = new System.Drawing.Size(1137, 677);
             this.navigateTabContent.TabIndex = 2;
             // 
             // transparentPanel1
@@ -107,6 +99,14 @@
             this.transparentPanel1.Size = new System.Drawing.Size(75, 23);
             this.transparentPanel1.TabIndex = 0;
             this.transparentPanel1.Text = "transparentPanel1";
+            // 
+            // navigate1
+            // 
+            this.navigate1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(28)))), ((int)(((byte)(28)))), ((int)(((byte)(28)))));
+            this.navigate1.Location = new System.Drawing.Point(0, 60);
+            this.navigate1.Name = "navigate1";
+            this.navigate1.Size = new System.Drawing.Size(200, 708);
+            this.navigate1.TabIndex = 0;
             // 
             // Index
             // 

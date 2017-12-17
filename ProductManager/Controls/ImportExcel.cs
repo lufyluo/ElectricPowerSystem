@@ -37,6 +37,11 @@ namespace ProductManager.Controls
 
         private void import_btn_Click(object sender, EventArgs e)
         {
+            if (string.IsNullOrEmpty(file))
+            {
+                MessageBox.Show("请选择文件", "选择文件提示", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                return;
+            }
             var result = importLogic.ImportExcel(file);
             MessageBox.Show(result ? "导入成功" : "导入失败", "提示", MessageBoxButtons.OK, MessageBoxIcon.Information);
         }

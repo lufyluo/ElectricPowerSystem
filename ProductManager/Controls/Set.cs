@@ -52,7 +52,7 @@ namespace ProductManager.Controls
                     Name = n
                 }).ToList();
                 var changes = new CompanyLogic().Add(companysItems);
-                MessageBox.Show($"添加{changes}条记录成功", "Info", MessageBoxButtons.OK);
+                MessageBox.Show($"保存成功", "Info", MessageBoxButtons.OK);
             }
             catch (Exception exception)
             {
