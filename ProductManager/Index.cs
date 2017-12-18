@@ -87,15 +87,15 @@ namespace ProductManager
             RaiseEvent(nameof(Messages.Exit));
         }
         //导出excel
-        private void logout_Click(object sender, EventArgs e)
-        {
-            if(sheet!=null)
-            ExcelHelper.ExporAsExcel(workBook);
-        }
         //private void logout_Click(object sender, EventArgs e)
         //{
-        //    RaiseEvent(nameof(Messages.Logout));
+        //    if(sheet!=null)
+        //    ExcelHelper.ExporAsExcel(workBook);
         //}
+        private void logout_Click(object sender, EventArgs e)
+        {
+            RaiseEvent(nameof(Messages.Logout));
+        }
 
         private void exit_Click(object sender, EventArgs e)
         {

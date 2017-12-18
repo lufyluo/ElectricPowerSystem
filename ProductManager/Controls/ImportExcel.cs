@@ -45,5 +45,11 @@ namespace ProductManager.Controls
             var result = importLogic.ImportExcel(file);
             MessageBox.Show(result ? "导入成功" : "导入失败", "提示", MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
+
+        private void clearBtn_Click(object sender, EventArgs e)
+        {
+            fileName.Text = "";
+            file = "";
+        }
     }
 }

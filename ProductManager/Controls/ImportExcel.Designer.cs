@@ -29,12 +29,13 @@
         private void InitializeComponent()
         {
             this.label1 = new System.Windows.Forms.Label();
-            this.roundPanel1 = new ProductManager.Controls.Common.RoundPanel();
-            this.openFile_btn = new System.Windows.Forms.Button();
-            this.fileName = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
             this.import_btn = new System.Windows.Forms.Button();
+            this.roundPanel1 = new ProductManager.Controls.Common.RoundPanel();
+            this.fileName = new System.Windows.Forms.Label();
+            this.openFile_btn = new System.Windows.Forms.Button();
+            this.clearBtn = new System.Windows.Forms.Button();
             this.roundPanel1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -48,41 +49,6 @@
             this.label1.Size = new System.Drawing.Size(107, 25);
             this.label1.TabIndex = 0;
             this.label1.Text = "选择文件：";
-            // 
-            // roundPanel1
-            // 
-            this.roundPanel1.Back = System.Drawing.Color.White;
-            this.roundPanel1.Controls.Add(this.fileName);
-            this.roundPanel1.Controls.Add(this.openFile_btn);
-            this.roundPanel1.Location = new System.Drawing.Point(415, 40);
-            this.roundPanel1.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.roundPanel1.MatrixRound = 8;
-            this.roundPanel1.Name = "roundPanel1";
-            this.roundPanel1.Size = new System.Drawing.Size(553, 52);
-            this.roundPanel1.TabIndex = 2;
-            // 
-            // openFile_btn
-            // 
-            this.openFile_btn.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(51)))), ((int)(((byte)(51)))));
-            this.openFile_btn.Location = new System.Drawing.Point(22, 11);
-            this.openFile_btn.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.openFile_btn.Name = "openFile_btn";
-            this.openFile_btn.Size = new System.Drawing.Size(87, 33);
-            this.openFile_btn.TabIndex = 0;
-            this.openFile_btn.Text = "浏览...";
-            this.openFile_btn.UseVisualStyleBackColor = true;
-            this.openFile_btn.Click += new System.EventHandler(this.openFile_btn_Click);
-            // 
-            // fileName
-            // 
-            this.fileName.AutoSize = true;
-            this.fileName.Font = new System.Drawing.Font("微软雅黑", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.fileName.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(102)))), ((int)(((byte)(102)))), ((int)(((byte)(102)))));
-            this.fileName.Location = new System.Drawing.Point(131, 16);
-            this.fileName.Name = "fileName";
-            this.fileName.Size = new System.Drawing.Size(90, 21);
-            this.fileName.TabIndex = 1;
-            this.fileName.Text = "未选择文件";
             // 
             // label3
             // 
@@ -115,10 +81,58 @@
             this.import_btn.UseVisualStyleBackColor = false;
             this.import_btn.Click += new System.EventHandler(this.import_btn_Click);
             // 
+            // roundPanel1
+            // 
+            this.roundPanel1.Back = System.Drawing.Color.White;
+            this.roundPanel1.Controls.Add(this.fileName);
+            this.roundPanel1.Controls.Add(this.openFile_btn);
+            this.roundPanel1.Location = new System.Drawing.Point(415, 40);
+            this.roundPanel1.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.roundPanel1.MatrixRound = 8;
+            this.roundPanel1.Name = "roundPanel1";
+            this.roundPanel1.Size = new System.Drawing.Size(553, 52);
+            this.roundPanel1.TabIndex = 2;
+            // 
+            // fileName
+            // 
+            this.fileName.AutoSize = true;
+            this.fileName.Font = new System.Drawing.Font("微软雅黑", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.fileName.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(102)))), ((int)(((byte)(102)))), ((int)(((byte)(102)))));
+            this.fileName.Location = new System.Drawing.Point(131, 16);
+            this.fileName.Name = "fileName";
+            this.fileName.Size = new System.Drawing.Size(90, 21);
+            this.fileName.TabIndex = 1;
+            this.fileName.Text = "未选择文件";
+            // 
+            // openFile_btn
+            // 
+            this.openFile_btn.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(51)))), ((int)(((byte)(51)))));
+            this.openFile_btn.Location = new System.Drawing.Point(22, 11);
+            this.openFile_btn.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.openFile_btn.Name = "openFile_btn";
+            this.openFile_btn.Size = new System.Drawing.Size(87, 33);
+            this.openFile_btn.TabIndex = 0;
+            this.openFile_btn.Text = "浏览...";
+            this.openFile_btn.UseVisualStyleBackColor = true;
+            this.openFile_btn.Click += new System.EventHandler(this.openFile_btn_Click);
+            // 
+            // clearBtn
+            // 
+            this.clearBtn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(166)))), ((int)(((byte)(244)))));
+            this.clearBtn.ForeColor = System.Drawing.Color.White;
+            this.clearBtn.Location = new System.Drawing.Point(569, 156);
+            this.clearBtn.Name = "clearBtn";
+            this.clearBtn.Size = new System.Drawing.Size(87, 33);
+            this.clearBtn.TabIndex = 4;
+            this.clearBtn.Text = "清除";
+            this.clearBtn.UseVisualStyleBackColor = false;
+            this.clearBtn.Click += new System.EventHandler(this.clearBtn_Click);
+            // 
             // ImportExcel
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 17F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.Controls.Add(this.clearBtn);
             this.Controls.Add(this.import_btn);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.label3);
@@ -144,5 +158,6 @@
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Button import_btn;
+        private System.Windows.Forms.Button clearBtn;
     }
 }

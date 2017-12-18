@@ -45,7 +45,7 @@
             this.excel.SheetTabContextMenuStrip = null;
             this.excel.SheetTabNewButtonVisible = true;
             this.excel.SheetTabVisible = true;
-            this.excel.SheetTabWidth = 60;
+            this.excel.SheetTabWidth = 180;
             this.excel.ShowScrollEndSpacing = true;
             this.excel.Size = new System.Drawing.Size(1135, 588);
             this.excel.TabIndex = 0;

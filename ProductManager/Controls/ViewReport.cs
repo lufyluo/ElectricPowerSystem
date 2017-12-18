@@ -98,6 +98,9 @@ namespace ProductManager.Controls
             sheet = excel.CurrentWorksheet;
             sheet.DeleteRows(0, 2);//删除模板1、2行
             LoadData();
+            sheet.SetCols(22);
+            sheet.Resize(200, 22);
+            sheet.BeforeCellEdit += (s, ev) => ev.IsCancelled = true;
         }
 
     }
