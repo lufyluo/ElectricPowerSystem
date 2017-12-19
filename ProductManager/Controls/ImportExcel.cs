@@ -13,7 +13,7 @@ namespace ProductManager.Controls
 {
     public partial class ImportExcel : UserControl
     {
-        private string[] file;
+        private string[] filePaths;
         private string showName;
         private ImportLogic importLogic;
         public ImportExcel()
@@ -30,41 +30,51 @@ namespace ProductManager.Controls
             fileDialog.Filter = "所有Excel(*.xlsx)|*.xls";
             if (fileDialog.ShowDialog() == DialogResult.OK)
             {
-                file = fileDialog.FileNames;
-                MessageBox.Show("已选择文件:" + file, "选择文件提示", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                fileName.Text = GetShowFilsName();
+                filePaths = fileDialog.FileNames;
+                var fileNames = GetShowFilsName();
+                MessageBox.Show("已选择文件:" + fileNames, "选择文件提示", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                fileName.Text = fileNames;
             }
         }
 
         private void import_btn_Click(object sender, EventArgs e)
         {
-            if (file.Length <= 0)
+            try
             {
-                MessageBox.Show("请选择文件", "选择文件提示", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                return;
+                if (filePaths.Length <= 0)
+                {
+                    MessageBox.Show("请选择文件", "选择文件提示", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    return;
+                }
+                bool result = false;
+                foreach (var filePath in filePaths)
+                {
+                    result = importLogic.ImportExcel(filePath) || result;
+                }
+                MessageBox.Show(result ? "导入成功" : "导入失败，请重试！", "提示", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
-            bool result=false;
-            foreach (var filePath in file)
+            catch (Exception exception)
             {
-                result = importLogic.ImportExcel(filePath)||result;
+                MessageBox.Show( "导入失败，请检查文档是否符合标准！", "提示", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
-            MessageBox.Show(result ? "导入成功" : "导入失败，请重试！", "提示", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            
         }
 
         private string GetShowFilsName()
         {
             showName = "";
-            foreach (var filePath in file)
+            foreach (var filePath in filePaths)
             {
-                showName += filePath.Split('\\').LastOrDefault();
+                showName += filePath.Split('\\').LastOrDefault()+",";
             }
-            return showName;
+            
+            return showName.TrimEnd(','); 
         }
 
         private void clearBtn_Click(object sender, EventArgs e)
         {
             fileName.Text = "";
-            file = "";
+            filePaths = new string[0];
         }
     }
 }
