@@ -103,7 +103,12 @@ namespace ProductManager.Controls
 
         private void exportBtn_Paint(object sender, PaintEventArgs e)
         {
-            excel.
+            
+        }
+
+        private void exportBtn_Click(object sender, EventArgs e)
+        {
+            ExcelHelper.ExporAsExcel(excel);
         }
     }
 }

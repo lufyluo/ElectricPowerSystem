@@ -32,8 +32,8 @@
             this.label1 = new System.Windows.Forms.Label();
             this.comboBox1 = new System.Windows.Forms.ComboBox();
             this.exportBtn = new System.Windows.Forms.Panel();
-            this.exportImage = new System.Windows.Forms.PictureBox();
             this.exportLabel = new System.Windows.Forms.Label();
+            this.exportImage = new System.Windows.Forms.PictureBox();
             this.exportBtn.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.exportImage)).BeginInit();
             this.SuspendLayout();
@@ -86,16 +86,7 @@
             this.exportBtn.Name = "exportBtn";
             this.exportBtn.Size = new System.Drawing.Size(100, 30);
             this.exportBtn.TabIndex = 3;
-            this.exportBtn.Paint += new System.Windows.Forms.PaintEventHandler(this.exportBtn_Paint);
-            // 
-            // exportImage
-            // 
-            this.exportImage.Image = global::ProductManager.Properties.Resources.导出图标_2x;
-            this.exportImage.Location = new System.Drawing.Point(13, 9);
-            this.exportImage.Name = "exportImage";
-            this.exportImage.Size = new System.Drawing.Size(16, 14);
-            this.exportImage.TabIndex = 0;
-            this.exportImage.TabStop = false;
+            this.exportBtn.Click += new System.EventHandler(this.exportBtn_Click);
             // 
             // exportLabel
             // 
@@ -107,6 +98,17 @@
             this.exportLabel.Size = new System.Drawing.Size(37, 20);
             this.exportLabel.TabIndex = 1;
             this.exportLabel.Text = "导出";
+            this.exportLabel.Click += new System.EventHandler(this.exportBtn_Click);
+            // 
+            // exportImage
+            // 
+            this.exportImage.Image = global::ProductManager.Properties.Resources.导出图标_2x;
+            this.exportImage.Location = new System.Drawing.Point(13, 9);
+            this.exportImage.Name = "exportImage";
+            this.exportImage.Size = new System.Drawing.Size(16, 14);
+            this.exportImage.TabIndex = 0;
+            this.exportImage.TabStop = false;
+            this.exportImage.Click += new System.EventHandler(this.exportBtn_Click);
             // 
             // ViewReport
             // 

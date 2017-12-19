@@ -13,7 +13,8 @@ namespace ProductManager.Controls
 {
     public partial class ImportExcel : UserControl
     {
-        private string file;
+        private string[] file;
+        private string showName;
         private ImportLogic importLogic;
         public ImportExcel()
         {
@@ -29,21 +30,35 @@ namespace ProductManager.Controls
             fileDialog.Filter = "所有Excel(*.xlsx)|*.xls";
             if (fileDialog.ShowDialog() == DialogResult.OK)
             {
-                file = fileDialog.FileName;
+                file = fileDialog.FileNames;
                 MessageBox.Show("已选择文件:" + file, "选择文件提示", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                fileName.Text = file.Split('\\').LastOrDefault();
+                fileName.Text = GetShowFilsName();
             }
         }
 
         private void import_btn_Click(object sender, EventArgs e)
         {
-            if (string.IsNullOrEmpty(file))
+            if (file.Length <= 0)
             {
                 MessageBox.Show("请选择文件", "选择文件提示", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 return;
             }
-            var result = importLogic.ImportExcel(file);
-            MessageBox.Show(result ? "导入成功" : "导入失败", "提示", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            bool result=false;
+            foreach (var filePath in file)
+            {
+                result = importLogic.ImportExcel(filePath)||result;
+            }
+            MessageBox.Show(result ? "导入成功" : "导入失败，请重试！", "提示", MessageBoxButtons.OK, MessageBoxIcon.Information);
+        }
+
+        private string GetShowFilsName()
+        {
+            showName = "";
+            foreach (var filePath in file)
+            {
+                showName += filePath.Split('\\').LastOrDefault();
+            }
+            return showName;
         }
     }
 }
