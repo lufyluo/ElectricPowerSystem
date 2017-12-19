@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using ProductManager.Controls;
+using ProductManager.Helper;
 
 namespace ProductManager
 {
@@ -15,8 +16,14 @@ namespace ProductManager
         [STAThread]
         static void Main()
         {
+
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
+            var isNeedSetAccess = CommonHelper.CopyDbFileToPublic();
+            if (isNeedSetAccess)
+            {
+                CommonHelper.SetFileAccess();
+            }
             Application.Run(new Login());
             //Application.Run(new TestForm());
         }

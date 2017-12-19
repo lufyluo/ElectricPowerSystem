@@ -27,6 +27,7 @@ namespace ProductManager.Controls
         private IList<Company> selects;
         private DataReportLogic dataReport;
         private const int SELECTITEMSMAXCOUNT = 10;
+       
         public ViewReport()
         {
             InitializeComponent();
@@ -103,5 +104,14 @@ namespace ProductManager.Controls
             sheet.BeforeCellEdit += (s, ev) => ev.IsCancelled = true;
         }
 
+        private void exportBtn_Paint(object sender, PaintEventArgs e)
+        {
+            
+        }
+
+        private void exportBtn_Click(object sender, EventArgs e)
+        {
+            ExcelHelper.ExporAsExcel(excel);
+        }
     }
 }

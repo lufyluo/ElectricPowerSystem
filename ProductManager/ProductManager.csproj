@@ -323,6 +323,7 @@
     </COMReference>
   </ItemGroup>
   <ItemGroup>
+    <None Include="Resources\导出图标%402x.png" />
     <None Include="Resources\background.png" />
     <Content Include="Resources\background1.png" />
   </ItemGroup>

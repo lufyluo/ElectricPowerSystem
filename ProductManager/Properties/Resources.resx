@@ -124,7 +124,6 @@
   <data name="表格导入-选中" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\表格导入-选中.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
- 
   <data name="查看报表-选中" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\查看报表-选中.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
@@ -143,6 +142,9 @@
   <data name="表格导入-非选中" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\表格导入-非选中.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  <data name="background" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\background.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
   <data name="个人设置-非选中" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\个人设置-非选中.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
@@ -155,7 +157,6 @@
   <data name="查看报表-非选中1" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\查看报表-非选中1.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
- 
   <data name="表格导入-非选中1" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\表格导入-非选中1.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
@@ -168,7 +169,7 @@
   <data name="退出@2x" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\退出@2x.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="background" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\background.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="导出图标@2x" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\导出图标@2x.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
 </root>
