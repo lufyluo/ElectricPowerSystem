@@ -24,7 +24,7 @@ namespace ProductManager
         public Login()
         {
             InitializeComponent();
-            
+
         }
 
         private void Form1_Load(object sender, EventArgs e)
@@ -33,7 +33,8 @@ namespace ProductManager
             content = new Index();
             content.IndexEvent += Dispatcher_MessageEvent;
             _top = Top;
-            File.SetAttributes(Path.Combine("Db", "ProductManagerDB.db"), FileAttributes.Normal);
+           
+            //File.SetAttributes(Path.Combine("Db", "ProductManagerDB.db"), FileAttributes.Normal);
             //SetAccess(System.Environment.UserName, Environment.CurrentDirectory);
             //SetFileAccess(System.Environment.UserName,Path.Combine(Environment.CurrentDirectory,"Db", "ProductManagerDB.db"));
             //var importLogic = new ImportLogic();
@@ -51,11 +52,12 @@ namespace ProductManager
             //var xx3 = importLogic.ImportExcel(@"C:\Users\zhaob\Desktop\luofly\财务类型表\财务快报-利润表_国网四川省电力公司.xls");
         }
 
+
         private void LoginEvent(object sender, MessageEvent.MessageEventArgs e)
         {
             login1.ClearPassword();
             VisibleForm(false);
-            if(content==null)
+            if (content == null)
                 content = new Index();
             content.ShowDialog();
         }
@@ -76,7 +78,7 @@ namespace ProductManager
 
         private void VisibleForm(bool visible)
         {
-            if(!visible)this.Hide();
+            if (!visible) this.Hide();
             else
             {
                 this.Show();
@@ -85,7 +87,7 @@ namespace ProductManager
 
         private void login1_Load(object sender, EventArgs e)
         {
-            
+
         }
 
         private void Login_Activated(object sender, EventArgs e)

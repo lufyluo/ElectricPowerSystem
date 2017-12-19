@@ -2,7 +2,9 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Configuration;
 using System.Data;
+using System.IO;
 using System.Linq;
 using System.Reflection;
 using System.Text.RegularExpressions;
@@ -11,7 +13,6 @@ using ProductManager.Model.Dictionary;
 namespace ProductManager.Helper {
 
     public class CommonHelper {
-
         public static bool IsNumberOrNull(dynamic value) {
             if (value == null) {
                 return true;
@@ -88,6 +89,26 @@ namespace ProductManager.Helper {
             }
             return result;
         }
+
+        public static bool CopyDbFileToPublic()
+        {
+            var dbPath = ConfigurationSettings.AppSettings["DbPath"];
+            var destFile = Path.Combine(dbPath, "ProductManagerDB.db");
+            if (File.Exists(destFile))
+            {
+                return false;
+            }
+            Directory.CreateDirectory(dbPath);
+            var sourceFile = Path.Combine("Db", "ProductManagerDB.db");
+            File.Copy(sourceFile, destFile);
+            return true;
+        }
+        public static void SetFileAccess()
+        {
+            var dbPath = ConfigurationSettings.AppSettings["DbPath"];
+            File.SetAttributes(Path.Combine(dbPath, "ProductManagerDB.db"), FileAttributes.Normal);
+        }
+
         private static PropertyInfo[] SortPropertyInfosByReportDictionary(PropertyInfo[] propertyInfos)
         {
             int index = 0;
