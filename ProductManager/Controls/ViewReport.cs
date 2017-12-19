@@ -27,6 +27,7 @@ namespace ProductManager.Controls
         private IList<Company> selects;
         private DataReportLogic dataReport;
         private const int SELECTITEMSMAXCOUNT = 10;
+       
         public ViewReport()
         {
             InitializeComponent();
@@ -100,5 +101,9 @@ namespace ProductManager.Controls
             LoadData();
         }
 
+        private void exportBtn_Paint(object sender, PaintEventArgs e)
+        {
+            excel.
+        }
     }
 }
