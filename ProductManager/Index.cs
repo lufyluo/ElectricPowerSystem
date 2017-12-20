@@ -60,20 +60,24 @@ namespace ProductManager
             switch (e.Message)
             {
                 case "Home":
+                    homeControl = new ViewReport();
                     navigateTabContent.Controls.Add(homeControl);
                     sheet = homeControl.sheet;
                     workBook = homeControl.workBook;
                     break;
                 case "Import":
+                    importExcel = new Controls.ImportExcel();
                     navigateTabContent.Controls.Add(importExcel);
                     sheet = null;
                     break;
                 case "View":
+                    view = new Controls.View();
                     navigateTabContent.Controls.Add(view);
                     sheet = view.sheet;
                     workBook = view.workBook;
                     break;
                 case "Set":
+                    setControl = new Set();
                     navigateTabContent.Controls.Add(setControl);
                     sheet = null;
                     break;

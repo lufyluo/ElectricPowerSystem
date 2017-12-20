@@ -113,15 +113,13 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1350, 729);
-            this.ControlBox = false;
             this.Controls.Add(this.navigateTabContent);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.navigate1);
-            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.MaximizeBox = false;
             this.Name = "Index";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "Index";
             this.Load += new System.EventHandler(this.Index_Load);
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();

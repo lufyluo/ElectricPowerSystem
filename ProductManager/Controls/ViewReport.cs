@@ -47,6 +47,7 @@ namespace ProductManager.Controls
             {
                 reportDatas = dataReport.GetBudgetReportData(new BaseParam());
                 dataTable = CommonHelper.ToDataTable(reportDatas);
+                var date = DateTime.Now;
                 selects.Add(new Company()
                 {
                     Id = 0,
@@ -54,10 +55,12 @@ namespace ProductManager.Controls
                 });
                 for (int i = 0; i < reportDatas.Count && i < SELECTITEMSMAXCOUNT; i++)
                 {
+                    var year = reportDatas[i].Year == 0 ? date.Year : reportDatas[i].Year;
+                    var month = reportDatas[i].Month == 0 ? date.Month : reportDatas[i].Month;
                     selects.Add(new Company()
                     {
                         Id = i + 1,
-                        Name = $"{reportDatas[i].CompanyName}{reportDatas[i].Year}年{reportDatas[i].Month}月预算表"
+                        Name = $"{reportDatas[i].CompanyName}{year}年{month}月预算表"
                     });
                 }
                 comboBox1.DataSource = selects;
