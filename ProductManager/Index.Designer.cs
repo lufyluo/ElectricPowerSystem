@@ -60,6 +60,7 @@
             this.exit.Size = new System.Drawing.Size(18, 25);
             this.exit.TabIndex = 1;
             this.exit.TabStop = false;
+            this.exit.Visible = false;
             this.exit.Click += new System.EventHandler(this.exit_Click);
             // 
             // logout
@@ -70,6 +71,7 @@
             this.logout.Size = new System.Drawing.Size(18, 25);
             this.logout.TabIndex = 1;
             this.logout.TabStop = false;
+            this.logout.Visible = false;
             this.logout.Click += new System.EventHandler(this.logout_Click);
             // 
             // label1
@@ -120,6 +122,7 @@
             this.MaximizeBox = false;
             this.Name = "Index";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
+            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.Index_FormClosed);
             this.Load += new System.EventHandler(this.Index_Load);
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();

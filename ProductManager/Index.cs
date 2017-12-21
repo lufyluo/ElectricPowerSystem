@@ -159,5 +159,10 @@ namespace ProductManager
             //this.Closed += Index_Closed;
             //sheet.DeleteRows(0, 2);//删除模板第一行
         }
+
+        private void Index_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            RaiseEvent(nameof(Messages.Exit));
+        }
     }
 }
