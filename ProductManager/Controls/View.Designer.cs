@@ -39,6 +39,7 @@
             this.label6 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
+            this.lineChart1 = new ProductManager.Controls.LineChart();
             this.tabPage2 = new System.Windows.Forms.TabPage();
             this.dataReport = new System.Windows.Forms.Panel();
             this.search = new System.Windows.Forms.Button();
@@ -49,7 +50,6 @@
             this.companySelect = new System.Windows.Forms.ComboBox();
             this.label1 = new System.Windows.Forms.Label();
             this.report = new unvell.ReoGrid.ReoGridControl();
-            this.lineChart1 = new ProductManager.Controls.LineChart();
             this.tab.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.tabPage2.SuspendLayout();
@@ -107,6 +107,7 @@
             // line_Month
             // 
             this.line_Month.FormattingEnabled = true;
+            this.line_Month.IntegralHeight = false;
             this.line_Month.Location = new System.Drawing.Point(823, 21);
             this.line_Month.Name = "line_Month";
             this.line_Month.Size = new System.Drawing.Size(121, 29);
@@ -125,6 +126,7 @@
             // line_Company
             // 
             this.line_Company.FormattingEnabled = true;
+            this.line_Company.IntegralHeight = false;
             this.line_Company.Location = new System.Drawing.Point(344, 21);
             this.line_Company.Name = "line_Company";
             this.line_Company.Size = new System.Drawing.Size(121, 29);
@@ -134,6 +136,7 @@
             // line_Property
             // 
             this.line_Property.FormattingEnabled = true;
+            this.line_Property.IntegralHeight = false;
             this.line_Property.Location = new System.Drawing.Point(114, 21);
             this.line_Property.Name = "line_Property";
             this.line_Property.Size = new System.Drawing.Size(121, 29);
@@ -180,6 +183,14 @@
             this.label4.TabIndex = 3;
             this.label4.Text = "趋势参数";
             // 
+            // lineChart1
+            // 
+            this.lineChart1.Location = new System.Drawing.Point(-5, 59);
+            this.lineChart1.Margin = new System.Windows.Forms.Padding(5);
+            this.lineChart1.Name = "lineChart1";
+            this.lineChart1.Size = new System.Drawing.Size(1136, 618);
+            this.lineChart1.TabIndex = 0;
+            // 
             // tabPage2
             // 
             this.tabPage2.Controls.Add(this.dataReport);
@@ -223,6 +234,7 @@
             // monthSelect
             // 
             this.monthSelect.FormattingEnabled = true;
+            this.monthSelect.IntegralHeight = false;
             this.monthSelect.Location = new System.Drawing.Point(574, 17);
             this.monthSelect.Name = "monthSelect";
             this.monthSelect.Size = new System.Drawing.Size(121, 29);
@@ -261,6 +273,7 @@
             // companySelect
             // 
             this.companySelect.FormattingEnabled = true;
+            this.companySelect.IntegralHeight = false;
             this.companySelect.Location = new System.Drawing.Point(109, 17);
             this.companySelect.Name = "companySelect";
             this.companySelect.Size = new System.Drawing.Size(121, 29);
@@ -294,14 +307,6 @@
             this.report.Size = new System.Drawing.Size(1130, 531);
             this.report.TabIndex = 0;
             this.report.Text = "reoGridControl1";
-            // 
-            // lineChart1
-            // 
-            this.lineChart1.Location = new System.Drawing.Point(-5, 59);
-            this.lineChart1.Margin = new System.Windows.Forms.Padding(5);
-            this.lineChart1.Name = "lineChart1";
-            this.lineChart1.Size = new System.Drawing.Size(1136, 618);
-            this.lineChart1.TabIndex = 0;
             // 
             // View
             // 

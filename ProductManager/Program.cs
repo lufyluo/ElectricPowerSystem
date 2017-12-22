@@ -19,11 +19,8 @@ namespace ProductManager
 
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            var isNeedSetAccess = CommonHelper.CopyDbFileToPublic();
-            if (isNeedSetAccess)
-            {
-                CommonHelper.SetFileAccess();
-            }
+            CommonHelper.CopyDbFileToPublic();
+            CommonHelper.SetFileAccess();
             Application.Run(new Login());
             //Application.Run(new TestForm());
         }

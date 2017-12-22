@@ -26,7 +26,7 @@ namespace ProductManager.Controls
         private DataTable dataTable;
         private IList<Company> selects;
         private DataReportLogic dataReport;
-        private const int SELECTITEMSMAXCOUNT = 10;
+        private const int SELECTITEMSMAXCOUNT = 10;//最大下拉数量
        
         public ViewReport()
         {
@@ -53,7 +53,7 @@ namespace ProductManager.Controls
                     Id = 0,
                     Name = "无"
                 });
-                for (int i = 0; i < reportDatas.Count && i < SELECTITEMSMAXCOUNT; i++)
+                for (int i = 0; i < reportDatas.Count; i++)
                 {
                     var year = reportDatas[i].Year == 0 ? date.Year : reportDatas[i].Year;
                     var month = reportDatas[i].Month == 0 ? date.Month : reportDatas[i].Month;
