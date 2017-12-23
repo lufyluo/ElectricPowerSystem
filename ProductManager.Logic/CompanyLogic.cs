@@ -24,6 +24,9 @@ namespace ProductManager.Logic {
 
         public int Add(IList<CompanyItem> companies) {
             foreach (var companyItem in companies) {
+                if (string.IsNullOrEmpty(companyItem.Name.Trim(' '))) {
+                    continue;
+                }
                 if (_context.Companies.FirstOrDefault(item => item.Name == companyItem.Name) != null) {
                     continue;
                 }
@@ -36,6 +39,17 @@ namespace ProductManager.Logic {
             }
             _context.SaveChanges();
             return 1;
+        }
+
+        public bool Delete(IEnumerable<string> companyNames) {
+            foreach (var companyName in companyNames) {
+                var company = _context.Companies.FirstOrDefault(item => item.Name == companyName);
+                if (company != null) {
+                    _context.Companies.Remove(company);
+                }
+            }
+            _context.SaveChanges();
+            return true;
         }
     }
 }

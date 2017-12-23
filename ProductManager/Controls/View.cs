@@ -17,11 +17,9 @@ using ProductManager.Model.ViewModel;
 using unvell.ReoGrid;
 using unvell.ReoGrid.IO;
 
-namespace ProductManager.Controls
-{
-    public partial class View : UserControl
-    {
-        public ReoGridControl workBook=>this.report;
+namespace ProductManager.Controls {
+    public partial class View : UserControl {
+        public ReoGridControl workBook => this.report;
         public Worksheet sheet;
         private List<Company> companies = new List<Company>();
         private List<YearSelect> years = new List<YearSelect>();
@@ -30,16 +28,13 @@ namespace ProductManager.Controls
         private BaseParam lineParam = new BaseParam();
         private DataReportLogic reportLogic;
         private bool pageFlag = true;
-        public View()
-        {
+        public View() {
             InitializeComponent();
 
         }
 
-        private void InitSelectData()
-        {
-            companies.Add(new Company()
-            {
+        private void InitSelectData() {
+            companies.Add(new Company() {
                 Id = 0,
                 Name = "全部公司"
             });
@@ -49,9 +44,8 @@ namespace ProductManager.Controls
 
             var year = date.Year;
             years.Add(new YearSelect() { Id = 0, Name = "每年" });
-            for (int i = 0; i < 5; i++)
-            {
-                years.Add(new YearSelect() { Id = year-4 + i, Name = (year-4+ i) + "年" });
+            for (int i = 0; i < 5; i++) {
+                years.Add(new YearSelect() { Id = year - 4 + i, Name = (year - 4 + i) + "年" });
             }
             yearSelect.DataSource = years.Where(n=>n.Id!=0).ToList();
             yearSelect.ValueMember = "Id";
@@ -98,8 +92,7 @@ namespace ProductManager.Controls
             line_Property.SelectedIndex = 0;
         }
 
-        private void InitHeader()
-        {
+        private void InitHeader() {
             FileFormat format = FileFormat.Excel2007;
             var path = Environment.CurrentDirectory;
             report.Load(path + "\\Template\\StatisticsTemplate.xlsx", FileFormat.Excel2007);
@@ -107,64 +100,54 @@ namespace ProductManager.Controls
         }
 
         #region 报表
-        private void companySelect_SelectedIndexChanged(object sender, EventArgs e)
-        {
+        private void companySelect_SelectedIndexChanged(object sender, EventArgs e) {
             var company = (sender as ComboBox).SelectedItem as Company;
             reportParam.CompanyId = company?.Id == 0 ? null : company?.Id;
         }
 
-        private void yearSelect_SelectedIndexChanged(object sender, EventArgs e)
-        {
+        private void yearSelect_SelectedIndexChanged(object sender, EventArgs e) {
             var year = (sender as ComboBox).SelectedItem as YearSelect;
             reportParam.Year = year?.Id == 0 ? null : year?.Id;
         }
 
-        private void monthSelect_SelectedIndexChanged(object sender, EventArgs e)
-        {
+        private void monthSelect_SelectedIndexChanged(object sender, EventArgs e) {
             var month = (sender as ComboBox).SelectedItem as MonthSelect;
-            if (month?.Id == 0)
-            {
+            if (month?.Id == 0) {
                 reportParam.Month = null;
                 lineParam.Quarter = null;
                 return;
             }
-            if (month.IsQuarter)
-            {
+            if (month.IsQuarter) {
                 reportParam.Quarter = month.Id;
+                reportParam.Month = null;
             }
-            else
-            {
+            else {
                 reportParam.Month = month.Id;
+                reportParam.Quarter = null;
             }
-            
+
         }
 
-        private void search_Click(object sender, EventArgs e)
-        {
+        private void search_Click(object sender, EventArgs e) {
             LoadReportData();
         }
 
-        private void LoadReportData()
-        {
-            try
-            {
+        private void LoadReportData() {
+            try {
                 ClearRange();
                 var budgetReportDatas = reportLogic.GetBudgetReportData(reportParam);
                 var dataTable = CommonHelper.ToDataTable(budgetReportDatas);
 
                 sheet.SetRangeData(new RangePosition(3, 0, dataTable.Rows.Count, dataTable.Columns.Count), dataTable);
             }
-            catch (Exception exception)
-            {
+            catch (Exception exception) {
                 MessageBox.Show("查询失败！", "Error", MessageBoxButtons.OK);
             }
         }
 
-        private void ClearRange()
-        {
+        private void ClearRange() {
             var range = sheet.Ranges[$"A3:V{sheet.RowCount}"];
-            foreach (var rangeCell in range.Cells)
-            {
+            foreach (var rangeCell in range.Cells) {
 
                 rangeCell.Data = "";
             }
@@ -173,35 +156,29 @@ namespace ProductManager.Controls
         #endregion
 
         #region 折线图
-        private void line_Year_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            try
-            {
+        private void line_Year_SelectedIndexChanged(object sender, EventArgs e) {
+            try {
                 if (!pageFlag)
                     return;
                 var selector = sender as ComboBox;
                 var value = selector.SelectedItem as YearSelect;
-                if (value.Id == 0)
-                {
+                if (value.Id == 0) {
                     line_Month.SelectedIndex = 1; ;
                     line_Month.Enabled = true;
                     lineParam.Year = null;
                 }
-                else
-                {
+                else {
                     line_Month.Enabled = false;
                     lineParam.Year = value.Id;
                 }
             }
-            catch (Exception exception)
-            {
+            catch (Exception exception) {
                 Console.WriteLine(exception);
             }
 
         }
         //趋势参数
-        private void line_Property_SelectedIndexChanged(object sender, EventArgs e)
-        {
+        private void line_Property_SelectedIndexChanged(object sender, EventArgs e) {
             if (!pageFlag)
                 return;
             var selector = sender as ComboBox;
@@ -209,76 +186,64 @@ namespace ProductManager.Controls
             lineParam.TargetKey = value;
         }
 
-        private void line_Month_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            try
-            {
+        private void line_Month_SelectedIndexChanged(object sender, EventArgs e) {
+            try {
                 if (!pageFlag)
                     return;
                 var selector = sender as ComboBox;
                 var value = selector.SelectedItem as MonthSelect;
-                if (value.Id == 0)
-                {
+                if (value.Id == 0) {
                     line_Year.SelectedIndex = 1; ;
                     line_Year.Enabled = true;
                     lineParam.Month = null;
                     lineParam.Quarter = null;
                 }
-                else
-                {
+                else {
                     line_Year.Enabled = false;
-                    if (value.IsQuarter)
-                    {
+                    if (value.IsQuarter) {
                         lineParam.Quarter = value.Id;
+                        lineParam.Month = null;
                     }
-                    else
-                    {
-                    lineParam.Month = value.Id;
+                    else {
+                        lineParam.Month = value.Id;
+                        lineParam.Quarter = null;
                     }
                 }
 
             }
-            catch (Exception exception)
-            {
+            catch (Exception exception) {
                 Console.WriteLine(exception);
             }
 
         }
 
-        private void line_Company_SelectedIndexChanged(object sender, EventArgs e)
-        {
+        private void line_Company_SelectedIndexChanged(object sender, EventArgs e) {
             if (!pageFlag)
                 return;
             var company = (sender as ComboBox).SelectedItem as Company;
             lineParam.CompanyId = company?.Id == 0 ? null : company?.Id;
         }
 
-        private void line_search_Click(object sender, EventArgs e)
-        {
+        private void line_search_Click(object sender, EventArgs e) {
             LoadCharData();
         }
 
-        private void LoadCharData()
-        {
-            try
-            {
+        private void LoadCharData() {
+            try {
                 var chartReportDatas = reportLogic.GetChartDatas(lineParam);
                 var dataTable = LineDataRebuild(lineParam.TargetKey, chartReportDatas).ToArray();
                 lineChart1?.LoadData(dataTable, GetSerials());
             }
-            catch (Exception exception)
-            {
+            catch (Exception exception) {
                 MessageBox.Show("查询失败！", "Error", MessageBoxButtons.OK);
             }
         }
 
-        private IList<string> LineDataRebuild(string propertyName, IList<BudgetReportData> list)
-        {
+        private IList<string> LineDataRebuild(string propertyName, IList<BudgetReportData> list) {
             IList<string> tempList = new List<string>();
             PropertyInfo[] propertys = typeof(BudgetReportData).GetProperties();
             var pi = propertys.FirstOrDefault(n => n.Name == propertyName);
-            for (int i = 0; i < list.Count; i++)
-            {
+            for (int i = 0; i < list.Count; i++) {
                 object obj = pi.GetValue(list[i], null) ?? "0";
                 tempList.Add(obj.ToString());
             }
@@ -287,13 +252,11 @@ namespace ProductManager.Controls
 
         #endregion
 
-        private void tab_SelectedIndexChanged(object sender, EventArgs e)
-        {
+        private void tab_SelectedIndexChanged(object sender, EventArgs e) {
             pageFlag = tab.SelectedIndex == 0;
         }
 
-        private void LoadCompanys()
-        {
+        private void LoadCompanys() {
             var companyData = new CompanyLogic().GetCompanys().Select(n => new Company() { Id = n.Id, Name = n.Name });
             companies.AddRange(companyData);
             companySelect.DataSource = companies;
@@ -305,8 +268,7 @@ namespace ProductManager.Controls
             line_Company.DisplayMember = "Name";
 
         }
-        private void View_Load(object sender, EventArgs e)
-        {
+        private void View_Load(object sender, EventArgs e) {
             InitHeader();
             InitSelectData();
             sheet = report.CurrentWorksheet;
@@ -317,14 +279,11 @@ namespace ProductManager.Controls
             LoadReportData();
         }
 
-        private string[] GetSerials()
-        {
-            if (lineParam.Year != null)
-            {
+        private string[] GetSerials() {
+            if (lineParam.Year != null) {
                 return months.Where(n => !n.IsQuarter && n.Id > 0).Select(n => n.Name).ToArray();
             }
-            if (lineParam.Quarter != null)
-            {
+            if (lineParam.Quarter != null) {
                 var quarterSerial = this.months.Where(n => n.IsQuarter).Select(n => n.Name).ToArray();
                 return quarterSerial;
             }

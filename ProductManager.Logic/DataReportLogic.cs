@@ -4,6 +4,7 @@ using ProductManager.Model.ViewModel;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using ProductManager.Model.ItemModel;
 
 namespace ProductManager.Logic {
 
@@ -20,7 +21,20 @@ namespace ProductManager.Logic {
             _context = new ProductManagerContext();
         }
 
+        public IList<DateTimeItem> GetDateTimeItems() {
+            var dateTimeItem = _context.Electrics.Select(item => new DateTimeItem {Year = item.Year, Month = item.Month})
+                .Distinct().OrderBy(item=>item.Year).ThenBy(item=>item.Month);
+            return dateTimeItem.ToList();
+        }
+
         public IList<BudgetReportData> GetBudgetReportData(BaseParam baseParam) {
+            if (baseParam.Month.HasValue || baseParam.Quarter.HasValue) {
+                return GetBudgetReportDataByMonth(baseParam);
+            }
+            return GetBudgetReportDataByYear(baseParam);
+        }
+
+        public IList<BudgetReportData> GetBudgetReportDataByMonth(BaseParam baseParam) {
             var companyQueryable = _context.Companies.Where(item => true);
             var costQueryable = _context.Costs.Where(item => true);
             var electricQueryable = _context.Electrics.Where(item => true);
@@ -55,7 +69,7 @@ namespace ProductManager.Logic {
                         from tc in tele.DefaultIfEmpty()
                         join c in costQueryable on new { CompanyId = cy.Id, tc.Year, tc.Month } equals new { c.CompanyId, c.Year, c.Month } into tcost
                         from cost in tcost.DefaultIfEmpty()
-                        join p in profitQueryable on new { CompanyId = cy.Id, cost.Year, cost.Month } equals new { p.CompanyId, p.Year, p.Month } into tp
+                        join p in profitQueryable on new { CompanyId = cy.Id, tc.Year, tc.Month } equals new { p.CompanyId, p.Year, p.Month } into tp
                         from pt in tp.DefaultIfEmpty()
                         select new BudgetReportData {
                             CompanyName = cy.Name,
@@ -83,56 +97,127 @@ namespace ProductManager.Logic {
                             ProfitValue = pt.ProfitValue
                         };
 
-            var budgetReportDatas = query.ToList().GroupBy(item => item.CompanyName)
-                   .Select(g => new BudgetReportData {
-                       CompanyName = g.Key,
-
-                       Electricity = g.Sum(x => x.Electricity),
-                       BuyElectricity = g.Sum(x => x.BuyElectricity),
-                       BuyAvgPrice = g.Sum(x => x.BuyAvgPrice),
-                       SellElectricity = g.Sum(x => x.SellElectricity),
-                       SellAvgPrice = g.Sum(x => x.SellAvgPrice),
-
-                       Salary = g.Sum(x => x.Salary),
-                       WorkersWelfare = g.Sum(x => x.WorkersWelfare),
-                       ControllableCost = g.Sum(x => x.ControllableCost),
-                       OtherControllableCost = g.Sum(x => x.OtherControllableCost),
-                       OtherUnControllableCost = g.Sum(x => x.OtherUnControllableCost),
-
-                       ThirdMaintenanceFee = g.Sum(x => x.ThirdMaintenanceFee),
-                       EngineeringAndLeasehold = g.Sum(x => x.EngineeringAndLeasehold),
-                       OtherCost = g.Sum(x => x.OtherCost),
-                       TaxAndAdditional = g.Sum(x => x.TaxAndAdditional),
-                       FinancialCost = g.Sum(x => x.FinancialCost),
-                       AssetsImpairmentLoss = g.Sum(x => x.AssetsImpairmentLoss),
-                       ProfitValue = g.Sum(x => x.ProfitValue),
-                   }).OrderBy(item => item.CompanyName).ToList();
-
-            var totalBudgetReportData = budgetReportDatas.GroupBy(item => true).Select(g => new BudgetReportData {
-                CompanyName = "全州公司合计",
-
-                Electricity = g.Sum(x => x.Electricity),
-                BuyElectricity = g.Sum(x => x.BuyElectricity),
-                BuyAvgPrice = g.Sum(x => x.BuyAvgPrice),
-                SellElectricity = g.Sum(x => x.SellElectricity),
-                SellAvgPrice = g.Sum(x => x.SellAvgPrice),
-
-                Salary = g.Sum(x => x.Salary),
-                WorkersWelfare = g.Sum(x => x.WorkersWelfare),
-                ControllableCost = g.Sum(x => x.ControllableCost),
-                OtherControllableCost = g.Sum(x => x.OtherControllableCost),
-                OtherUnControllableCost = g.Sum(x => x.OtherUnControllableCost),
-
-                ThirdMaintenanceFee = g.Sum(x => x.ThirdMaintenanceFee),
-                EngineeringAndLeasehold = g.Sum(x => x.EngineeringAndLeasehold),
-                OtherCost = g.Sum(x => x.OtherCost),
-                TaxAndAdditional = g.Sum(x => x.TaxAndAdditional),
-                FinancialCost = g.Sum(x => x.FinancialCost),
-                AssetsImpairmentLoss = g.Sum(x => x.AssetsImpairmentLoss),
-                ProfitValue = g.Sum(x => x.ProfitValue),
-            }).FirstOrDefault();
-            budgetReportDatas.Add(totalBudgetReportData);
+            var budgetReportDatas = GetBudgetReportDatas(query);
             return budgetReportDatas;
+        }
+
+        public IList<BudgetReportData> GetBudgetReportDataByYear(BaseParam baseParam) {
+            var companyQueryable = _context.Companies.Where(item => true);
+            var costQueryable = _context.Costs.Where(item => item.Month == null);
+            var electricQueryable = _context.Electrics.Where(item => item.Month == null);
+            var profitQueryable = _context.Profits.Where(item => item.Month == null);
+
+            if (baseParam.CompanyId.HasValue) {
+                companyQueryable = companyQueryable.Where(item => item.Id == baseParam.CompanyId.Value);
+                costQueryable = costQueryable.Where(item => item.CompanyId == baseParam.CompanyId.Value);
+                electricQueryable = electricQueryable.Where(item => item.CompanyId == baseParam.CompanyId.Value);
+                profitQueryable = profitQueryable.Where(item => item.CompanyId == baseParam.CompanyId.Value);
+            }
+            if (baseParam.Year.HasValue) {
+                costQueryable = costQueryable.Where(item => item.Year == baseParam.Year.Value );
+                electricQueryable = electricQueryable.Where(item => item.Year == baseParam.Year.Value );
+                profitQueryable = profitQueryable.Where(item => item.Year == baseParam.Year.Value);
+            }
+            var query = from cy in companyQueryable
+                        join ele in electricQueryable on cy.Id equals ele.CompanyId into tele
+                        from tc in tele.DefaultIfEmpty()
+                        join c in costQueryable on new { CompanyId = cy.Id, tc.Year } equals new { c.CompanyId, c.Year } into tcost
+                        from cost in tcost.DefaultIfEmpty()
+                        join p in profitQueryable on new { CompanyId = cy.Id, tc.Year } equals new { p.CompanyId, p.Year } into tp
+                        from pt in tp.DefaultIfEmpty()
+                        select new BudgetReportData {
+                            CompanyName = cy.Name,
+                            Year = tc.Year,
+
+                            Electricity = tc.Electricity,
+                            BuyElectricity = tc.BuyElectricity,
+                            BuyAvgPrice = tc.BuyAvgPrice,
+                            SellElectricity = tc.SellElectricity,
+                            SellAvgPrice = tc.SellAvgPrice,
+
+                            Salary = cost.Salary,
+                            WorkersWelfare = cost.WorkersWelfare,
+                            ControllableCost = cost.ControllableCost,
+                            OtherControllableCost = cost.OtherControllableCost,
+                            OtherUnControllableCost = cost.OtherUnControllableCost,
+
+                            ThirdMaintenanceFee = pt.ThirdMaintenanceFee,
+                            EngineeringAndLeasehold = pt.EngineeringAndLeasehold,
+                            OtherCost = pt.OtherCost,
+                            TaxAndAdditional = pt.TaxAndAdditional,
+                            FinancialCost = pt.FinancialCost,
+                            AssetsImpairmentLoss = pt.AssetsImpairmentLoss,
+                            ProfitValue = pt.ProfitValue
+                        };
+
+            var budgetReportDatas = GetBudgetReportDatas(query);
+            return budgetReportDatas;
+        }
+
+        private static List<BudgetReportData> GetBudgetReportDatas(IQueryable<BudgetReportData> query) {
+            var budgetReportDatas = query.ToList()
+                .GroupBy(item => item.CompanyName)
+                .Select(g => new BudgetReportData {
+                    CompanyName = g.Key,
+
+                    Electricity = g.Sum(x => x.Electricity),
+                    BuyElectricity = g.Sum(x => x.BuyElectricity),
+                    BuyAvgPrice = g.Sum(x => x.BuyAvgPrice),
+                    SellElectricity = g.Sum(x => x.SellElectricity),
+                    SellAvgPrice = g.Sum(x => x.SellAvgPrice),
+
+                    Salary = g.Sum(x => x.Salary),
+                    WorkersWelfare = g.Sum(x => x.WorkersWelfare),
+                    ControllableCost = g.Sum(x => x.ControllableCost),
+                    OtherControllableCost = g.Sum(x => x.OtherControllableCost),
+                    OtherUnControllableCost = g.Sum(x => x.OtherUnControllableCost),
+
+                    ThirdMaintenanceFee = g.Sum(x => x.ThirdMaintenanceFee),
+                    EngineeringAndLeasehold = g.Sum(x => x.EngineeringAndLeasehold),
+                    OtherCost = g.Sum(x => x.OtherCost),
+                    TaxAndAdditional = g.Sum(x => x.TaxAndAdditional),
+                    FinancialCost = g.Sum(x => x.FinancialCost),
+                    AssetsImpairmentLoss = g.Sum(x => x.AssetsImpairmentLoss),
+                    ProfitValue = g.Sum(x => x.ProfitValue),
+                })
+                .OrderBy(item => item.CompanyName)
+                .ToList();
+
+            SetTotalRow(budgetReportDatas);
+
+            return budgetReportDatas;
+        }
+
+        private static void SetTotalRow(List<BudgetReportData> budgetReportDatas) {
+            if (budgetReportDatas.Count <= 1) {
+                return;
+            }
+            var totalBudgetReportData = budgetReportDatas.GroupBy(item => true)
+                .Select(g => new BudgetReportData {
+                    CompanyName = "全州公司合计",
+
+                    Electricity = g.Sum(x => x.Electricity),
+                    BuyElectricity = g.Sum(x => x.BuyElectricity),
+                    BuyAvgPrice = g.Sum(x => x.BuyAvgPrice),
+                    SellElectricity = g.Sum(x => x.SellElectricity),
+                    SellAvgPrice = g.Sum(x => x.SellAvgPrice),
+
+                    Salary = g.Sum(x => x.Salary),
+                    WorkersWelfare = g.Sum(x => x.WorkersWelfare),
+                    ControllableCost = g.Sum(x => x.ControllableCost),
+                    OtherControllableCost = g.Sum(x => x.OtherControllableCost),
+                    OtherUnControllableCost = g.Sum(x => x.OtherUnControllableCost),
+
+                    ThirdMaintenanceFee = g.Sum(x => x.ThirdMaintenanceFee),
+                    EngineeringAndLeasehold = g.Sum(x => x.EngineeringAndLeasehold),
+                    OtherCost = g.Sum(x => x.OtherCost),
+                    TaxAndAdditional = g.Sum(x => x.TaxAndAdditional),
+                    FinancialCost = g.Sum(x => x.FinancialCost),
+                    AssetsImpairmentLoss = g.Sum(x => x.AssetsImpairmentLoss),
+                    ProfitValue = g.Sum(x => x.ProfitValue),
+                })
+                .FirstOrDefault();
+            budgetReportDatas.Add(totalBudgetReportData);
         }
 
         public IList<BudgetReportData> GetChartDatas(BaseParam baseParam) {

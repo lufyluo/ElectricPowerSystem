@@ -43,6 +43,7 @@
     <Compile Include="Dictionary\NormDictionary.cs" />
     <Compile Include="ItemModel\CompanyItem.cs" />
     <Compile Include="ItemModel\CostItem.cs" />
+    <Compile Include="ItemModel\DateTimeItem.cs" />
     <Compile Include="ItemModel\ElectricItem.cs" />
     <Compile Include="ItemModel\ProfitItem.cs" />
     <Compile Include="ItemModel\UnderDateTime.cs" />
