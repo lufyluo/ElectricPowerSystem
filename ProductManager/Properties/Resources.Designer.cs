@@ -123,6 +123,16 @@ namespace ProductManager.Properties {
         /// <summary>
         ///   查找 System.Drawing.Bitmap 类型的本地化资源。
         /// </summary>
+        internal static System.Drawing.Bitmap 关闭1 {
+            get {
+                object obj = ResourceManager.GetObject("关闭1", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   查找 System.Drawing.Bitmap 类型的本地化资源。
+        /// </summary>
         internal static System.Drawing.Bitmap 导出图标_2x {
             get {
                 object obj = ResourceManager.GetObject("导出图标@2x", resourceCulture);

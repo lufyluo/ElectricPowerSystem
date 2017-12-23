@@ -11,14 +11,32 @@ using ProductManager.Controls.Common;
 using ProductManager.Logic;
 using ProductManager.MessageEvent;
 using ProductManager.Model.ItemModel;
+using ProductManager.Model.ViewModel;
 
 namespace ProductManager.Controls
 {
     public partial class Set : UserControl
     {
+        private List<string> companies;
         public Set()
         {
             InitializeComponent();
+            this.Load += Set_Load;
+        }
+
+        private void Set_Load(object sender, EventArgs e)
+        {
+            iniExistCompanyNames();
+
+        }
+
+        private void iniExistCompanyNames()
+        {
+            companies = new CompanyLogic().GetCompanys().Select(n => n.Name).ToList();
+            foreach (var name in companies)
+            {
+                this.companyBox.Text += name + "\r\n";
+            }
         }
 
         private void tableLayoutPanel1_Paint(object sender, PaintEventArgs e)
@@ -51,7 +69,8 @@ namespace ProductManager.Controls
                 {
                     Name = n
                 }).ToList();
-                var changes = new CompanyLogic().Add(companysItems);
+                DeleteCompanys(companysItems);
+                 var changes = new CompanyLogic().Add(companysItems);
                 MessageBox.Show($"保存成功", "Info", MessageBoxButtons.OK);
             }
             catch (Exception exception)
@@ -61,6 +80,12 @@ namespace ProductManager.Controls
             }
             
 
+        }
+
+        private void DeleteCompanys(List<CompanyItem> companysItems)
+        {
+            var intersectedList = companies.Except(companysItems.Select(n => n.Name));
+            //TODO:删除公司
         }
     }
 }
