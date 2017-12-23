@@ -3,7 +3,9 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Drawing;
 using System.Data;
+using System.IO;
 using System.Linq;
+using System.Runtime.Serialization.Formatters.Binary;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -30,6 +32,21 @@ namespace ProductManager.Controls
         {
             this.accountInput.Text = accountTip;
             this.passwordInput.Text = passwordTip;
+            using (FileStream fs = new FileStream("data.bin", FileMode.OpenOrCreate))
+            {
+                if (fs.Length > 0)
+                {
+                    BinaryFormatter bf = new BinaryFormatter();
+                    var user = bf.Deserialize(fs) as User;
+                    if (user != null)
+                    {
+                        rememberMe.Checked = true;
+                        this.accountInput.Text = user.Account;
+                        this.passwordInput.Text = user.Password;
+                        this.passwordInput.UseSystemPasswordChar = true;
+                    }
+                }
+            }
         }
         private void accountInput_MouseEnter(object sender, EventArgs e)
         {
@@ -73,6 +90,7 @@ namespace ProductManager.Controls
             var result = userLogic.Login(this.accountInput.Text, this.passwordInput.Text);
             if (result)
             {
+                StoreUserInfo();
                 RaiseEvent(nameof(Messages.Login));
             }
             else
@@ -100,6 +118,38 @@ namespace ProductManager.Controls
         {
             accountInput.Focus();
 
+        }
+
+        private void rememberMe_CheckedChanged(object sender, EventArgs e)
+        {
+            var check = sender as CheckBox;
+            var IsChecked = check.Checked;
+        }
+
+        private void StoreUserInfo()
+        {
+            if (rememberMe.Checked)
+            {
+                var user = new User
+                {
+                    Account = accountInput.Text,
+                    Password = passwordInput.Text
+                };
+                using (var fs = new FileStream("data.bin", FileMode.Create))
+                {
+                    BinaryFormatter bf = new BinaryFormatter();
+                    bf.Serialize(fs, user);
+                }
+               
+            }
+            else
+            {
+                using (var fs = new FileStream("data.bin", FileMode.Create))
+                {
+                    BinaryFormatter bf = new BinaryFormatter();
+                    bf.Serialize(fs, "");
+                }
+            }
         }
     }
 }

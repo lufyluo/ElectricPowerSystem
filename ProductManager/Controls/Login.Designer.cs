@@ -34,6 +34,7 @@
             this.loginTip = new System.Windows.Forms.TextBox();
             this.passwordInput = new ProductManager.Controls.Common.ColorBoderTextBox();
             this.accountInput = new ProductManager.Controls.Common.ColorBoderTextBox();
+            this.rememberMe = new System.Windows.Forms.CheckBox();
             this.SuspendLayout();
             // 
             // loginBtn
@@ -109,9 +110,22 @@
             this.accountInput.Enter += new System.EventHandler(this.accountInput_MouseEnter);
             this.accountInput.Leave += new System.EventHandler(this.accountInput_MouseLeave);
             // 
+            // rememberMe
+            // 
+            this.rememberMe.AutoSize = true;
+            this.rememberMe.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.rememberMe.Location = new System.Drawing.Point(302, 239);
+            this.rememberMe.Name = "rememberMe";
+            this.rememberMe.Size = new System.Drawing.Size(75, 21);
+            this.rememberMe.TabIndex = 7;
+            this.rememberMe.Text = "记住密码";
+            this.rememberMe.UseVisualStyleBackColor = true;
+            this.rememberMe.CheckedChanged += new System.EventHandler(this.rememberMe_CheckedChanged);
+            // 
             // Login
             // 
             this.BackColor = System.Drawing.Color.White;
+            this.Controls.Add(this.rememberMe);
             this.Controls.Add(this.loginTip);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.label1);
@@ -137,5 +151,6 @@
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.TextBox loginTip;
+        private System.Windows.Forms.CheckBox rememberMe;
     }
 }
