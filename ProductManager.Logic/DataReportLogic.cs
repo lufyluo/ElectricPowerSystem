@@ -4,6 +4,7 @@ using ProductManager.Model.ViewModel;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using ProductManager.Model.ItemModel;
 
 namespace ProductManager.Logic {
 
@@ -18,6 +19,12 @@ namespace ProductManager.Logic {
 
         public DataReportLogic() {
             _context = new ProductManagerContext();
+        }
+
+        public IList<DateTimeItem> GetDateTimeItems() {
+            var dateTimeItem = _context.Electrics.Select(item => new DateTimeItem {Year = item.Year, Month = item.Month})
+                .Distinct().OrderBy(item=>item.Year).ThenBy(item=>item.Month);
+            return dateTimeItem.ToList();
         }
 
         public IList<BudgetReportData> GetBudgetReportData(BaseParam baseParam) {
