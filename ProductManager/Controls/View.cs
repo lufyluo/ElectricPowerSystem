@@ -53,7 +53,7 @@ namespace ProductManager.Controls
             {
                 years.Add(new YearSelect() { Id = year-4 + i, Name = (year-4+ i) + "年" });
             }
-            yearSelect.DataSource = years;
+            yearSelect.DataSource = years.Where(n=>n.Id!=0).ToList();
             yearSelect.ValueMember = "Id";
             yearSelect.SelectedIndex = 0;
             yearSelect.DisplayMember = "Name";

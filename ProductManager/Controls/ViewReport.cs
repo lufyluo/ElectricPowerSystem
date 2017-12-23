@@ -48,11 +48,11 @@ namespace ProductManager.Controls
                 reportDatas = dataReport.GetBudgetReportData(new BaseParam());
                 dataTable = CommonHelper.ToDataTable(reportDatas);
                 var date = DateTime.Now;
-                selects.Add(new Company()
-                {
-                    Id = 0,
-                    Name = "无"
-                });
+                //selects.Add(new Company()
+                //{
+                //    Id = 0,
+                //    Name = "无"
+                //});
                 for (int i = 0; i < reportDatas.Count; i++)
                 {
                     var year = reportDatas[i].Year == 0 ? date.Year : reportDatas[i].Year;
