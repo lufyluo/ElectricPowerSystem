@@ -126,6 +126,7 @@
             this.clearBtn.TabIndex = 4;
             this.clearBtn.Text = "清除";
             this.clearBtn.UseVisualStyleBackColor = false;
+            this.clearBtn.Visible = false;
             this.clearBtn.Click += new System.EventHandler(this.clearBtn_Click);
             // 
             // ImportExcel

@@ -46,12 +46,15 @@ namespace ProductManager.Controls
                     MessageBox.Show("请选择文件", "选择文件提示", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     return;
                 }
+                fileName.Text = "数据导入中....";
                 bool result = false;
                 foreach (var filePath in filePaths)
                 {
                     result = importLogic.ImportExcel(filePath) || result;
                 }
                 MessageBox.Show(result ? "导入成功" : "导入失败，请重试！", "提示", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                fileName.Text = "";
+                filePaths = new string[0];
             }
             catch (Exception exception)
             {
