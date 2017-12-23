@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using ProductManager.Helper;
 using ProductManager.Logic;
+using ProductManager.Model.ItemModel;
 using ProductManager.Model.ParamModel;
 using ProductManager.Model.ViewModel;
 using unvell.ReoGrid;
@@ -22,12 +23,13 @@ namespace ProductManager.Controls
     {
         public Worksheet sheet;
         public ReoGridControl workBook=>this.excel;
-        private IList<BudgetReportData> reportDatas;
+        private IList<BudgetReportData> selectItems;
         private DataTable dataTable;
         private IList<Company> selects;
         private DataReportLogic dataReport;
         private const int SELECTITEMSMAXCOUNT = 10;//最大下拉数量
-       
+        private IList<DateTimeItem> dateTimeItems;
+        private IList<DateTimeSelect> dateTimeSelects;
         public ViewReport()
         {
             InitializeComponent();
@@ -45,22 +47,22 @@ namespace ProductManager.Controls
         {
             try
             {
-                reportDatas = dataReport.GetBudgetReportData(new BaseParam());
-                dataTable = CommonHelper.ToDataTable(reportDatas);
+                selectItems = dataReport.GetBudgetReportData(new BaseParam());
+                dataTable = CommonHelper.ToDataTable(selectItems);
                 var date = DateTime.Now;
                 //selects.Add(new Company()
                 //{
                 //    Id = 0,
                 //    Name = "无"
                 //});
-                for (int i = 0; i < reportDatas.Count; i++)
+                for (int i = 0; i < selectItems.Count; i++)
                 {
-                    var year = reportDatas[i].Year == 0 ? date.Year : reportDatas[i].Year;
-                    var month = reportDatas[i].Month == 0 ? date.Month : reportDatas[i].Month;
+                    var year = selectItems[i].Year == 0 ? date.Year : selectItems[i].Year;
+                    var month = selectItems[i].Month == 0 ? date.Month : selectItems[i].Month;
                     selects.Add(new Company()
                     {
                         Id = i + 1,
-                        Name = $"{reportDatas[i].CompanyName}{year}年{month}月预算表"
+                        Name = $"{selectItems[i].CompanyName}{year}年{month}月预算表"
                     });
                 }
                 comboBox1.DataSource = selects;
@@ -80,17 +82,16 @@ namespace ProductManager.Controls
 
         private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
         {
-            var item = sender as ComboBox;
-            var index = item.SelectedIndex;
-            var data = new List<BudgetReportData>();
-            if (index == 0)
+            var com = comboBox1.SelectedItem as DateTimeSelect;
+            if (com != null)
             {
-                data = reportDatas.ToList();
+                var data = dataReport.GetBudgetReportDataByYear(new BaseParam()
+                {
+                    Year = com.Year,
+                    Month = com.Month
+                });
+                pushInExcel(CommonHelper.ToDataTable(data));
             }
-            else
-            {
-                data.Add(reportDatas[index-1]);             }
-            pushInExcel(CommonHelper.ToDataTable(data));
         }
 
         private void ViewReport_Load(object sender, EventArgs e)
@@ -101,10 +102,23 @@ namespace ProductManager.Controls
             InitHeader();
             sheet = excel.CurrentWorksheet;
             sheet.DeleteRows(0, 2);//删除模板1、2行
-            LoadData();
+            //LoadData();
+            LoadSelectItems();
             sheet.SetCols(22);
             sheet.Resize(200, 22);
             sheet.BeforeCellEdit += (s, ev) => ev.IsCancelled = true;
+            if(comboBox1.Items.Count>0) comboBox1.SelectedIndex = 0;
+        }
+
+        private void LoadSelectItems()
+        {
+            dateTimeSelects = dataReport.GetDateTimeItems().Select(n => new DateTimeSelect()
+            {
+                Year = n.Year,
+                Month = n.Month
+            }).ToList();
+            comboBox1.DataSource = dateTimeSelects;
+            comboBox1.DisplayMember = "Show";
         }
 
         private void exportBtn_Paint(object sender, PaintEventArgs e)
