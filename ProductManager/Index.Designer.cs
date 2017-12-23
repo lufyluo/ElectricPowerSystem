@@ -81,9 +81,9 @@
             this.label1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(28)))), ((int)(((byte)(28)))), ((int)(((byte)(28)))));
             this.label1.Location = new System.Drawing.Point(20, 16);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(202, 25);
+            this.label1.Size = new System.Drawing.Size(164, 25);
             this.label1.TabIndex = 0;
-            this.label1.Text = "甘孜电力生产管理系统";
+            this.label1.Text = "电力生产管理系统";
             // 
             // navigateTabContent
             // 
