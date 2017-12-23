@@ -96,9 +96,9 @@ namespace ProductManager.Logic {
 
         public IList<BudgetReportData> GetBudgetReportDataByYear(BaseParam baseParam) {
             var companyQueryable = _context.Companies.Where(item => true);
-            var costQueryable = _context.Costs.Where(item => true);
-            var electricQueryable = _context.Electrics.Where(item => true);
-            var profitQueryable = _context.Profits.Where(item => true);
+            var costQueryable = _context.Costs.Where(item => item.Month == null);
+            var electricQueryable = _context.Electrics.Where(item => item.Month == null);
+            var profitQueryable = _context.Profits.Where(item => item.Month == null);
 
             if (baseParam.CompanyId.HasValue) {
                 companyQueryable = companyQueryable.Where(item => item.Id == baseParam.CompanyId.Value);
@@ -107,9 +107,9 @@ namespace ProductManager.Logic {
                 profitQueryable = profitQueryable.Where(item => item.CompanyId == baseParam.CompanyId.Value);
             }
             if (baseParam.Year.HasValue) {
-                costQueryable = costQueryable.Where(item => item.Year == baseParam.Year.Value && item.Month == null);
-                electricQueryable = electricQueryable.Where(item => item.Year == baseParam.Year.Value && item.Month == null);
-                profitQueryable = profitQueryable.Where(item => item.Year == baseParam.Year.Value && item.Month == null);
+                costQueryable = costQueryable.Where(item => item.Year == baseParam.Year.Value );
+                electricQueryable = electricQueryable.Where(item => item.Year == baseParam.Year.Value );
+                profitQueryable = profitQueryable.Where(item => item.Year == baseParam.Year.Value);
             }
             var query = from cy in companyQueryable
                         join ele in electricQueryable on cy.Id equals ele.CompanyId into tele

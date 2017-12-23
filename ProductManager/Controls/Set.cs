@@ -85,7 +85,7 @@ namespace ProductManager.Controls
         private void DeleteCompanys(List<CompanyItem> companysItems)
         {
             var intersectedList = companies.Except(companysItems.Select(n => n.Name));
-            //TODO:删除公司
+            new CompanyLogic().Delete(intersectedList);
         }
     }
 }
