@@ -28,20 +28,10 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.modifyPassword1 = new ProductManager.Controls.Common.ModifyPassword();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            this.modifyPassword1 = new ProductManager.Controls.Common.ModifyPassword();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
-            // 
-            // modifyPassword1
-            // 
-            this.modifyPassword1.BackColor = System.Drawing.Color.Gray;
-            this.modifyPassword1.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.modifyPassword1.Location = new System.Drawing.Point(403, 84);
-            this.modifyPassword1.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.modifyPassword1.Name = "modifyPassword1";
-            this.modifyPassword1.Size = new System.Drawing.Size(600, 586);
-            this.modifyPassword1.TabIndex = 0;
             // 
             // pictureBox1
             // 
@@ -50,9 +40,20 @@
             this.pictureBox1.Location = new System.Drawing.Point(967, 105);
             this.pictureBox1.Name = "pictureBox1";
             this.pictureBox1.Size = new System.Drawing.Size(18, 18);
+            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pictureBox1.TabIndex = 2;
             this.pictureBox1.TabStop = false;
             this.pictureBox1.Click += new System.EventHandler(this.pictureBox1_Click);
+            // 
+            // modifyPassword1
+            // 
+            this.modifyPassword1.BackColor = System.Drawing.Color.Gray;
+            this.modifyPassword1.Font = new System.Drawing.Font("Microsoft YaHei", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.modifyPassword1.Location = new System.Drawing.Point(403, 84);
+            this.modifyPassword1.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.modifyPassword1.Name = "modifyPassword1";
+            this.modifyPassword1.Size = new System.Drawing.Size(600, 586);
+            this.modifyPassword1.TabIndex = 0;
             // 
             // PopModifyPassowrd
             // 
@@ -64,7 +65,6 @@
             this.Controls.Add(this.pictureBox1);
             this.Controls.Add(this.modifyPassword1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
-            this.ImeMode = System.Windows.Forms.ImeMode.NoControl;
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "PopModifyPassowrd";
