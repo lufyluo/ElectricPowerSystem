@@ -10,35 +10,44 @@ using System.Reflection;
 using System.Text.RegularExpressions;
 using ProductManager.Model.Dictionary;
 
-namespace ProductManager.Helper {
+namespace ProductManager.Helper
+{
 
-    public class CommonHelper {
-        public static bool IsNumberOrNull(dynamic value) {
-            if (value == null) {
+    public class CommonHelper
+    {
+        public static bool IsNumberOrNull(dynamic value)
+        {
+            if (value == null)
+            {
                 return true;
             }
             var str = value.ToString();
             return string.IsNullOrEmpty(str) || Regex.IsMatch(str, @"^[-]?\d+[.]?\d*$");
         }
 
-        public static UnderDateTime GetUnderDateTime(dynamic value) {
+        public static UnderDateTime GetUnderDateTime(dynamic value)
+        {
             var str = value.ToString();
             DateTime dt;
-            if (!DateTime.TryParse(str, out dt)) {
+            if (!DateTime.TryParse(str, out dt))
+            {
                 return null;
             }
 
-            var result = new UnderDateTime {
+            var result = new UnderDateTime
+            {
                 Year = dt.Year
             };
 
-            if (str.Contains("月")) {
+            if (str.Contains("月"))
+            {
                 result.Month = dt.Month;
             }
             return result;
         }
 
-        public static string GetCompanyName(dynamic value) {
+        public static string GetCompanyName(dynamic value)
+        {
             var str = value.ToString();
             return str.Replace("编制单位：", "");
         }
@@ -55,7 +64,7 @@ namespace ProductManager.Helper {
                 PropertyInfo[] propertys = SortPropertyInfosByReportDictionary(list[0].GetType().GetProperties());
                 foreach (PropertyInfo pi in propertys)
                 {
-                    var property =( pi.GetValue(list[0])??"0").GetType();
+                    var property = (pi.GetValue(list[0]) ?? "0").GetType();
                     result.Columns.Add(pi.Name, property);
                 }
 
@@ -64,7 +73,7 @@ namespace ProductManager.Helper {
                     ArrayList tempList = new ArrayList();
                     foreach (PropertyInfo pi in propertys)
                     {
-                        object obj = pi.GetValue(list[i], null)??"0";
+                        object obj = pi.GetValue(list[i], null) ?? "0";
                         tempList.Add(obj);
                     }
                     object[] array = tempList.ToArray();
@@ -73,12 +82,12 @@ namespace ProductManager.Helper {
             }
             return result;
         }
-        public static DataTable StringListToDataTable<T>(string propertyName,IList<T> list)
+        public static DataTable StringListToDataTable<T>(string propertyName, IList<T> list)
         {
             DataTable result = new DataTable();
             if (list.Count > 0)
             {
-               
+
                 for (int i = 0; i < list.Count; i++)
                 {
                     ArrayList tempList = new ArrayList();
@@ -107,6 +116,8 @@ namespace ProductManager.Helper {
         {
             var dbPath = ConfigurationSettings.AppSettings["DbPath"];
             File.SetAttributes(Path.Combine(dbPath, "ProductManagerDB.db"), FileAttributes.Normal);
+            if (File.Exists(Path.Combine(dbPath, "data.bin")))
+                File.SetAttributes(Path.Combine(dbPath, "data.bin"), FileAttributes.Normal);
         }
 
         private static PropertyInfo[] SortPropertyInfosByReportDictionary(PropertyInfo[] propertyInfos)
@@ -119,7 +130,7 @@ namespace ProductManager.Helper {
                 var property = propertyInfos.FirstOrDefault(n => n.Name == item.Value);
                 newPropertyInfos[index] = property;
                 index++;
-                if(index == dics.Keys.Count)
+                if (index == dics.Keys.Count)
                     break;
             }
             return newPropertyInfos;

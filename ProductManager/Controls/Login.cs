@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.Configuration;
 using System.Drawing;
 using System.Data;
 using System.IO;
@@ -23,6 +24,7 @@ namespace ProductManager.Controls
         public delegate void LoginEventHandler(object sender, MessageEventArgs e);
         public event LoginEventHandler LoginEvent;
         private UserLogic userLogic = new UserLogic();
+        private string path = "";
         public Login()
         {
             InitializeComponent();
@@ -32,7 +34,9 @@ namespace ProductManager.Controls
         {
             this.accountInput.Text = accountTip;
             this.passwordInput.Text = passwordTip;
-            using (FileStream fs = new FileStream("data.bin", FileMode.OpenOrCreate))
+            path = ConfigurationSettings.AppSettings["DbPath"];
+            path = Path.Combine(path, "data.bin");
+            using (FileStream fs = new FileStream(path, FileMode.OpenOrCreate))
             {
                 if (fs.Length > 0)
                 {
@@ -135,7 +139,7 @@ namespace ProductManager.Controls
                     Account = accountInput.Text,
                     Password = passwordInput.Text
                 };
-                using (var fs = new FileStream("data.bin", FileMode.Create))
+                using (var fs = new FileStream(path, FileMode.Create))
                 {
                     BinaryFormatter bf = new BinaryFormatter();
                     bf.Serialize(fs, user);
@@ -144,7 +148,7 @@ namespace ProductManager.Controls
             }
             else
             {
-                using (var fs = new FileStream("data.bin", FileMode.Create))
+                using (var fs = new FileStream(path, FileMode.Create))
                 {
                     BinaryFormatter bf = new BinaryFormatter();
                     bf.Serialize(fs, "");
