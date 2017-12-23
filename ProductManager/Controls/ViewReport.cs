@@ -85,7 +85,10 @@ namespace ProductManager.Controls
             var com = comboBox1.SelectedItem as DateTimeSelect;
             if (com != null)
             {
-                var data = dataReport.GetBudgetReportDataByYear(new BaseParam()
+                var data = com.Month==null? dataReport.GetBudgetReportDataByYear(new BaseParam()
+                {
+                    Year = com.Year
+                   }): dataReport.GetBudgetReportDataByMonth(new BaseParam()
                 {
                     Year = com.Year,
                     Month = com.Month
