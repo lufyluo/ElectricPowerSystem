@@ -189,7 +189,7 @@ namespace ProductManager.Logic {
         }
 
         private static void SetTotalRow(List<BudgetReportData> budgetReportDatas) {
-            if (budgetReportDatas.Count <= 1) {
+            if (!budgetReportDatas.Any()) {
                 return;
             }
             var totalBudgetReportData = budgetReportDatas.GroupBy(item => true)
