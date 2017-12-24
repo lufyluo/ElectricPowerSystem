@@ -10,6 +10,7 @@ using System.Runtime.Serialization.Formatters.Binary;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using ProductManager.Controls.Common;
 using ProductManager.Logic;
 using ProductManager.MessageEvent;
 using ProductManager.Model.MessageModel;
@@ -34,23 +35,14 @@ namespace ProductManager.Controls
         {
             this.accountInput.Text = accountTip;
             this.passwordInput.Text = passwordTip;
-            path = ConfigurationSettings.AppSettings["DbPath"];
-            path = Path.Combine(path, "data.bin");
-            using (FileStream fs = new FileStream(path, FileMode.OpenOrCreate))
+            rememberMe.Checked = CacheHelper.GetCache().IsRememberedAccount;
+            if (rememberMe.Checked)
             {
-                if (fs.Length > 0)
-                {
-                    BinaryFormatter bf = new BinaryFormatter();
-                    var user = bf.Deserialize(fs) as User;
-                    if (user != null)
-                    {
-                        rememberMe.Checked = true;
-                        this.accountInput.Text = user.Account;
-                        this.passwordInput.Text = user.Password;
-                        this.passwordInput.UseSystemPasswordChar = true;
-                    }
-                }
+                this.accountInput.Text = CacheHelper.GetCache().Account;
+                this.passwordInput.Text = CacheHelper.GetCache().Password;
+                this.passwordInput.UseSystemPasswordChar = true;
             }
+            
         }
         private void accountInput_MouseEnter(object sender, EventArgs e)
         {
@@ -132,28 +124,11 @@ namespace ProductManager.Controls
 
         private void StoreUserInfo()
         {
-            if (rememberMe.Checked)
-            {
-                var user = new User
-                {
-                    Account = accountInput.Text,
-                    Password = passwordInput.Text
-                };
-                using (var fs = new FileStream(path, FileMode.Create))
-                {
-                    BinaryFormatter bf = new BinaryFormatter();
-                    bf.Serialize(fs, user);
-                }
-               
-            }
-            else
-            {
-                using (var fs = new FileStream(path, FileMode.Create))
-                {
-                    BinaryFormatter bf = new BinaryFormatter();
-                    bf.Serialize(fs, "");
-                }
-            }
+            var cache = CacheHelper.GetCache();
+            cache.Account = accountInput.Text;
+            cache.Password = passwordInput.Text;
+            cache.IsRememberedAccount = rememberMe.Checked;
+            CacheHelper.SetCache(cache);
         }
     }
 }

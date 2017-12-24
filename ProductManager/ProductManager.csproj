@@ -77,6 +77,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Controls\Common\CacheHelper.cs" />
     <Compile Include="Controls\Common\ColorBoderTextBox.cs">
       <SubType>Component</SubType>
     </Compile>
@@ -104,6 +105,7 @@
     <Compile Include="Controls\Common\TransparentPanel.cs">
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="Controls\Common\VersionHelper.cs" />
     <Compile Include="Controls\ImportExcel.cs">
       <SubType>UserControl</SubType>
     </Compile>

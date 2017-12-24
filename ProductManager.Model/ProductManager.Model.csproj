@@ -55,6 +55,7 @@
     <Compile Include="ViewModel\BudgetReportData.cs" />
     <Compile Include="ViewModel\DataSelect.cs" />
     <Compile Include="ViewModel\dateTimeSelect.cs" />
+    <Compile Include="ViewModel\FileCache.cs" />
     <Compile Include="ViewModel\MonthSelect.cs" />
     <Compile Include="ViewModel\User.cs" />
     <Compile Include="ViewModel\YearSelect.cs" />

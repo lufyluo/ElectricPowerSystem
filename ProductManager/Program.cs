@@ -1,9 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Configuration;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using ProductManager.Controls;
+using ProductManager.Controls.Common;
 using ProductManager.Helper;
 
 namespace ProductManager
@@ -21,6 +23,7 @@ namespace ProductManager
             Application.SetCompatibleTextRenderingDefault(false);
             CommonHelper.CopyDbFileToPublic();
             CommonHelper.SetFileAccess();
+            VersionHelper.VersionHanlde(ConfigurationSettings.AppSettings["Version"]);
             Application.Run(new Login());
             //Application.Run(new TestForm());
         }
