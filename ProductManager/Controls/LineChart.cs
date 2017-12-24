@@ -43,11 +43,34 @@ namespace ProductManager.Controls
             //worksheet.Reset();
             ClearRange(worksheet);
             worksheet["A2"] = serialName;
+            dataTable = CheckValuesBits(dataTable);
             worksheet["A3"] = dataTable;
             //worksheet.SetRangeData(new RangePosition(2, 0, 1, dataTable.Length), dataTable);
+            CheckValuesBits(dataTable);
             ChartRender(dataTable, serialName);
         }
 
+        private string[] CheckValuesBits(string[] dataTable)
+        {
+            List<int> tempArry = new List<int>();
+            string[] newStrings = new string[dataTable.Length];
+            for (int i = 0; i < dataTable.Length; i++)
+            {
+                tempArry.Add(int.Parse(dataTable[0]));
+                newStrings[i] = AddPoint(10000,dataTable[i]);
+            }
+            tempArry.Sort();
+            int max = tempArry.LastOrDefault();
+            if (max < 1000)
+                return dataTable;
+            return newStrings;
+        }
+
+        private string AddPoint(int beforeNums,string value)
+        {
+            int v = int.Parse(value);
+            return (v / beforeNums).ToString();
+        }
         private void ChartRender(string[] dataTable, string[] serialName)
         {
             var dataRange = worksheet.Ranges[$"A3:{NunberToChar(serialName.Length)}3"];
