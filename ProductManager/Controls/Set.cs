@@ -18,6 +18,7 @@ namespace ProductManager.Controls
     public partial class Set : UserControl
     {
         private List<string> companies;
+        private CompanyLogic companyLogic;
         public Set()
         {
             InitializeComponent();
@@ -26,13 +27,13 @@ namespace ProductManager.Controls
 
         private void Set_Load(object sender, EventArgs e)
         {
+            companyLogic = new CompanyLogic();
             iniExistCompanyNames();
-
         }
 
         private void iniExistCompanyNames()
         {
-            companies = new CompanyLogic().GetCompanys().Select(n => n.Name).ToList();
+            companies = companyLogic.GetCompanys().Select(n => n.Name).ToList();
             foreach (var name in companies)
             {
                 this.companyBox.Text += name + "\r\n";
@@ -69,23 +70,23 @@ namespace ProductManager.Controls
                 {
                     Name = n
                 }).ToList();
+
                 DeleteCompanys(companysItems);
-                 var changes = new CompanyLogic().Add(companysItems);
+                companyLogic.Add(companysItems);
                 MessageBox.Show($"保存成功", "Info", MessageBoxButtons.OK);
+                companies = companyLogic.GetCompanys().Select(n => n.Name).ToList();
             }
             catch (Exception exception)
             {
                 Console.WriteLine(exception);
                 MessageBox.Show($"发生错误:{exception.Message}", "Error", MessageBoxButtons.OK);
             }
-            
-
         }
 
         private void DeleteCompanys(List<CompanyItem> companysItems)
         {
-            var intersectedList = companies.Except(companysItems.Select(n => n.Name));
-            new CompanyLogic().Delete(intersectedList);
+            var intersectedList = companies.Except(companysItems.Select(n => n.Name)).ToList();
+            companyLogic.Delete(intersectedList);
         }
     }
 }
