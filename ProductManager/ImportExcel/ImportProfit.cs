@@ -20,6 +20,10 @@ namespace ProductManager.ImportExcel {
                 sb.Append("请在【B4】处输入编制单位;");
             }
 
+            if (!CommonHelper.ExistCompany(companyName)) {
+                sb.Append("【B4】处输入编制单位不存在，请先添加相应的编制单位;");
+            }
+
             var timeRange = worksheet.Cells.Range["E4", "E4"];
             var time = timeRange.Value2;
             var underDateTime = CommonHelper.GetUnderDateTime(time);
