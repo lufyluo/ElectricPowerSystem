@@ -277,6 +277,8 @@ namespace ProductManager.Controls {
             reportLogic = new DataReportLogic();
             LoadCharData();
             LoadReportData();
+            sheet.SetCols(22);
+            sheet.AutoFitColumnWidth(0, false);
         }
 
         private string[] GetSerials() {

@@ -3,6 +3,7 @@ using System.Diagnostics;
 using System.Runtime.InteropServices;
 using System.Windows.Forms;
 using unvell.ReoGrid;
+using unvell.ReoGrid.DataFormat;
 using Application = Microsoft.Office.Interop.Excel.Application;
 
 namespace ProductManager.Helper
@@ -84,6 +85,23 @@ namespace ProductManager.Helper
             {
                 MessageBox.Show("无导出内容", "Info", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
+        }
+
+        public static void SetDecimalFormat(Worksheet sheet, short nums)
+        {
+            var columnCount =sheet.ColumnCount;
+            sheet.SetRangeDataFormat($"A4:V{sheet.RowCount}", CellDataFormatFlag.Number,
+                new NumberDataFormatter.NumberFormatArgs()
+                {
+                    // decimal digit places, e.g. 0.1234
+                    DecimalPlaces = nums,
+
+                    // negative number style, e.g. -123 -> (123) 
+                    //NegativeStyle = NumberDataFormatter.NumberNegativeStyle.RedBrackets,
+
+                    // use separator, e.g.123,456
+                    UseSeparator = false,
+                });
         }
     }
 }

@@ -186,6 +186,7 @@
             this.companyBox.MaximumSize = new System.Drawing.Size(302, 141);
             this.companyBox.Multiline = true;
             this.companyBox.Name = "companyBox";
+            this.companyBox.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
             this.companyBox.Size = new System.Drawing.Size(302, 141);
             this.companyBox.TabIndex = 1;
             // 

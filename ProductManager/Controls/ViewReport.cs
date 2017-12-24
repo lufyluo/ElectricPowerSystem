@@ -111,6 +111,8 @@ namespace ProductManager.Controls
             sheet.Resize(200, 22);
             sheet.BeforeCellEdit += (s, ev) => ev.IsCancelled = true;
             if(comboBox1.Items.Count>0) comboBox1.SelectedIndex = 0;
+            ExcelHelper.SetDecimalFormat(sheet,2);
+            sheet.AutoFitColumnWidth(0, false);
         }
 
         private void LoadSelectItems()

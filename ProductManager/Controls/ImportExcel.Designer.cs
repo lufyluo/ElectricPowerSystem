@@ -65,9 +65,9 @@
             this.label4.AutoSize = true;
             this.label4.Location = new System.Drawing.Point(434, 115);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(222, 17);
+            this.label4.Size = new System.Drawing.Size(188, 17);
             this.label4.TabIndex = 3;
-            this.label4.Text = "文件请严格按照单位名称-表名-日期命名";
+            this.label4.Text = "导入文件请严格按照财务报表提供";
             // 
             // import_btn
             // 

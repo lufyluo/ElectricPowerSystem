@@ -185,10 +185,10 @@
             // 
             // lineChart1
             // 
-            this.lineChart1.Location = new System.Drawing.Point(7, 59);
+            this.lineChart1.Location = new System.Drawing.Point(19, 59);
             this.lineChart1.Margin = new System.Windows.Forms.Padding(5);
             this.lineChart1.Name = "lineChart1";
-            this.lineChart1.Size = new System.Drawing.Size(1136, 618);
+            this.lineChart1.Size = new System.Drawing.Size(1132, 618);
             this.lineChart1.TabIndex = 0;
             // 
             // tabPage2
