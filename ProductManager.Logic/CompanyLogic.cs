@@ -44,9 +44,19 @@ namespace ProductManager.Logic {
         public bool Delete(IEnumerable<string> companyNames) {
             foreach (var companyName in companyNames) {
                 var company = _context.Companies.FirstOrDefault(item => item.Name == companyName);
-                if (company != null) {
-                    _context.Companies.Remove(company);
+                if (company == null) {
+                    continue;
                 }
+                _context.Companies.Remove(company);
+
+                var electric = _context.Electrics.Where(item => item.CompanyId == company.Id);
+                _context.Electrics.RemoveRange(electric);
+
+                var cost = _context.Costs.Where(item => item.CompanyId == company.Id);
+                _context.Costs.RemoveRange(cost);
+
+                var profit = _context.Profits.Where(item => item.CompanyId == company.Id);
+                _context.Profits.RemoveRange(profit);
             }
             _context.SaveChanges();
             return true;
