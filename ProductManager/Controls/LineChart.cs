@@ -20,7 +20,6 @@ namespace ProductManager.Controls
         public LineChart()
         {
             InitializeComponent();
-            initData();
 
         }
 
@@ -66,7 +65,6 @@ namespace ProductManager.Controls
                 }
             };
             worksheet.FloatingObjects.Add(chart);
-            worksheet.AutoFitColumnWidth(0);
         }
 
         //废除但保留
@@ -115,6 +113,13 @@ namespace ProductManager.Controls
 
                 rangeCell.Data = "";
             }
+        }
+
+        private void LineChart_Load(object sender, EventArgs e)
+        {
+            initData();
+            worksheet.SetColumnsWidth(0, 1, 200);
+            worksheet.AutoFitColumnWidth(0);
         }
     }
 }

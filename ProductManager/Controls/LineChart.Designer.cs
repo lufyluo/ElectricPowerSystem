@@ -36,7 +36,7 @@
             this.reoGridControl1.BackColor = System.Drawing.Color.White;
             this.reoGridControl1.ColumnHeaderContextMenuStrip = null;
             this.reoGridControl1.LeadHeaderContextMenuStrip = null;
-            this.reoGridControl1.Location = new System.Drawing.Point(-30, -21);
+            this.reoGridControl1.Location = new System.Drawing.Point(-28, -21);
             this.reoGridControl1.Name = "reoGridControl1";
             this.reoGridControl1.RowHeaderContextMenuStrip = null;
             this.reoGridControl1.Script = null;
@@ -56,6 +56,7 @@
             this.Controls.Add(this.reoGridControl1);
             this.Name = "LineChart";
             this.Size = new System.Drawing.Size(1126, 677);
+            this.Load += new System.EventHandler(this.LineChart_Load);
             this.ResumeLayout(false);
 
         }
