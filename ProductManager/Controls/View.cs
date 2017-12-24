@@ -283,10 +283,10 @@ namespace ProductManager.Controls {
             if (lineParam.Year != null) {
                 return months.Where(n => !n.IsQuarter && n.Id > 0).Select(n => n.Name).ToArray();
             }
-            if (lineParam.Quarter != null) {
-                var quarterSerial = this.months.Where(n => n.IsQuarter).Select(n => n.Name).ToArray();
-                return quarterSerial;
-            }
+            //if (lineParam.Quarter != null) {
+            //    var quarterSerial = this.months.Where(n => n.IsQuarter).Select(n => n.Name).ToArray();
+            //    return quarterSerial;
+            //}
             return this.years.Where(n => n.Id > 0).Select(n => n.Name).ToArray();
         }
     }

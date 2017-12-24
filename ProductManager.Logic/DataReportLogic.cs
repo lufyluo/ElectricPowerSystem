@@ -22,8 +22,8 @@ namespace ProductManager.Logic {
         }
 
         public IList<DateTimeItem> GetDateTimeItems() {
-            var dateTimeItem = _context.Electrics.Select(item => new DateTimeItem {Year = item.Year, Month = item.Month})
-                .Distinct().OrderBy(item=>item.Year).ThenBy(item=>item.Month);
+            var dateTimeItem = _context.Electrics.Select(item => new DateTimeItem { Year = item.Year, Month = item.Month })
+                .Distinct().OrderBy(item => item.Year).ThenBy(item => item.Month);
             return dateTimeItem.ToList();
         }
 
@@ -114,8 +114,8 @@ namespace ProductManager.Logic {
                 profitQueryable = profitQueryable.Where(item => item.CompanyId == baseParam.CompanyId.Value);
             }
             if (baseParam.Year.HasValue) {
-                costQueryable = costQueryable.Where(item => item.Year == baseParam.Year.Value );
-                electricQueryable = electricQueryable.Where(item => item.Year == baseParam.Year.Value );
+                costQueryable = costQueryable.Where(item => item.Year == baseParam.Year.Value);
+                electricQueryable = electricQueryable.Where(item => item.Year == baseParam.Year.Value);
                 profitQueryable = profitQueryable.Where(item => item.Year == baseParam.Year.Value);
             }
             var query = from cy in companyQueryable
@@ -373,8 +373,8 @@ namespace ProductManager.Logic {
                 electricQueryable = electricQueryable.Where(item => item.CompanyId == baseParam.CompanyId.Value);
             }
             var lst = electricQueryable.GroupBy(item => new { item.Year, item.Month }).Select(item => new {
-                Year = item.Key.Year,
-                Month = item.Key.Month,
+                item.Key.Year,
+                item.Key.Month,
                 Electricity = item.Sum(x => x.Electricity),
                 BuyElectricity = item.Sum(x => x.BuyElectricity),
                 BuyAvgPrice = item.Sum(x => x.BuyAvgPrice),
@@ -460,7 +460,7 @@ namespace ProductManager.Logic {
 
         private IList<BudgetReportData> GetCharDataInfoOfYearAndMonth(int month) {
             var budgetReportDatas = new List<BudgetReportData>();
-            for (var i = 0; i < 5; i++) {
+            for (var i = 4; i >= 0; i--) {
                 var year = DateTime.Now.Year - i;
                 var budgetReportData = new BudgetReportData { Year = year, Month = month };
                 budgetReportDatas.Add(budgetReportData);
@@ -563,7 +563,7 @@ namespace ProductManager.Logic {
 
         private IList<BudgetReportData> GetCharDataInfoOfYearAndQuarter(int quarter) {
             var budgetReportDatas = new List<BudgetReportData>();
-            for (var i = 0; i < 5; i++) {
+            for (var i = 4; i >= 0; i--) {
                 var year = DateTime.Now.Year - i;
                 var budgetReportData = new BudgetReportData { Year = year, Quarter = quarter };
                 budgetReportDatas.Add(budgetReportData);
