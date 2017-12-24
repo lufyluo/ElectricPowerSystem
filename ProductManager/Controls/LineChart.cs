@@ -17,6 +17,7 @@ namespace ProductManager.Controls
     {
         public Worksheet worksheet;
         private Chart chart;
+        private readonly  string unitTips = "(单位:万)";
         public LineChart()
         {
             InitializeComponent();
@@ -46,8 +47,8 @@ namespace ProductManager.Controls
             dataTable = CheckValuesBits(dataTable);
             worksheet["A3"] = dataTable;
             //worksheet.SetRangeData(new RangePosition(2, 0, 1, dataTable.Length), dataTable);
-            CheckValuesBits(dataTable);
             ChartRender(dataTable, serialName);
+            unit.BringToFront();
         }
 
         private string[] CheckValuesBits(string[] dataTable)
@@ -56,20 +57,24 @@ namespace ProductManager.Controls
             string[] newStrings = new string[dataTable.Length];
             for (int i = 0; i < dataTable.Length; i++)
             {
-                tempArry.Add(int.Parse(dataTable[0]));
-                newStrings[i] = AddPoint(10000,dataTable[i]);
+                tempArry.Add(int.Parse(dataTable[i]));
+                newStrings[i] = AddPoint(dataTable[i]);
             }
             tempArry.Sort();
             int max = tempArry.LastOrDefault();
             if (max < 1000)
+            {
+                unit.Text = " ";
                 return dataTable;
+            }
+            unit.Text = unitTips;
             return newStrings;
         }
 
-        private string AddPoint(int beforeNums,string value)
+        private string AddPoint(string value)
         {
             int v = int.Parse(value);
-            return (v / beforeNums).ToString();
+            return (v* 0.00001).ToString();
         }
         private void ChartRender(string[] dataTable, string[] serialName)
         {

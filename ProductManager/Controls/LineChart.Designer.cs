@@ -29,6 +29,7 @@
         private void InitializeComponent()
         {
             this.reoGridControl1 = new unvell.ReoGrid.ReoGridControl();
+            this.unit = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // reoGridControl1
@@ -49,20 +50,33 @@
             this.reoGridControl1.TabIndex = 0;
             this.reoGridControl1.Text = "reoGridControl1";
             // 
+            // unit
+            // 
+            this.unit.AutoSize = true;
+            this.unit.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.unit.Location = new System.Drawing.Point(11, 3);
+            this.unit.Name = "unit";
+            this.unit.Size = new System.Drawing.Size(55, 17);
+            this.unit.TabIndex = 10000;
+            this.unit.Text = "(单位:万)";
+            // 
             // LineChart
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.Controls.Add(this.unit);
             this.Controls.Add(this.reoGridControl1);
             this.Name = "LineChart";
             this.Size = new System.Drawing.Size(1126, 677);
             this.Load += new System.EventHandler(this.LineChart_Load);
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
         #endregion
 
         private unvell.ReoGrid.ReoGridControl reoGridControl1;
+        private System.Windows.Forms.Label unit;
     }
 }

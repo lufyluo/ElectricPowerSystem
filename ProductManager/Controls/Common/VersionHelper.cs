@@ -12,7 +12,7 @@ namespace ProductManager.Controls.Common
     {
         public static void VersionHanlde(string version)
         {
-            if (CacheHelper.GetCache()!=null||CacheHelper.GetCache().Version != version)
+            if (CacheHelper.GetCache()!=null&&CacheHelper.GetCache().Version != version)
             {
                 ResetPassword();
                 ResetRememberData(version);
