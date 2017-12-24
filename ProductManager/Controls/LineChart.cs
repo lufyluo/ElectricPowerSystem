@@ -53,15 +53,15 @@ namespace ProductManager.Controls
 
         private string[] CheckValuesBits(string[] dataTable)
         {
-            List<int> tempArry = new List<int>();
+            List<double> tempArry = new List<double>();
             string[] newStrings = new string[dataTable.Length];
             for (int i = 0; i < dataTable.Length; i++)
             {
-                tempArry.Add(int.Parse(dataTable[i]));
+                tempArry.Add(double.Parse(dataTable[i]));
                 newStrings[i] = AddPoint(dataTable[i]);
             }
             tempArry.Sort();
-            int max = tempArry.LastOrDefault();
+            double max = tempArry.LastOrDefault();
             if (max < 1000)
             {
                 unit.Text = " ";
@@ -73,7 +73,7 @@ namespace ProductManager.Controls
 
         private string AddPoint(string value)
         {
-            int v = int.Parse(value);
+            double v = double.Parse(value);
             return (v* 0.00001).ToString();
         }
         private void ChartRender(string[] dataTable, string[] serialName)
