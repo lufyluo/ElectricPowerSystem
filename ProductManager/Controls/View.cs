@@ -96,7 +96,6 @@ namespace ProductManager.Controls {
             FileFormat format = FileFormat.Excel2007;
             var path = Environment.CurrentDirectory;
             report.Load(path + "\\Template\\StatisticsTemplate.xlsx", FileFormat.Excel2007);
-
         }
 
         #region 报表
@@ -278,6 +277,7 @@ namespace ProductManager.Controls {
             LoadCharData();
             LoadReportData();
             sheet.SetCols(22);
+            ExcelHelper.SetDecimalFormat(sheet, 2);
             sheet.AutoFitColumnWidth(0, false);
         }
 
