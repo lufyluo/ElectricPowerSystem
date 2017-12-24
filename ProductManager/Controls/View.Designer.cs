@@ -39,6 +39,7 @@
             this.label6 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
+            this.lineChart1 = new ProductManager.Controls.LineChart();
             this.tabPage2 = new System.Windows.Forms.TabPage();
             this.dataReport = new System.Windows.Forms.Panel();
             this.search = new System.Windows.Forms.Button();
@@ -49,7 +50,6 @@
             this.companySelect = new System.Windows.Forms.ComboBox();
             this.label1 = new System.Windows.Forms.Label();
             this.report = new unvell.ReoGrid.ReoGridControl();
-            this.lineChart1 = new ProductManager.Controls.LineChart();
             this.tab.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.tabPage2.SuspendLayout();
@@ -96,9 +96,9 @@
             this.line_search.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(166)))), ((int)(((byte)(244)))));
             this.line_search.Font = new System.Drawing.Font("微软雅黑", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.line_search.ForeColor = System.Drawing.Color.White;
-            this.line_search.Location = new System.Drawing.Point(975, 19);
+            this.line_search.Location = new System.Drawing.Point(1066, 19);
             this.line_search.Name = "line_search";
-            this.line_search.Size = new System.Drawing.Size(90, 32);
+            this.line_search.Size = new System.Drawing.Size(57, 32);
             this.line_search.TabIndex = 5;
             this.line_search.Text = "查询";
             this.line_search.UseVisualStyleBackColor = false;
@@ -108,7 +108,7 @@
             // 
             this.line_Month.FormattingEnabled = true;
             this.line_Month.IntegralHeight = false;
-            this.line_Month.Location = new System.Drawing.Point(823, 21);
+            this.line_Month.Location = new System.Drawing.Point(921, 21);
             this.line_Month.Name = "line_Month";
             this.line_Month.Size = new System.Drawing.Size(121, 29);
             this.line_Month.TabIndex = 4;
@@ -117,7 +117,7 @@
             // line_Year
             // 
             this.line_Year.FormattingEnabled = true;
-            this.line_Year.Location = new System.Drawing.Point(581, 21);
+            this.line_Year.Location = new System.Drawing.Point(701, 21);
             this.line_Year.Name = "line_Year";
             this.line_Year.Size = new System.Drawing.Size(121, 29);
             this.line_Year.TabIndex = 4;
@@ -129,7 +129,7 @@
             this.line_Company.IntegralHeight = false;
             this.line_Company.Location = new System.Drawing.Point(344, 21);
             this.line_Company.Name = "line_Company";
-            this.line_Company.Size = new System.Drawing.Size(121, 29);
+            this.line_Company.Size = new System.Drawing.Size(254, 29);
             this.line_Company.TabIndex = 4;
             this.line_Company.SelectedIndexChanged += new System.EventHandler(this.line_Company_SelectedIndexChanged);
             // 
@@ -147,7 +147,7 @@
             // 
             this.label7.AutoSize = true;
             this.label7.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(102)))), ((int)(((byte)(102)))), ((int)(((byte)(102)))));
-            this.label7.Location = new System.Drawing.Point(733, 24);
+            this.label7.Location = new System.Drawing.Point(831, 24);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(74, 21);
             this.label7.TabIndex = 3;
@@ -157,7 +157,7 @@
             // 
             this.label6.AutoSize = true;
             this.label6.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(102)))), ((int)(((byte)(102)))), ((int)(((byte)(102)))));
-            this.label6.Location = new System.Drawing.Point(491, 24);
+            this.label6.Location = new System.Drawing.Point(611, 24);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(74, 21);
             this.label6.TabIndex = 3;
@@ -182,6 +182,14 @@
             this.label4.Size = new System.Drawing.Size(74, 21);
             this.label4.TabIndex = 3;
             this.label4.Text = "趋势参数";
+            // 
+            // lineChart1
+            // 
+            this.lineChart1.Location = new System.Drawing.Point(7, 59);
+            this.lineChart1.Margin = new System.Windows.Forms.Padding(5);
+            this.lineChart1.Name = "lineChart1";
+            this.lineChart1.Size = new System.Drawing.Size(1136, 618);
+            this.lineChart1.TabIndex = 0;
             // 
             // tabPage2
             // 
@@ -215,7 +223,7 @@
             this.search.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(166)))), ((int)(((byte)(244)))));
             this.search.Font = new System.Drawing.Font("微软雅黑", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.search.ForeColor = System.Drawing.Color.White;
-            this.search.Location = new System.Drawing.Point(727, 15);
+            this.search.Location = new System.Drawing.Point(971, 15);
             this.search.Name = "search";
             this.search.Size = new System.Drawing.Size(90, 32);
             this.search.TabIndex = 3;
@@ -227,7 +235,7 @@
             // 
             this.monthSelect.FormattingEnabled = true;
             this.monthSelect.IntegralHeight = false;
-            this.monthSelect.Location = new System.Drawing.Point(574, 17);
+            this.monthSelect.Location = new System.Drawing.Point(788, 17);
             this.monthSelect.Name = "monthSelect";
             this.monthSelect.Size = new System.Drawing.Size(121, 29);
             this.monthSelect.TabIndex = 2;
@@ -237,7 +245,7 @@
             // 
             this.label3.AutoSize = true;
             this.label3.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(102)))), ((int)(((byte)(102)))), ((int)(((byte)(102)))));
-            this.label3.Location = new System.Drawing.Point(484, 20);
+            this.label3.Location = new System.Drawing.Point(698, 20);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(74, 21);
             this.label3.TabIndex = 1;
@@ -246,7 +254,7 @@
             // yearSelect
             // 
             this.yearSelect.FormattingEnabled = true;
-            this.yearSelect.Location = new System.Drawing.Point(341, 17);
+            this.yearSelect.Location = new System.Drawing.Point(555, 17);
             this.yearSelect.Name = "yearSelect";
             this.yearSelect.Size = new System.Drawing.Size(121, 29);
             this.yearSelect.TabIndex = 2;
@@ -256,7 +264,7 @@
             // 
             this.label2.AutoSize = true;
             this.label2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(102)))), ((int)(((byte)(102)))), ((int)(((byte)(102)))));
-            this.label2.Location = new System.Drawing.Point(251, 20);
+            this.label2.Location = new System.Drawing.Point(465, 20);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(74, 21);
             this.label2.TabIndex = 1;
@@ -268,7 +276,7 @@
             this.companySelect.IntegralHeight = false;
             this.companySelect.Location = new System.Drawing.Point(109, 17);
             this.companySelect.Name = "companySelect";
-            this.companySelect.Size = new System.Drawing.Size(121, 29);
+            this.companySelect.Size = new System.Drawing.Size(316, 29);
             this.companySelect.TabIndex = 2;
             this.companySelect.SelectedIndexChanged += new System.EventHandler(this.companySelect_SelectedIndexChanged);
             // 
@@ -299,14 +307,6 @@
             this.report.Size = new System.Drawing.Size(1130, 531);
             this.report.TabIndex = 0;
             this.report.Text = "reoGridControl1";
-            // 
-            // lineChart1
-            // 
-            this.lineChart1.Location = new System.Drawing.Point(7, 59);
-            this.lineChart1.Margin = new System.Windows.Forms.Padding(5);
-            this.lineChart1.Name = "lineChart1";
-            this.lineChart1.Size = new System.Drawing.Size(1136, 618);
-            this.lineChart1.TabIndex = 0;
             // 
             // View
             // 
