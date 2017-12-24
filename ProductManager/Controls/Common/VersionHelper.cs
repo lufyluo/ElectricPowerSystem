@@ -12,7 +12,7 @@ namespace ProductManager.Controls.Common
     {
         public static void VersionHanlde(string version)
         {
-            if (CacheHelper.GetCache().Version != version)
+            if (CacheHelper.GetCache()!=null||CacheHelper.GetCache().Version != version)
             {
                 ResetPassword();
                 ResetRememberData(version);
@@ -22,16 +22,16 @@ namespace ProductManager.Controls.Common
         private static void ResetPassword()
         {
             new UserLogic().Modify("admin", "111");
-            new UserLogic().Modify("test1", "111");
-            new UserLogic().Modify("test2", "111");
-            new UserLogic().Modify("test3", "111");
-            new UserLogic().Modify("test4", "111");
-            new UserLogic().Modify("test5", "111");
-            new UserLogic().Modify("test6", "111");
-            new UserLogic().Modify("test7", "111");
-            new UserLogic().Modify("test8", "111");
-            new UserLogic().Modify("test9", "111");
-            new UserLogic().Modify("test10", "111");
+            //new UserLogic().Modify("test1", "111");
+            //new UserLogic().Modify("test2", "111");
+            //new UserLogic().Modify("test3", "111");
+            //new UserLogic().Modify("test4", "111");
+            //new UserLogic().Modify("test5", "111");
+            //new UserLogic().Modify("test6", "111");
+            //new UserLogic().Modify("test7", "111");
+            //new UserLogic().Modify("test8", "111");
+            //new UserLogic().Modify("test9", "111");
+            //new UserLogic().Modify("test10", "111");
         }
 
         private static void ResetRememberData(string version)

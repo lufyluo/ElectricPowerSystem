@@ -66,6 +66,7 @@ namespace ProductManager.Controls
                 }
             };
             worksheet.FloatingObjects.Add(chart);
+            worksheet.AutoFitColumnWidth(0);
         }
 
         //废除但保留

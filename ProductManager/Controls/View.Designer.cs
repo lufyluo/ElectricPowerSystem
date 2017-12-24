@@ -137,9 +137,9 @@
             // 
             this.line_Property.FormattingEnabled = true;
             this.line_Property.IntegralHeight = false;
-            this.line_Property.Location = new System.Drawing.Point(114, 21);
+            this.line_Property.Location = new System.Drawing.Point(96, 21);
             this.line_Property.Name = "line_Property";
-            this.line_Property.Size = new System.Drawing.Size(121, 29);
+            this.line_Property.Size = new System.Drawing.Size(150, 29);
             this.line_Property.TabIndex = 4;
             this.line_Property.SelectedIndexChanged += new System.EventHandler(this.line_Property_SelectedIndexChanged);
             // 
@@ -147,7 +147,7 @@
             // 
             this.label7.AutoSize = true;
             this.label7.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(102)))), ((int)(((byte)(102)))), ((int)(((byte)(102)))));
-            this.label7.Location = new System.Drawing.Point(831, 24);
+            this.label7.Location = new System.Drawing.Point(838, 24);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(74, 21);
             this.label7.TabIndex = 3;
@@ -157,7 +157,7 @@
             // 
             this.label6.AutoSize = true;
             this.label6.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(102)))), ((int)(((byte)(102)))), ((int)(((byte)(102)))));
-            this.label6.Location = new System.Drawing.Point(611, 24);
+            this.label6.Location = new System.Drawing.Point(618, 24);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(74, 21);
             this.label6.TabIndex = 3;
@@ -167,7 +167,7 @@
             // 
             this.label5.AutoSize = true;
             this.label5.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(102)))), ((int)(((byte)(102)))), ((int)(((byte)(102)))));
-            this.label5.Location = new System.Drawing.Point(254, 24);
+            this.label5.Location = new System.Drawing.Point(264, 24);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(74, 21);
             this.label5.TabIndex = 3;
@@ -177,7 +177,7 @@
             // 
             this.label4.AutoSize = true;
             this.label4.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(102)))), ((int)(((byte)(102)))), ((int)(((byte)(102)))));
-            this.label4.Location = new System.Drawing.Point(24, 24);
+            this.label4.Location = new System.Drawing.Point(15, 24);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(74, 21);
             this.label4.TabIndex = 3;
@@ -185,7 +185,7 @@
             // 
             // lineChart1
             // 
-            this.lineChart1.Location = new System.Drawing.Point(19, 59);
+            this.lineChart1.Location = new System.Drawing.Point(0, 59);
             this.lineChart1.Margin = new System.Windows.Forms.Padding(5);
             this.lineChart1.Name = "lineChart1";
             this.lineChart1.Size = new System.Drawing.Size(1132, 618);
