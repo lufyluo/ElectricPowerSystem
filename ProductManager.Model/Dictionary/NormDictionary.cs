@@ -47,7 +47,7 @@ namespace ProductManager.Model.Dictionary
 
             //cost
             _reportDictionary.Add("福利费", "WorkersWelfare");
-            _reportDictionary.Add("其他可控", "ControllableCost");
+            _reportDictionary.Add("其他可控", "OtherControllableCost");
             _reportDictionary.Add("可控成本小计", "ControllableCostTotal");
             _reportDictionary.Add("人工成本", "Salary");
             _reportDictionary.Add("其他不可控", "OtherUnControllableCost");

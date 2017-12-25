@@ -194,7 +194,7 @@ namespace ProductManager.Logic {
             }
             var totalBudgetReportData = budgetReportDatas.GroupBy(item => true)
                 .Select(g => new BudgetReportData {
-                    CompanyName = "全州公司合计",
+                    CompanyName = "合计",
 
                     Electricity = g.Sum(x => x.Electricity),
                     BuyElectricity = g.Sum(x => x.BuyElectricity),
