@@ -145,7 +145,7 @@ namespace ProductManager.Controls {
         }
 
         private void ClearRange() {
-            var range = sheet.Ranges[$"A3:V{sheet.RowCount}"];
+            var range = sheet.Ranges[$"A4:V{sheet.RowCount}"];
             foreach (var rangeCell in range.Cells) {
 
                 rangeCell.Data = "";
