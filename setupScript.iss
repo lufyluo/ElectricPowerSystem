@@ -32,12 +32,12 @@ Name: "english"; MessagesFile: "compiler:Default.isl"
 Name: "desktopicon"; Description: "{cm:CreateDesktopIcon}"; GroupDescription: "{cm:AdditionalIcons}"; Flags: unchecked
 
 [Files]
-Source: "C:\Users\Administrator\Documents\Visual Studio 2017\Projects\ProductManager\ProductManager\bin\Release\ProductManager.exe"; DestDir: "{app}"; Flags: ignoreversion
-Source: "C:\Users\Administrator\Documents\Visual Studio 2017\Projects\ProductManager\ProductManager\bin\Release\*"; DestDir: "{app}"; Flags: ignoreversion recursesubdirs createallsubdirs
-Source: "C:\Users\Administrator\Documents\Visual Studio 2017\Projects\ProductManager\ProductManager\bin\Release\Db\*"; DestDir: "{app}"; Flags: ignoreversion recursesubdirs createallsubdirs
-Source: "C:\Users\Administrator\Documents\Visual Studio 2017\Projects\ProductManager\ProductManager\bin\Release\Template\*"; DestDir: "{app}"; Flags: ignoreversion recursesubdirs createallsubdirs
-Source: "C:\Users\Administrator\Documents\Visual Studio 2017\Projects\ProductManager\ProductManager\bin\Release\x64\*"; DestDir: "{app}"; Flags: ignoreversion recursesubdirs createallsubdirs
-Source: "C:\Users\Administrator\Documents\Visual Studio 2017\Projects\ProductManager\ProductManager\bin\Release\x86\*"; DestDir: "{app}"; Flags: ignoreversion recursesubdirs createallsubdirs
+Source: "E:\工作文档\GitProject\ElectricPowerSystem\ProductManager\bin\Release\ProductManager.exe"; DestDir: "{app}"; Flags: ignoreversion
+Source: "E:\工作文档\GitProject\ElectricPowerSystem\ProductManager\bin\Release\*"; DestDir: "{app}"; Flags: ignoreversion recursesubdirs createallsubdirs
+Source: "E:\工作文档\GitProject\ElectricPowerSystem\ProductManager\bin\Release\Db\*"; DestDir: "{app}"; Flags: ignoreversion recursesubdirs createallsubdirs
+Source: "E:\工作文档\GitProject\ElectricPowerSystem\ProductManager\bin\Release\Template\*"; DestDir: "{app}"; Flags: ignoreversion recursesubdirs createallsubdirs
+Source: "E:\工作文档\GitProject\ElectricPowerSystem\ProductManager\bin\Release\x64\*"; DestDir: "{app}"; Flags: ignoreversion recursesubdirs createallsubdirs
+Source: "E:\工作文档\GitProject\ElectricPowerSystem\ProductManager\bin\Release\x86\*"; DestDir: "{app}"; Flags: ignoreversion recursesubdirs createallsubdirs
 ; NOTE: Don't use "Flags: ignoreversion" on any shared system files
 
 [Icons]
