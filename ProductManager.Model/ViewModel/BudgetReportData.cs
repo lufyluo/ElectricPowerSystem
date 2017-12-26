@@ -86,7 +86,7 @@ namespace ProductManager.Model.ViewModel
         /// <summary>
         /// 可控成本小计
         /// </summary>
-        public double? ControllableCostTotal => WorkersWelfare + ControllableCost;
+        public double? ControllableCostTotal => WorkersWelfare + OtherControllableCost;
 
         /// <summary>
         /// 其它可控成本：【ControllableCost-WorkersWelfare】
