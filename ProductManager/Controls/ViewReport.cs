@@ -30,6 +30,7 @@ namespace ProductManager.Controls
         private const int SELECTITEMSMAXCOUNT = 10;//最大下拉数量
         private IList<DateTimeItem> dateTimeItems;
         private IList<DateTimeSelect> dateTimeSelects;
+        private readonly string totalName = "全州公司合计";
         public ViewReport()
         {
             InitializeComponent();
@@ -48,6 +49,7 @@ namespace ProductManager.Controls
             try
             {
                 selectItems = dataReport.GetBudgetReportData(new BaseParam());
+                AdjustAllName(selectItems);
                 dataTable = CommonHelper.ToDataTable(selectItems);
                 var date = DateTime.Now;
                 //selects.Add(new Company()
@@ -67,7 +69,7 @@ namespace ProductManager.Controls
                 }
                 comboBox1.DataSource = selects;
                 comboBox1.DisplayMember = "Name";
-                pushInExcel(dataTable);
+                PushInExcel(dataTable);
             }
             catch (Exception e)
             {
@@ -75,7 +77,19 @@ namespace ProductManager.Controls
             }
            
         }
-        private void pushInExcel(DataTable data)
+
+        private void AdjustAllName(IList<BudgetReportData> data)
+        {
+            if(data ==null||data.Count==0)
+                return;
+            var last = data.LastOrDefault();
+            if (last != null)
+            {
+                last.CompanyName = totalName;
+            }
+        }
+
+        private void PushInExcel(DataTable data)
         {
             sheet?.SetRangeData(new RangePosition(3, 0, data.Rows.Count, data.Columns.Count), data);
         }
@@ -93,7 +107,8 @@ namespace ProductManager.Controls
                     Year = com.Year,
                     Month = com.Month
                 });
-                pushInExcel(CommonHelper.ToDataTable(data));
+                AdjustAllName(data);
+                PushInExcel(CommonHelper.ToDataTable(data));
             }
         }
 
